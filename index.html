@@ -3,23 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Emmanuel Stefhanius | Personal Portfolio</title>
+    <title>Emmanuel Stefhanius | Network Computing Portfolio</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- Header & Navigation -->
+    <!-- Persistent Navigation Bar -->
     <header>
         <nav class="navbar" aria-label="Main Navigation">
             <a href="#home" class="logo">Emmanuel S.</a>
             <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu">☰</button>
             <ul class="nav-links" id="navLinks">
-                <li><a href="#home" class="nav-item">Home</a></li>
+                <li><a href="#home" class="nav-item active">Home</a></li>
                 <li><a href="#about" class="nav-item">About Me</a></li>
                 <li><a href="#projects" class="nav-item">Projects</a></li>
                 <li><a href="#contact" class="nav-item">Contact</a></li>
             </ul>
-            <button id="themeToggle" aria-label="Toggle dark/light mode">🌙</button>
+            <button id="themeToggle" aria-label="Toggle light and dark mode">🌙</button>
         </nav>
     </header>
 
@@ -28,43 +28,50 @@
         <section id="home" class="hero-section">
             <div class="hero-content">
                 <h1>Hi, I'm <span class="highlight">Emmanuel Stefhanius</span></h1>
-                <p class="subtitle">Network Computing Student at UNIMAS</p>
-                <p id="typingText" class="typing-effect"></p>
-                <a href="#projects" class="btn">View My Work</a>
+                <p class="subtitle">Network Computing Student at UNIMAS (ID: 104008)</p>
+                <div class="typing-container">
+                    <span id="typingText" class="typing-effect"></span>
+                </div>
+                <div class="hero-buttons">
+                    <a href="#projects" class="btn">View My Projects</a>
+                    <a href="#contact" class="btn btn-outline">Get In Touch</a>
+                </div>
             </div>
         </section>
 
         <!-- About Me Section -->
-<section id="about" class="container">
-    <h2 class="section-title">About Me</h2>
-    <div class="about-grid">
-        <!-- Quick Info Card -->
-        <div class="about-card profile-card">
-            <div class="profile-avatar">ES</div>
-            <h3>Emmanuel Stefhanius</h3>
-            <p class="role-tag">Network Computing Student</p>
-            <p class="id-tag">UNIMAS | ID: 104008</p>
-        </div>
+        <section id="about" class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-grid">
+                <!-- Profile Identity Card -->
+                <div class="about-card profile-card">
+                    <div class="profile-avatar">ES</div>
+                    <h3>Emmanuel Stefhanius</h3>
+                    <p class="role-tag">Network Computing Student</p>
+                    <p class="id-tag">UNIMAS | ID: 104008</p>
+                </div>
 
-        <!-- Bio Card -->
-        <div class="about-card bio-card">
-            <h3>Who I Am</h3>
-            <p>
-                I am a dedicated Network Computing student from UNIMAS with a strong background in campus leadership, student affairs, and operational support. Throughout my academic journey, I have managed student welfare, facilitated orientation programs, and coordinated campus events while building technical and analytical skills.
-            </p>
-            
-            <h3>Core Competencies</h3>
-            <ul class="competencies-list">
-                <li><strong>Leadership & Event Coordination:</strong> Block Vice President, Minggu Aluan Pelajar Facilitator, and Safety Bureau team member.</li>
-                <li><strong>Mentorship & Communication:</strong> Class Monitor and Peer Mentor aiding academic success.</li>
-            </ul>
-        </div>
-    </div>
-</section>
+                <!-- Biography & Core Competencies -->
+                <div class="about-card bio-card">
+                    <h3>Who I Am</h3>
+                    <p>
+                        I am a dedicated Network Computing student from UNIMAS with a strong background in campus leadership, student affairs, and operational support. Throughout my academic journey, I have managed student welfare, facilitated orientation programs, and coordinated campus events while building technical and analytical skills.
+                    </p>
+                    
+                    <h3>Core Competencies</h3>
+                    <ul class="competencies-list">
+                        <li><strong>Leadership & Event Coordination:</strong> Block Vice President, Minggu Aluan Pelajar Facilitator, and Safety Bureau team member.</li>
+                        <li><strong>Mentorship & Communication:</strong> Class Monitor and Peer Mentor aiding academic success and student transition.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
 
-        <!-- Projects Section (5 Items Required) -->
+        <!-- Projects Section (5 Detailed Items Required) -->
         <section id="projects" class="container">
-            <h2>Projects</h2>
+            <h2 class="section-title">Projects</h2>
+            
+            <!-- Category Filter Buttons -->
             <div class="filter-buttons">
                 <button class="filter-btn active" data-filter="all">All</button>
                 <button class="filter-btn" data-filter="network">Networking</button>
@@ -73,32 +80,32 @@
 
             <div class="projects-grid">
                 <article class="project-card" data-category="network">
-                    <h3>Campus Network Infrastructure Design</h3>
-                    <p>Designed a scalable VLAN and routing architecture for university residential halls.</p>
+                    <h3>Campus Network Architecture</h3>
+                    <p>Designed a scalable VLAN and subnet architecture for university student residential blocks, prioritizing traffic isolation and secure access.</p>
                     <span class="tag">Networking</span>
                 </article>
 
                 <article class="project-card" data-category="web">
-                    <h3>Student Event Management System</h3>
-                    <p>Front-end dashboard developed to streamline event registration and tracking.</p>
+                    <h3>Student Event Dashboard</h3>
+                    <p>Front-end interactive web interface created to streamline campus event registrations, participant tracking, and schedule updates.</p>
                     <span class="tag">Web Dev</span>
                 </article>
 
                 <article class="project-card" data-category="network">
-                    <h3>Packet Tracer Security Analysis</h3>
-                    <p>Configured firewalls, ACLs, and NAT settings for enterprise network simulations.</p>
+                    <h3>Packet Tracer SecurityACL</h3>
+                    <p>Configured Cisco firewalls, Access Control Lists (ACLs), and Network Address Translation (NAT) rules for simulated enterprise networks.</p>
                     <span class="tag">Networking</span>
                 </article>
 
                 <article class="project-card" data-category="web">
-                    <h3>Personal Portfolio Website</h3>
-                    <p>Responsive multi-section portfolio built with standard HTML5, CSS3, and modern JS.</p>
+                    <h3>Personal Portfolio Resume Website</h3>
+                    <p>Responsive multi-section portfolio created using standard HTML5, custom CSS3 styles, and vanilla JS functionality.</p>
                     <span class="tag">Web Dev</span>
                 </article>
 
                 <article class="project-card" data-category="network">
-                    <h3>Wireless AP Coverage Deployment</h3>
-                    <p>Assessed Wi-Fi signal propagation and optimal access point placement for campus blocks.</p>
+                    <h3>Wi-Fi Coverage & Heatmap Analysis</h3>
+                    <p>Assessed campus access point coverage density and signal propagation to eliminate dead zones across high-density study areas.</p>
                     <span class="tag">Networking</span>
                 </article>
             </div>
@@ -106,23 +113,26 @@
 
         <!-- Contact Section -->
         <section id="contact" class="container">
-            <h2>Contact Me</h2>
+            <h2 class="section-title">Contact Me</h2>
             <form id="contactForm" class="contact-form" novalidate>
                 <div class="form-group">
                     <label for="name">Name</label>
-                    <input type="text" id="name" name="name" required>
+                    <input type="text" id="name" name="name" placeholder="Your full name" required>
                     <span class="error-msg" id="nameError"></span>
                 </div>
+
                 <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" required>
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" placeholder="name@example.com" required>
                     <span class="error-msg" id="emailError"></span>
                 </div>
+
                 <div class="form-group">
                     <label for="message">Message</label>
-                    <textarea id="message" name="message" rows="4" required></textarea>
+                    <textarea id="message" name="message" rows="5" placeholder="Write your message here..." required></textarea>
                     <span class="error-msg" id="msgError"></span>
                 </div>
+
                 <button type="submit" class="btn">Send Message</button>
                 <p id="formStatus" class="form-status"></p>
             </form>
@@ -130,8 +140,9 @@
     </main>
 
     <!-- Scroll-to-Top Button -->
-    <button id="scrollTopBtn" aria-label="Scroll to top">↑</button>
+    <button id="scrollTopBtn" aria-label="Scroll to top of page">↑</button>
 
+    <!-- Footer -->
     <footer>
         <p>&copy; <span id="year"></span> Emmanuel Stefhanius (104008). All Rights Reserved.</p>
     </footer>
