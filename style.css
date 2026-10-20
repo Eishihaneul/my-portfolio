@@ -1,23 +1,30 @@
-         :root {
+1. Theme Variables & Color Palette
+:root {
+    /* Modern Dark Theme */
+    --bg-color: #0d1117;                   
+    --card-bg: rgba(22, 27, 34, 0.85);      
+    --text-color: #e6edf3;                
+    --text-muted: #8b949e;                
+    --primary-color: #00f2fe;              
+    --accent-color: #4facfe;               
+    --border-color: rgba(255, 255, 255, 0.1);
+    --shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    --glow: 0 0 15px rgba(0, 242, 254, 0.3);
+}
+
+body.light-theme {
     --bg-color: #f4f6f8;
-    --card-bg: #ffffff;
-    --text-color: #2c3e50;
-    --primary-color: #1f618d;
-    --accent-color: #2980b9;
-    --border-color: #d6dbdf;
-    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --card-bg: rgba(255, 255, 255, 0.9);
+    --text-color: #1a202c;
+    --text-muted: #4a5568;
+    --primary-color: #0077b6;
+    --accent-color: #00b4d8;
+    --border-color: rgba(0, 0, 0, 0.1);
+    --shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    --glow: 0 0 15px rgba(0, 119, 182, 0.2);
 }
 
-body.dark-theme {
-    --bg-color: #1a202c;
-    --card-bg: #2d3748;
-    --text-color: #edf2f7;
-    --primary-color: #3182ce;
-    --accent-color: #63b3ed;
-    --border-color: #4a5568;
-    --shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
-}
-
+2. Reset & Core Base Styles
 * {
     box-sizing: border-box;
     margin: 0;
@@ -26,22 +33,76 @@ body.dark-theme {
 
 html {
     scroll-behavior: smooth;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
 }
 
 body {
     background-color: var(--bg-color);
     color: var(--text-color);
     line-height: 1.6;
+    position: relative;
+    overflow-x: hidden;
     transition: background-color 0.3s, color 0.3s;
 }
 
-/* Header & Nav */
+/* Ambient Decorative Background Glows */
+body::before, body::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(120px);
+    z-index: -1;
+    opacity: 0.25;
+}
+
+body::before {
+    top: 5%;
+    left: -10%;
+    width: 400px;
+    height: 400px;
+    background: var(--primary-color);
+}
+
+body::after {
+    top: 45%;
+    right: -10%;
+    width: 450px;
+    height: 450px;
+    background: var(--accent-color);
+}
+
+
+3. Typography & Section Titles
+h1, h2, h3 {
+    color: var(--text-color);
+}
+
+h2.section-title, h2 {
+    font-size: 2rem;
+    position: relative;
+    display: inline-block;
+    margin-bottom: 1.5rem;
+}
+
+h2::after {
+    content: '';
+    display: block;
+    width: 50%;
+    height: 3px;
+    background: linear-gradient(90deg, var(--primary-color), transparent);
+    margin-top: 5px;
+    border-radius: 2px;
+}
+
+
+4. Header & Navigation Bar
 header {
     position: sticky;
     top: 0;
     background-color: var(--card-bg);
+    backdrop-filter: blur(10px);
     box-shadow: var(--shadow);
+    border-bottom: 1px solid var(--border-color);
     z-index: 1000;
 }
 
@@ -59,6 +120,7 @@ header {
     font-weight: bold;
     color: var(--primary-color);
     text-decoration: none;
+    letter-spacing: 0.5px;
 }
 
 .nav-links {
@@ -71,11 +133,12 @@ header {
     text-decoration: none;
     color: var(--text-color);
     font-weight: 500;
+    transition: color 0.2s;
 }
 
+.nav-links a:hover,
 .nav-links a.active {
     color: var(--primary-color);
-    border-bottom: 2px solid var(--primary-color);
 }
 
 .menu-toggle {
@@ -92,10 +155,18 @@ header {
     border: 1px solid var(--border-color);
     padding: 0.4rem 0.8rem;
     border-radius: 20px;
+    color: var(--text-color);
     cursor: pointer;
+    transition: transform 0.2s, border-color 0.2s;
 }
 
-/* Sections */
+#themeToggle:hover {
+    transform: scale(1.05);
+    border-color: var(--primary-color);
+}
+
+
+5. Layout Containers & Hero Section
 .container {
     max-width: 1000px;
     margin: 3rem auto;
@@ -103,7 +174,7 @@ header {
 }
 
 .hero-section {
-    min-height: 70vh;
+    min-height: 75vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -113,39 +184,103 @@ header {
 
 .highlight {
     color: var(--primary-color);
+    text-shadow: var(--glow);
 }
 
-.about-card, .project-card, .contact-form {
-    background-color: var(--card-bg);
-    padding: 1.5rem;
-    border-radius: 8px;
-    border: 1px solid var(--border-color);
-    box-shadow: var(--shadow);
+.subtitle {
+    font-size: 1.2rem;
+    color: var(--text-muted);
+    margin-top: 0.5rem;
 }
 
-/* Projects Grid */
-.projects-grid {
+.typing-effect {
+    font-size: 1.1rem;
+    color: var(--primary-color);
+    font-family: 'Courier New', Courier, monospace;
+    min-height: 1.6em;
+    margin: 1rem 0 1.5rem 0;
+}
+
+
+6. About Me Grid (2-Column Layout)
+.about-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1.5rem;
+    grid-template-columns: 1fr 2fr;
+    gap: 2rem;
     margin-top: 1.5rem;
 }
 
-.project-card.hide {
-    display: none;
+.about-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: var(--shadow);
+    backdrop-filter: blur(8px); /* Glassmorphism effect */
 }
 
-.tag {
-    display: inline-block;
-    margin-top: 0.5rem;
-    padding: 0.2rem 0.6rem;
-    background-color: var(--primary-color);
-    color: #fff;
-    font-size: 0.8rem;
-    border-radius: 4px;
+.profile-card {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
-/* Filter Buttons */
+.profile-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    color: #0d1117;
+    font-size: 2rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+    box-shadow: var(--glow);
+}
+
+.role-tag {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+.id-tag {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+.bio-card h3 {
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+    color: var(--primary-color);
+}
+
+.bio-card h3:first-of-type {
+    margin-top: 0;
+}
+
+.competencies-list {
+    list-style: none;
+    padding-left: 0;
+}
+
+.competencies-list li {
+    margin-bottom: 0.8rem;
+    position: relative;
+    padding-left: 1.2rem;
+}
+
+.competencies-list li::before {
+    content: '▹';
+    position: absolute;
+    left: 0;
+    color: var(--primary-color);
+}
+
+7. Projects Grid & Category Filters
 .filter-buttons {
     display: flex;
     gap: 0.5rem;
@@ -157,93 +292,12 @@ header {
     border: 1px solid var(--border-color);
     background: var(--card-bg);
     color: var(--text-color);
-    border-radius: 4px;
+    border-radius: 6px;
     cursor: pointer;
+    transition: background 0.2s, color 0.2s;
 }
 
-.filter-btn.active {
+.filter-btn.active,
+.filter-btn:hover {
     background: var(--primary-color);
-    color: #fff;
-}
-
-/* Form Styles */
-.form-group {
-    margin-bottom: 1rem;
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 0.3rem;
-}
-
-.form-group input, .form-group textarea {
-    width: 100%;
-    padding: 0.6rem;
-    border: 1px solid var(--border-color);
-    border-radius: 4px;
-    background-color: var(--bg-color);
-    color: var(--text-color);
-}
-
-.error-msg {
-    color: #e74c3c;
-    font-size: 0.85rem;
-}
-
-/* Buttons */
-.btn {
-    display: inline-block;
-    padding: 0.6rem 1.2rem;
-    background-color: var(--primary-color);
-    color: #fff;
-    text-decoration: none;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-/* Scroll To Top */
-#scrollTopBtn {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    display: none;
-    padding: 0.6rem 1rem;
-    font-size: 1.2rem;
-    background-color: var(--primary-color);
-    color: #fff;
-    border: none;
-    border-radius: 50%;
-    cursor: pointer;
-}
-
-footer {
-    text-align: center;
-    padding: 1.5rem;
-    background-color: var(--card-bg);
-    border-top: 1px solid var(--border-color);
-    margin-top: 3rem;
-}
-
-/* Responsive Styles */
-@media (max-width: 768px) {
-    .menu-toggle {
-        display: block;
-    }
-
-    .nav-links {
-        display: none;
-        flex-direction: column;
-        width: 100%;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        background-color: var(--card-bg);
-        padding: 1rem 2rem;
-        box-shadow: var(--shadow);
-    }
-
-    .nav-links.show {
-        display: flex;
-    }
-}
+    color: #0d
