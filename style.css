@@ -380,22 +380,35 @@ header {
     color: var(--text-color);
 }
 
+/* Contact Form Fields */
 .form-group input, 
 .form-group textarea {
     width: 100%;
     padding: 0.75rem;
     border: 1px solid var(--border-color);
     border-radius: 6px;
-    background-color: rgba(13, 17, 23, 0.6);
-    color: var(--text-color);
+    
+    /* Default State: Light Gray Background with Charcoal Text */
+    background-color: #22272e;
+    color: #e6edf3;
+    font-size: 1rem;
     outline: none;
-    transition: border-color 0.2s;
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
 }
 
+/* Placeholder Text Color */
+.form-group input::placeholder, 
+.form-group textarea::placeholder {
+    color: #adbac7;
+}
+
+/* Active Focus State: When the user clicks or taps to type */
 .form-group input:focus, 
 .form-group textarea:focus {
+    background-color: #ffffff; /* Turns bright white */
+    color: #000000;            /* Text becomes clear black */
     border-color: var(--primary-color);
-    box-shadow: var(--glow);
+    box-shadow: 0 0 10px rgba(0, 242, 254, 0.4);
 }
 
 .error-msg {
