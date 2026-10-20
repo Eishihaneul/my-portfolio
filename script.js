@@ -1,25 +1,28 @@
 document.addEventListener("DOMContentLoaded", () => {
     
-    // Feature 1: Dynamic Copyright Year
-    document.getElementById("year").textContent = new Date().getFullYear();
+    // Feature 1: Dynamic Copyright Year in Footer
+    const yearElement = document.getElementById("year");
+    if (yearElement) {
+        yearElement.textContent = new Date().getFullYear();
+    }
 
-    // Feature 2: Dark/Light Mode Toggle with LocalStorage
+    // Feature 2: Dark / Light Mode Theme Toggle with localStorage
     const themeToggle = document.getElementById("themeToggle");
-    const currentTheme = localStorage.getItem("theme");
+    const currentTheme = localStorage.getItem("portfolio-theme");
 
-    if (currentTheme === "dark") {
-        document.body.classList.add("dark-theme");
+    if (currentTheme === "light") {
+        document.body.classList.add("light-theme");
         themeToggle.textContent = "☀️";
     }
 
     themeToggle.addEventListener("click", () => {
-        document.body.classList.toggle("dark-theme");
-        const isDark = document.body.classList.contains("dark-theme");
-        themeToggle.textContent = isDark ? "☀️" : "🌙";
-        localStorage.setItem("theme", isDark ? "dark" : "light");
+        document.body.classList.toggle("light-theme");
+        const isLight = document.body.classList.contains("light-theme");
+        themeToggle.textContent = isLight ? "☀️" : "🌙";
+        localStorage.setItem("portfolio-theme", isLight ? "light" : "dark");
     });
 
-    // Feature 3: Mobile Menu Toggle
+    // Feature 3: Mobile Navigation Menu Toggle
     const menuToggle = document.getElementById("menuToggle");
     const navLinks = document.getElementById("navLinks");
 
@@ -27,7 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
         navLinks.classList.toggle("show");
     });
 
-    // Feature 4: Close Mobile Menu on Nav Item Click
+    // Feature 4: Auto-Close Mobile Menu when a link is clicked
     document.querySelectorAll(".nav-item").forEach(item => {
         item.addEventListener("click", () => {
             if (navLinks.classList.contains("show")) {
@@ -36,7 +39,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // Feature 5: Scroll-to-Top Button Visibility
+    // Feature 5: Scroll-to-Top Button Visibility Toggle
     const scrollTopBtn = document.getElementById("scrollTopBtn");
     window.addEventListener("scroll", () => {
         if (window.scrollY > 300) {
@@ -46,41 +49,43 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // Feature 6: Scroll-to-Top Action
+    // Feature 6: Smooth Scroll to Top Action
     scrollTopBtn.addEventListener("click", () => {
         window.scrollTo({ top: 0, behavior: "smooth" });
     });
 
-// Feature 7: Typing Effect
-const typingElement = document.getElementById("typingText");
-const phrases = [
-    "Network Computing Student @ UNIMAS",
-    "Aspiring Network Engineer"
-];
-let phraseIndex = 0;
-let charIndex = 0;
+    // Feature 7: Typing Effect on Hero Subtitle
+    const typingElement = document.getElementById("typingText");
+    const phrases = [
+        "Network Computing Student @ UNIMAS",
+        "Block Vice President & Student Leader",
+        "Minggu Aluan Pelajar Facilitator",
+        "Aspiring Network Engineer"
+    ];
+    let phraseIndex = 0;
+    let charIndex = 0;
 
-function typeEffect() {
-    if (charIndex < phrases[phraseIndex].length) {
-        typingElement.textContent += phrases[phraseIndex].charAt(charIndex);
-        charIndex++;
-        setTimeout(typeEffect, 80); // Speed of typing
-    } else {
-        setTimeout(eraseEffect, 1800); // Wait time before erasing
+    function typeEffect() {
+        if (charIndex < phrases[phraseIndex].length) {
+            typingElement.textContent += phrases[phraseIndex].charAt(charIndex);
+            charIndex++;
+            setTimeout(typeEffect, 70);
+        } else {
+            setTimeout(eraseEffect, 1800);
+        }
     }
-}
 
-function eraseEffect() {
-    if (charIndex > 0) {
-        typingElement.textContent = phrases[phraseIndex].substring(0, charIndex - 1);
-        charIndex--;
-        setTimeout(eraseEffect, 40); // Speed of erasing
-    } else {
-        phraseIndex = (phraseIndex + 1) % phrases.length;
-        setTimeout(typeEffect, 400);
+    function eraseEffect() {
+        if (charIndex > 0) {
+            typingElement.textContent = phrases[phraseIndex].substring(0, charIndex - 1);
+            charIndex--;
+            setTimeout(eraseEffect, 40);
+        } else {
+            phraseIndex = (phraseIndex + 1) % phrases.length;
+            setTimeout(typeEffect, 400);
+        }
     }
-}
-typeEffect();
+    typeEffect();
 
     // Feature 8: Active Navigation Highlight on Scroll
     const sections = document.querySelectorAll("section");
@@ -91,7 +96,7 @@ typeEffect();
         sections.forEach(section => {
             const sectionTop = section.offsetTop;
             const sectionHeight = section.clientHeight;
-            if (pageYOffset >= (sectionTop - sectionHeight / 3)) {
+            if (window.scrollY >= (sectionTop - sectionHeight / 3)) {
                 current = section.getAttribute("id");
             }
         });
@@ -104,7 +109,7 @@ typeEffect();
         });
     });
 
-    // Feature 9: Interactive Project Category Filtering
+    // Feature 9: Interactive Project Category Filter
     const filterBtns = document.querySelectorAll(".filter-btn");
     const projectCards = document.querySelectorAll(".project-card");
 
@@ -131,33 +136,39 @@ typeEffect();
         e.preventDefault();
         let isValid = true;
 
-        const name = document.getElementById("name").value.trim();
-        const email = document.getElementById("email").value.trim();
-        const message = document.getElementById("message").value.trim();
+        const nameInput = document.getElementById("name");
+        const emailInput = document.getElementById("email");
+        const messageInput = document.getElementById("message");
 
-        // Clear previous error messages
-        document.getElementById("nameError").textContent = "";
-        document.getElementById("emailError").textContent = "";
-        document.getElementById("msgError").textContent = "";
+        const nameError = document.getElementById("nameError");
+        const emailError = document.getElementById("emailError");
+        const msgError = document.getElementById("msgError");
+        const formStatus = document.getElementById("formStatus");
 
-        if (name === "") {
-            document.getElementById("nameError").textContent = "Name is required.";
+        // Reset errors
+        nameError.textContent = "";
+        emailError.textContent = "";
+        msgError.textContent = "";
+        formStatus.textContent = "";
+
+        if (nameInput.value.trim() === "") {
+            nameError.textContent = "Please enter your name.";
             isValid = false;
         }
 
-        if (email === "" || !email.includes("@")) {
-            document.getElementById("emailError").textContent = "Valid email is required.";
+        if (emailInput.value.trim() === "" || !emailInput.value.includes("@")) {
+            emailError.textContent = "Please enter a valid email address.";
             isValid = false;
         }
 
-        if (message === "") {
-            document.getElementById("msgError").textContent = "Message cannot be empty.";
+        if (messageInput.value.trim() === "") {
+            msgError.textContent = "Please enter a message.";
             isValid = false;
         }
 
         if (isValid) {
-            document.getElementById("formStatus").textContent = "Thank you! Your message has been sent.";
-            document.getElementById("formStatus").style.color = "green";
+            formStatus.textContent = "Thank you! Your message has been validated and sent.";
+            formStatus.style.color = "#00f2fe";
             contactForm.reset();
         }
     });
