@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emmanuel Stefhanius | Personal Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Header & Navigation -->
+    <header>
+        <nav class="navbar" aria-label="Main Navigation">
+            <a href="#home" class="logo">Emmanuel S.</a>
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu">☰</button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home" class="nav-item">Home</a></li>
+                <li><a href="#about" class="nav-item">About Me</a></li>
+                <li><a href="#projects" class="nav-item">Projects</a></li>
+                <li><a href="#contact" class="nav-item">Contact</a></li>
+            </ul>
+            <button id="themeToggle" aria-label="Toggle dark/light mode">🌙</button>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Home Section -->
+        <section id="home" class="hero-section">
+            <div class="hero-content">
+                <h1>Hi, I'm <span class="highlight">Emmanuel Stefhanius</span></h1>
+                <p class="subtitle">Network Computing Student at UNIMAS</p>
+                <p id="typingText" class="typing-effect"></p>
+                <a href="#projects" class="btn">View My Work</a>
+            </div>
+        </section>
+
+        <!-- About Me Section -->
+        <section id="about" class="container">
+            <h2>About Me</h2>
+            <div class="about-card">
+                <p>
+                    I am a dedicated Network Computing student from UNIMAS with a strong background in campus leadership, student affairs, and operational support. Throughout my academic journey, I have managed student welfare, facilitated orientation programs, and coordinated campus events while building technical and analytical skills.
+                </p>
+                <h3>Core Competencies</h3>
+                <ul class="competencies-list">
+                    <li><strong>Leadership & Event Coordination:</strong> Block Vice President, Minggu Aluan Pelajar Facilitator, and Safety Bureau team member.</li>
+                    <li><strong>Mentorship & Communication:</strong> Class Monitor and Peer Mentor aiding academic success and student transition.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Projects Section (5 Items Required) -->
+        <section id="projects" class="container">
+            <h2>Projects</h2>
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="network">Networking</button>
+                <button class="filter-btn" data-filter="web">Web Dev</button>
+            </div>
+
+            <div class="projects-grid">
+                <article class="project-card" data-category="network">
+                    <h3>Campus Network Infrastructure Design</h3>
+                    <p>Designed a scalable VLAN and routing architecture for university residential halls.</p>
+                    <span class="tag">Networking</span>
+                </article>
+
+                <article class="project-card" data-category="web">
+                    <h3>Student Event Management System</h3>
+                    <p>Front-end dashboard developed to streamline event registration and tracking.</p>
+                    <span class="tag">Web Dev</span>
+                </article>
+
+                <article class="project-card" data-category="network">
+                    <h3>Packet Tracer Security Analysis</h3>
+                    <p>Configured firewalls, ACLs, and NAT settings for enterprise network simulations.</p>
+                    <span class="tag">Networking</span>
+                </article>
+
+                <article class="project-card" data-category="web">
+                    <h3>Personal Portfolio Website</h3>
+                    <p>Responsive multi-section portfolio built with standard HTML5, CSS3, and modern JS.</p>
+                    <span class="tag">Web Dev</span>
+                </article>
+
+                <article class="project-card" data-category="network">
+                    <h3>Wireless AP Coverage Deployment</h3>
+                    <p>Assessed Wi-Fi signal propagation and optimal access point placement for campus blocks.</p>
+                    <span class="tag">Networking</span>
+                </article>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="container">
+            <h2>Contact Me</h2>
+            <form id="contactForm" class="contact-form" novalidate>
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" required>
+                    <span class="error-msg" id="nameError"></span>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                    <span class="error-msg" id="emailError"></span>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" rows="4" required></textarea>
+                    <span class="error-msg" id="msgError"></span>
+                </div>
+                <button type="submit" class="btn">Send Message</button>
+                <p id="formStatus" class="form-status"></p>
+            </form>
+        </section>
+    </main>
+
+    <!-- Scroll-to-Top Button -->
+    <button id="scrollTopBtn" aria-label="Scroll to top">↑</button>
+
+    <footer>
+        <p>&copy; <span id="year"></span> Emmanuel Stefhanius (104008). All Rights Reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
