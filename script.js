@@ -51,33 +51,36 @@ document.addEventListener("DOMContentLoaded", () => {
         window.scrollTo({ top: 0, behavior: "smooth" });
     });
 
-    // Feature 7: Typing Effect on Hero Subtitle
-    const typingElement = document.getElementById("typingText");
-    const phrases = ["Leader", "Facilitator", "Network Computing Student"];
-    let phraseIndex = 0;
-    let charIndex = 0;
+// Feature 7: Typing Effect
+const typingElement = document.getElementById("typingText");
+const phrases = [
+    "Network Computing Student @ UNIMAS",
+    "Aspiring Network Engineer"
+];
+let phraseIndex = 0;
+let charIndex = 0;
 
-    function typeEffect() {
-        if (charIndex < phrases[phraseIndex].length) {
-            typingElement.textContent += phrases[phraseIndex].charAt(charIndex);
-            charIndex++;
-            setTimeout(typeEffect, 100);
-        } else {
-            setTimeout(eraseEffect, 2000);
-        }
+function typeEffect() {
+    if (charIndex < phrases[phraseIndex].length) {
+        typingElement.textContent += phrases[phraseIndex].charAt(charIndex);
+        charIndex++;
+        setTimeout(typeEffect, 80); // Speed of typing
+    } else {
+        setTimeout(eraseEffect, 1800); // Wait time before erasing
     }
+}
 
-    function eraseEffect() {
-        if (charIndex > 0) {
-            typingElement.textContent = phrases[phraseIndex].substring(0, charIndex - 1);
-            charIndex--;
-            setTimeout(eraseEffect, 50);
-        } else {
-            phraseIndex = (phraseIndex + 1) % phrases.length;
-            setTimeout(typeEffect, 500);
-        }
+function eraseEffect() {
+    if (charIndex > 0) {
+        typingElement.textContent = phrases[phraseIndex].substring(0, charIndex - 1);
+        charIndex--;
+        setTimeout(eraseEffect, 40); // Speed of erasing
+    } else {
+        phraseIndex = (phraseIndex + 1) % phrases.length;
+        setTimeout(typeEffect, 400);
     }
-    typeEffect();
+}
+typeEffect();
 
     // Feature 8: Active Navigation Highlight on Scroll
     const sections = document.querySelectorAll("section");
