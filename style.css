@@ -22,11 +22,11 @@
 }
 
 body.light-theme {
-    /* Watchtower Light Mode Background Image + Crisp Light Overlay */
-    --bg-image: linear-gradient(rgba(240, 244, 248, 0.92), rgba(240, 244, 248, 0.96)), url('Watchtower.jpg');
+    /* Watchtower Light Mode: Lowered white overlay to 45%-55% so the image pops clearly */
+    --bg-image: linear-gradient(rgba(240, 244, 248, 0.45), rgba(240, 244, 248, 0.55)), url('Watchtower.jpg');
 
     --bg-color: #f0f4f8;
-    --card-bg: rgba(255, 255, 255, 0.96);
+    --card-bg: rgba(255, 255, 255, 0.94);  /* Keeps card backgrounds solid so text remains 100% readable */
     --text-color: #0f172a;
     --text-muted: #334155;
     --primary-color: #0284c7;
