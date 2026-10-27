@@ -26,6 +26,8 @@
             </div>
             <button class="menu-toggle" id="menuToggle" aria-label="Toggle tactical menu">☰</button>
             <ul class="nav-links" id="navLinks">
+                <!-- Fluid Aquaman Water Pill Background -->
+                <div class="nav-pill-indicator" id="navPill"></div>
                 <li><a href="#home" class="nav-item active">Home</a></li>
                 <li><a href="#about" class="nav-item">About Me</a></li>
                 <li><a href="#projects" class="nav-item">Projects</a></li>
@@ -38,7 +40,7 @@
     <main>
         <!-- Hero Section with Profile Card Integrated to the Left -->
         <section id="home" class="hero-section">
-            <div class="hero-wrapper bat-card">
+            <div class="hero-wrapper bat-card scroll-reveal">
                 <!-- Left: Profile Badge -->
                 <div class="hero-profile-card">
                     <img src="profile.jpg" alt="Emmanuel Stefhanius Pixel Superman Profile" class="profile-avatar-img">
@@ -65,8 +67,8 @@
 
         <!-- Compact About Me Section -->
         <section id="about" class="container">
-            <h2 class="section-title">About Me</h2>
-            <div class="about-card bio-card bat-card">
+            <h2 class="section-title scroll-reveal">About Me</h2>
+            <div class="about-card bio-card bat-card scroll-reveal">
                 <h3>Reporting...</h3>
                 <p>
                     Passionate Network Computing student committed to continuous improvement to enhance technical and professional competencies in the computer science industry, while bringing cooperation and dedication to operational excellence. 
@@ -108,46 +110,46 @@
 
         <!-- Projects Section (6 Items) -->
         <section id="projects" class="container">
-            <h2 class="section-title">Projects</h2>
+            <h2 class="section-title scroll-reveal">Projects</h2>
             
-            <div class="filter-buttons">
+            <div class="filter-buttons scroll-reveal">
                 <button class="filter-btn active" data-filter="all">All Directives</button>
                 <button class="filter-btn" data-filter="network">Networking</button>
                 <button class="filter-btn" data-filter="web">Web Dev</button>
             </div>
 
             <div class="projects-grid">
-                <article class="project-card bat-card" data-category="network">
+                <article class="project-card bat-card scroll-reveal" data-category="network">
                     <h3>Office Network Design Architecture</h3>
                     <p>Designed a scalable VLAN and subnet architecture for a 2-storey office block prioritizing security and traffic isolation.</p>
                     <span class="tag">Networking</span>
                 </article>
 
-                <article class="project-card bat-card" data-category="web">
+                <article class="project-card bat-card scroll-reveal" data-category="web">
                     <h3>MediTrack Patient Management System</h3>
                     <p>Developed a C++ based internal hospital system simulating real-world operational workflows with continuous loop functionality.</p>
                     <span class="tag">C++</span>
                 </article>
 
-                <article class="project-card bat-card" data-category="web">
+                <article class="project-card bat-card scroll-reveal" data-category="web">
                     <h3>MindMyMind Desktop App</h3>
                     <p>Developed a front-end Java-based desktop application promoting mental health awareness and self-care tracking.</p>
                     <span class="tag">Java</span>
                 </article>
 
-                <article class="project-card bat-card" data-category="web">
+                <article class="project-card bat-card scroll-reveal" data-category="web">
                     <h3>Fitlife Wellness Database System</h3>
                     <p>Developed a PHP and Python based console application with an active database to maintain, collect, and manage user inputs.</p>
                     <span class="tag">Database (PHP, MySQL)</span>
                 </article>
 
-                <article class="project-card bat-card" data-category="web">
+                <article class="project-card bat-card scroll-reveal" data-category="web">
                     <h3>DirectFarm Samarahan System</h3>
                     <p>Developed a Python based console application to streamline localized agricultural supply chain management.</p>
                     <span class="tag">Python</span>
                 </article>
 
-                <article class="project-card bat-card" data-category="web">
+                <article class="project-card bat-card scroll-reveal" data-category="web">
                     <h3>Robin Rule Simulator</h3>
                     <p>Developed a Python based simulation framework to analyze, visualize and model CPU scheduling algorithms.</p>
                     <span class="tag">Python</span>
@@ -157,8 +159,8 @@
 
         <!-- Contact Section -->
         <section id="contact" class="container">
-            <h2 class="section-title">Contact Command</h2>
-            <form id="contactForm" class="contact-form bat-card" novalidate>
+            <h2 class="section-title scroll-reveal">Contact Command</h2>
+            <form id="contactForm" class="contact-form bat-card scroll-reveal" novalidate>
                 <div class="form-group">
                     <label for="name">Operator Name</label>
                     <input type="text" id="name" name="name" placeholder="Enter full name..." required>
