@@ -2,40 +2,34 @@
    1. Design System & Theme Variables (Solid Pastels, Zero Gradients)
    ========================================================================== */
 :root {
-    /* Batcave Dark Mode Background Image */
     --bg-image: url('Batcave.jpg');
-
     --bg-color: #080b10;
     --card-bg: rgba(14, 18, 25, 0.94);
     --text-color: #f1f5f9;
     --text-muted: #94a3b8;
-    --title-color: #38bdf8;            /* Solid Soft Cyan */
-    --primary-color: #38bdf8;          /* Solid Light Cyan Accent */
-    --accent-color: #f43f5e;           /* Solid Pastel Crimson */
+    --title-color: #38bdf8;
+    --primary-color: #38bdf8;
+    --accent-color: #f43f5e;
     --border-color: rgba(56, 189, 248, 0.35);
     --shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
     --glow: 0 0 12px rgba(56, 189, 248, 0.4);
-
     --input-bg: #111722;
     --input-text: #ffffff;
     --input-placeholder: #94a3b8;
 }
 
 body.light-theme {
-    /* Watchtower Light Mode Background Image */
     --bg-image: url('Watchtower2.jpg');
-
     --bg-color: #f0f4f8;
     --card-bg: rgba(255, 255, 255, 0.95);
     --text-color: #0f172a;
     --text-muted: #334155;
-    --title-color: #0284c7;            /* Solid Deep Royal Blue */
-    --primary-color: #0284c7;          /* Solid Royal Blue */
-    --accent-color: #d97706;           /* Solid Wonder Woman Gold */
+    --title-color: #0284c7;
+    --primary-color: #0284c7;
+    --accent-color: #d97706;
     --border-color: rgba(2, 132, 199, 0.35);
     --shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
     --glow: 0 0 12px rgba(2, 132, 199, 0.3);
-
     --input-bg: #e2e8f0;
     --input-text: #0f172a;
     --input-placeholder: #475569;
@@ -69,7 +63,21 @@ body {
     transition: background-color 0.4s ease, color 0.4s ease;
 }
 
-/* Superman Cape Transition Overlay (Solid Crimson) */
+/* 60fps Hardware-Accelerated Scroll Reveal (Pop-up + Slide from Left) */
+.scroll-reveal {
+    opacity: 0;
+    transform: translateY(35px) translateX(-25px);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), 
+                transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+}
+
+.scroll-reveal.active {
+    opacity: 1;
+    transform: translateY(0) translateX(0);
+}
+
+/* Superman Cape Transition Overlay */
 .cape-sweep {
     position: fixed;
     top: 0;
@@ -80,6 +88,7 @@ body {
     pointer-events: none;
     left: -100%;
     transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform;
 }
 
 .cape-sweep.sweep-right {
@@ -103,7 +112,7 @@ body {
 }
 
 /* ==========================================================================
-   3. Tactical HUD Cards (WayneTech Laser Scan Animation)
+   3. Tactical HUD Cards
    ========================================================================== */
 .bat-card {
     position: relative;
@@ -118,13 +127,13 @@ body {
                 border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
                 box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1),
                 background-color 0.4s ease;
+    will-change: transform;
 }
 
 .bat-card:hover {
     transform: translateY(-6px) scale(1.01);
 }
 
-/* Laser scan line effect on card hover */
 .bat-card::after {
     content: '';
     position: absolute;
@@ -133,7 +142,6 @@ body {
     width: 100%;
     height: 2px;
     background: var(--primary-color);
-    transition: none;
 }
 
 .bat-card:hover::after {
@@ -141,7 +149,6 @@ body {
     transition: left 0.8s ease-in-out;
 }
 
-/* Tactical Corner Brackets */
 .bat-card::before {
     content: '';
     position: absolute;
@@ -152,12 +159,11 @@ body {
     border: 2px solid var(--primary-color);
     border-right: none;
     border-bottom: none;
-    transition: border-color 0.3s;
     z-index: 2;
 }
 
 /* ==========================================================================
-   4. Typography & Section Title High Contrast
+   4. Typography & Section Titles
    ========================================================================== */
 h1, h2, h3 {
     color: var(--text-color);
@@ -199,7 +205,7 @@ h2.section-title::after {
 }
 
 /* ==========================================================================
-   5. Navigation Bar & Watchtower Ticker
+   5. Navigation Bar & Aquaman Water-Flow Pill Indicator
    ========================================================================== */
 header {
     position: sticky;
@@ -266,22 +272,53 @@ header {
     color: var(--primary-color);
 }
 
+/* Aquaman Water-Flow Pill Container */
 .nav-links {
     display: flex;
     list-style: none;
-    gap: 1.5rem;
+    gap: 0.5rem;
+    position: relative;
+    background: rgba(0, 0, 0, 0.15);
+    padding: 4px;
+    border-radius: 30px;
+    border: 1px solid var(--border-color);
+}
+
+/* The Fluid Water Capsule Indicator */
+.nav-pill-indicator {
+    position: absolute;
+    top: 4px;
+    bottom: 4px;
+    left: 0;
+    width: 0;
+    background: var(--primary-color);
+    border-radius: 20px;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+                width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 1;
+    opacity: 0.2;
+    box-shadow: var(--glow);
+    will-change: transform, width;
 }
 
 .nav-links a {
+    position: relative;
+    z-index: 2;
     text-decoration: none;
     color: var(--text-color);
     font-weight: 600;
-    transition: color 0.2s;
+    padding: 0.4rem 1rem;
+    border-radius: 20px;
+    transition: color 0.3s ease;
 }
 
 .nav-links a:hover,
 .nav-links a.active {
     color: var(--primary-color);
+}
+
+body.light-theme .nav-links a.active {
+    color: #ffffff;
 }
 
 .menu-toggle {
@@ -489,8 +526,8 @@ header {
 
 .project-card {
     opacity: 1;
-    transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
-                transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), 
+                transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
                 border-color 0.3s ease;
 }
 
@@ -502,7 +539,7 @@ header {
 .project-card.hide {
     display: none;
     opacity: 0;
-    transform: scale(0.95);
+    transform: scale(0.95) translateX(-20px);
 }
 
 .tag {
