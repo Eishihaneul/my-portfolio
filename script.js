@@ -1,12 +1,12 @@
 document.addEventListener("DOMContentLoaded", () => {
     
-    // Feature 1: Dynamic Copyright Year
+    // Feature 1: Dynamic Copyright Year in Footer
     const yearElement = document.getElementById("year");
     if (yearElement) {
         yearElement.textContent = new Date().getFullYear();
     }
 
-    // Feature 2: Watchtower (Light) vs Batcave (Dark) Theme Toggle + Bidirectional Cape Sweep
+    // Feature 2: Watchtower (Light) vs Batcave (Dark) Theme Toggle + Smooth Bidirectional Cape Sweep
     const themeToggle = document.getElementById("themeToggle");
     const capeSweep = document.getElementById("capeSweep");
     const currentTheme = localStorage.getItem("watchtower-theme");
@@ -18,20 +18,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
     themeToggle.addEventListener("click", () => {
         const isCurrentlyLight = document.body.classList.contains("light-theme");
-
-        // Bidirectional sweep direction logic:
-        // Light -> Dark sweeps Left to Right
-        // Dark -> Light sweeps Right to Left
         const animationClass = isCurrentlyLight ? "sweep-left" : "sweep-right";
 
         if (capeSweep) {
             capeSweep.classList.remove("sweep-left", "sweep-right");
-            // Force browser reflow to restart animation cleanly
-            void capeSweep.offsetWidth; 
+            void capeSweep.offsetWidth; // Force browser reflow for clean restart
             capeSweep.classList.add(animationClass);
         }
 
-        // Toggle theme midway through sweep
+        // Switch theme midway through sweep animation
         setTimeout(() => {
             document.body.classList.toggle("light-theme");
             const isLightNow = document.body.classList.contains("light-theme");
@@ -195,5 +190,41 @@ document.addEventListener("DOMContentLoaded", () => {
             formStatus.style.color = "var(--primary-color)";
             contactForm.reset();
         }
+    });
+
+    // Feature 11: Smooth Scroll Reveal Animation for Cards
+    const observerOptions = { threshold: 0.15 };
+    const revealObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = "1";
+                entry.target.style.transform = "translateY(0)";
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    // Feature 12: Live Watchtower Tactical Clock & Ping Simulation
+    function updateWatchtowerClock() {
+        const now = new Date();
+        const timeString = now.toTimeString().split(' ')[0];
+        const clockEl = document.getElementById("liveClock");
+        if (clockEl) clockEl.textContent = timeString;
+
+        // Randomize ping slightly for realism
+        const pingEl = document.getElementById("livePing");
+        if (pingEl && Math.random() > 0.7) {
+            const randomPing = Math.floor(Math.random() * 8) + 10;
+            pingEl.textContent = randomPing + "ms";
+        }
+    }
+    setInterval(updateWatchtowerClock, 1000);
+    updateWatchtowerClock();
+    
+    document.querySelectorAll(".bat-card").forEach(card => {
+        card.style.opacity = "0";
+        card.style.transform = "translateY(20px)";
+        card.style.transition = "opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)";
+        revealObserver.observe(card);
     });
 });
