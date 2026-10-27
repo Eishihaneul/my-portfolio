@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
         yearElement.textContent = new Date().getFullYear();
     }
 
-    // Feature 2: Watchtower (Light) vs Batcave (Dark) Theme Toggle + Superman Cape Sweep Effect
+    // Feature 2: Watchtower (Light) vs Batcave (Dark) Theme Toggle + Bidirectional Cape Sweep
     const themeToggle = document.getElementById("themeToggle");
     const capeSweep = document.getElementById("capeSweep");
     const currentTheme = localStorage.getItem("watchtower-theme");
@@ -17,20 +17,34 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     themeToggle.addEventListener("click", () => {
-        // Trigger Superman Cape Sweep Animation
+        const isCurrentlyLight = document.body.classList.contains("light-theme");
+
+        // Bidirectional sweep direction logic:
+        // Light -> Dark sweeps Left to Right
+        // Dark -> Light sweeps Right to Left
+        const animationClass = isCurrentlyLight ? "sweep-left" : "sweep-right";
+
         if (capeSweep) {
-            capeSweep.classList.add("active");
-            setTimeout(() => {
-                capeSweep.classList.remove("active");
-            }, 600);
+            capeSweep.classList.remove("sweep-left", "sweep-right");
+            // Force browser reflow to restart animation cleanly
+            void capeSweep.offsetWidth; 
+            capeSweep.classList.add(animationClass);
         }
 
+        // Toggle theme midway through sweep
         setTimeout(() => {
             document.body.classList.toggle("light-theme");
-            const isLight = document.body.classList.contains("light-theme");
-            themeToggle.textContent = isLight ? "☀️ Watchtower Command" : "🌙 Batcave Terminal";
-            localStorage.setItem("watchtower-theme", isLight ? "light" : "dark");
-        }, 250);
+            const isLightNow = document.body.classList.contains("light-theme");
+            themeToggle.textContent = isLightNow ? "☀️ Watchtower Command" : "🌙 Batcave Terminal";
+            localStorage.setItem("watchtower-theme", isLightNow ? "light" : "dark");
+        }, 300);
+
+        // Remove animation class after completion
+        setTimeout(() => {
+            if (capeSweep) {
+                capeSweep.classList.remove("sweep-left", "sweep-right");
+            }
+        }, 650);
     });
 
     // Feature 3: Mobile Navigation Menu Toggle
