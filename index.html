@@ -13,10 +13,17 @@
 
     <!-- Watchtower Command Navigation -->
     <header>
+        <div class="watchtower-ticker" aria-hidden="true">
+            <span class="ticker-text">SECURE TRANSMISSION ENCRYPTED // JUSTICE LEAGUE NETWORK NODE: UNIMAS-104008 // STATUS: NOMINAL // ALL SYSTEMS SECURE</span>
+        </div>
         <nav class="navbar" aria-label="Watchtower Terminal Navigation">
             <a href="#home" class="logo">
                 <span class="logo-glyph">⚡</span> Emmanuel S.
             </a>
+            <div class="tactical-clock" aria-label="Watchtower System Telemetry">
+                <span>TIME: <strong id="liveClock">00:00:00</strong></span> | 
+                <span>PING: <strong id="livePing">12ms</strong></span>
+            </div>
             <button class="menu-toggle" id="menuToggle" aria-label="Toggle tactical menu">☰</button>
             <ul class="nav-links" id="navLinks">
                 <li><a href="#home" class="nav-item active">Home</a></li>
@@ -99,7 +106,7 @@
             </div>
         </section>
 
-        <!-- Projects Section -->
+        <!-- Projects Section (6 Items) -->
         <section id="projects" class="container">
             <h2 class="section-title">Projects</h2>
             
@@ -142,7 +149,7 @@
 
                 <article class="project-card bat-card" data-category="web">
                     <h3>Robin Rule Simulator</h3>
-                    <p>Developed a Python based simulation framework to analyze, visualize and model CPU scheduling algorithms. </p>
+                    <p>Developed a Python based simulation framework to analyze, visualize and model CPU scheduling algorithms.</p>
                     <span class="tag">Python</span>
                 </article>
             </div>
