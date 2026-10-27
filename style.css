@@ -2,36 +2,38 @@
    1. Design System & Dual Theme Variables
    ========================================================================== */
 :root {
-    /* DEFAULT: Batcave & Dark Arts Mode (Batman / Cyborg / Constantine) */
+    /* Batcave Dark Mode Background Image */
+    --bg-image: linear-gradient(rgba(8, 11, 16, 0.85), rgba(8, 11, 16, 0.92)), url('batcave-bg.jpg');
+
     --bg-color: #080b10;
     --card-bg: rgba(14, 18, 25, 0.9);
     --text-color: #e6edf3;
     --text-muted: #8b949e;
-    --primary-color: #00f2fe;        /* Neon Cyborg Cyan */
-    --accent-color: #ff0055;         /* Zatanna Magic Magenta */
+    --primary-color: #00f2fe;
+    --accent-color: #ff0055;
     --border-color: rgba(0, 242, 254, 0.25);
     --shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.6);
     --glow: 0 0 15px rgba(0, 242, 254, 0.35);
 
-    /* Input Colors (Dark) */
     --input-bg: rgba(18, 23, 32, 0.95);
     --input-text: #e6edf3;
     --input-placeholder: #8b949e;
 }
 
 body.light-theme {
-    /* LIGHT MODE: Justice League Watchtower Command (Superman / Wonder Woman) */
+    /* Watchtower Light Mode Background Image */
+    --bg-image: linear-gradient(rgba(240, 244, 248, 0.88), rgba(240, 244, 248, 0.94)), url('watchtower-bg.jpg');
+
     --bg-color: #f0f4f8;
     --card-bg: rgba(255, 255, 255, 0.95);
     --text-color: #0f172a;
     --text-muted: #475569;
-    --primary-color: #0284c7;        /* Superman Royal Blue */
-    --accent-color: #d97706;         /* Wonder Woman Gold Accent */
+    --primary-color: #0284c7;
+    --accent-color: #d97706;
     --border-color: rgba(2, 132, 199, 0.25);
     --shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
     --glow: 0 0 15px rgba(2, 132, 199, 0.25);
 
-    /* Input Colors (Light) */
     --input-bg: #e2e8f0;
     --input-text: #0f172a;
     --input-placeholder: #64748b;
@@ -53,6 +55,11 @@ html {
 
 body {
     background-color: var(--bg-color);
+    background-image: var(--bg-image);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
     color: var(--text-color);
     line-height: 1.6;
     position: relative;
@@ -313,27 +320,27 @@ header {
     margin-top: 1.5rem;
 }
 
+.profile-avatar-img {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--primary-color);
+    box-shadow: var(--glow);
+    margin-bottom: 1rem;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.profile-avatar-img:hover {
+    transform: scale(1.08);
+}
+
 .profile-card {
     text-align: center;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-}
-
-.profile-avatar {
-    width: 85px;
-    height: 85px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
-    color: #080b10;
-    font-size: 2.2rem;
-    font-weight: bold;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 1rem;
-    box-shadow: var(--glow);
 }
 
 .role-tag {
