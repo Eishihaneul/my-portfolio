@@ -1,40 +1,40 @@
 /* ==========================================================================
-   1. Design System & Theme Variables
+   1. Design System & Dual Theme Variables
    ========================================================================== */
 :root {
-    /* Dark Theme Base Colors */
-    --bg-color: #0d1117;
-    --card-bg: rgba(22, 27, 34, 0.85);
+    /* DEFAULT: Batcave & Dark Arts Mode (Batman / Cyborg / Constantine) */
+    --bg-color: #080b10;
+    --card-bg: rgba(14, 18, 25, 0.9);
     --text-color: #e6edf3;
     --text-muted: #8b949e;
-    --primary-color: #00f2fe;
-    --accent-color: #4facfe;
-    --border-color: rgba(255, 255, 255, 0.12);
-    --shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-    --glow: 0 0 15px rgba(0, 242, 254, 0.3);
+    --primary-color: #00f2fe;        /* Neon Cyborg Cyan */
+    --accent-color: #ff0055;         /* Zatanna Magic Magenta */
+    --border-color: rgba(0, 242, 254, 0.25);
+    --shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.6);
+    --glow: 0 0 15px rgba(0, 242, 254, 0.35);
 
-    /* Dark Theme Input Colors */
-    --input-bg: rgba(22, 27, 34, 0.9);
+    /* Input Colors (Dark) */
+    --input-bg: rgba(18, 23, 32, 0.95);
     --input-text: #e6edf3;
     --input-placeholder: #8b949e;
 }
 
 body.light-theme {
-    /* Light Theme Base Colors */
-    --bg-color: #f4f6f8;
+    /* LIGHT MODE: Justice League Watchtower Command (Superman / Wonder Woman) */
+    --bg-color: #f0f4f8;
     --card-bg: rgba(255, 255, 255, 0.95);
-    --text-color: #1a202c;
-    --text-muted: #4a5568;
-    --primary-color: #0077b6;
-    --accent-color: #00b4d8;
-    --border-color: rgba(0, 0, 0, 0.12);
+    --text-color: #0f172a;
+    --text-muted: #475569;
+    --primary-color: #0284c7;        /* Superman Royal Blue */
+    --accent-color: #d97706;         /* Wonder Woman Gold Accent */
+    --border-color: rgba(2, 132, 199, 0.25);
     --shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-    --glow: 0 0 15px rgba(0, 119, 182, 0.2);
+    --glow: 0 0 15px rgba(2, 132, 199, 0.25);
 
-    /* Light Theme Input Colors */
-    --input-bg: #eef2f6;
-    --input-text: #1a202c;
-    --input-placeholder: #718096;
+    /* Input Colors (Light) */
+    --input-bg: #e2e8f0;
+    --input-text: #0f172a;
+    --input-placeholder: #64748b;
 }
 
 /* ==========================================================================
@@ -57,15 +57,15 @@ body {
     line-height: 1.6;
     position: relative;
     overflow-x: hidden;
-    transition: background-color 0.3s, color 0.3s;
+    transition: background-color 0.4s ease, color 0.4s ease;
 }
 
-/* Background Ambient Glow Orbs */
+/* Background Ambient Orbs */
 body::before, body::after {
     content: '';
     position: absolute;
     border-radius: 50%;
-    filter: blur(120px);
+    filter: blur(130px);
     z-index: -1;
     opacity: 0.25;
 }
@@ -73,8 +73,8 @@ body::before, body::after {
 body::before {
     top: 5%;
     left: -10%;
-    width: 400px;
-    height: 400px;
+    width: 420px;
+    height: 420px;
     background: var(--primary-color);
 }
 
@@ -86,8 +86,63 @@ body::after {
     background: var(--accent-color);
 }
 
+/* Superman Cape Transition Overlay */
+.cape-sweep {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #e11d48, #0284c7);
+    z-index: 9999;
+    pointer-events: none;
+    transition: left 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+.cape-sweep.active {
+    left: 100%;
+}
+
 /* ==========================================================================
-   3. Typography & Section Titles
+   3. Batman HUD Corner Bracket Cards
+   ========================================================================== */
+.bat-card {
+    position: relative;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 2rem;
+    box-shadow: var(--shadow);
+    backdrop-filter: blur(10px);
+    transition: transform 0.2s, border-color 0.2s;
+}
+
+/* Tactical HUD Brackets */
+.bat-card::before, .bat-card::after {
+    content: '';
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    border: 2px solid var(--primary-color);
+    transition: border-color 0.3s;
+}
+
+.bat-card::before {
+    top: -1px;
+    left: -1px;
+    border-right: none;
+    border-bottom: none;
+}
+
+.bat-card::after {
+    bottom: -1px;
+    right: -1px;
+    border-left: none;
+    border-top: none;
+}
+
+/* ==========================================================================
+   4. Typography & Section Headings
    ========================================================================== */
 h1, h2, h3 {
     color: var(--text-color);
@@ -98,26 +153,40 @@ h2.section-title {
     position: relative;
     display: inline-block;
     margin-bottom: 1.5rem;
+    letter-spacing: 1px;
 }
 
 h2.section-title::after {
     content: '';
     display: block;
-    width: 50%;
+    width: 60%;
     height: 3px;
     background: linear-gradient(90deg, var(--primary-color), transparent);
     margin-top: 6px;
     border-radius: 2px;
 }
 
+.hud-status-badge {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: bold;
+    letter-spacing: 1.5px;
+    color: var(--primary-color);
+    background: rgba(0, 242, 254, 0.1);
+    border: 1px solid var(--primary-color);
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+}
+
 /* ==========================================================================
-   4. Sticky Navigation Bar
+   5. Navigation Bar
    ========================================================================== */
 header {
     position: sticky;
     top: 0;
     background-color: var(--card-bg);
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(12px);
     box-shadow: var(--shadow);
     border-bottom: 1px solid var(--border-color);
     z-index: 1000;
@@ -133,10 +202,14 @@ header {
 }
 
 .logo {
-    font-size: 1.25rem;
+    font-size: 1.2rem;
     font-weight: bold;
     color: var(--primary-color);
     text-decoration: none;
+}
+
+.logo-glyph {
+    margin-right: 4px;
 }
 
 .nav-links {
@@ -167,22 +240,24 @@ header {
 }
 
 #themeToggle {
-    background: none;
-    border: 1px solid var(--border-color);
-    padding: 0.4rem 0.8rem;
+    background: var(--card-bg);
+    border: 1px solid var(--primary-color);
+    padding: 0.45rem 0.9rem;
     border-radius: 20px;
-    color: var(--text-color);
+    color: var(--primary-color);
+    font-weight: 600;
+    font-size: 0.85rem;
     cursor: pointer;
-    transition: transform 0.2s, border-color 0.2s;
+    transition: transform 0.2s, background-color 0.2s;
 }
 
 #themeToggle:hover {
     transform: scale(1.05);
-    border-color: var(--primary-color);
+    box-shadow: var(--glow);
 }
 
 /* ==========================================================================
-   5. Layout Containers & Hero Section
+   6. Layout Containers & Hero Section
    ========================================================================== */
 .container {
     max-width: 1000px;
@@ -205,13 +280,13 @@ header {
 }
 
 .subtitle {
-    font-size: 1.2rem;
+    font-size: 1.15rem;
     color: var(--text-muted);
     margin-top: 0.5rem;
 }
 
 .typing-container {
-    min-height: 2em;
+    min-height: 2.2em;
     margin: 1rem 0 1.5rem 0;
 }
 
@@ -219,6 +294,7 @@ header {
     font-size: 1.1rem;
     color: var(--primary-color);
     font-family: 'Courier New', Courier, monospace;
+    letter-spacing: 0.5px;
 }
 
 .hero-buttons {
@@ -228,22 +304,13 @@ header {
 }
 
 /* ==========================================================================
-   6. About Me Grid (2-Column Layout)
+   7. About Grid & Cyborg Diagnostic HUD Bars
    ========================================================================== */
 .about-grid {
     display: grid;
     grid-template-columns: 1fr 2fr;
     gap: 2rem;
     margin-top: 1.5rem;
-}
-
-.about-card {
-    background: var(--card-bg);
-    border: 1px solid var(--border-color);
-    border-radius: 12px;
-    padding: 2rem;
-    box-shadow: var(--shadow);
-    backdrop-filter: blur(8px);
 }
 
 .profile-card {
@@ -255,12 +322,12 @@ header {
 }
 
 .profile-avatar {
-    width: 80px;
-    height: 80px;
+    width: 85px;
+    height: 85px;
     border-radius: 50%;
     background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
-    color: #0d1117;
-    font-size: 2rem;
+    color: #080b10;
+    font-size: 2.2rem;
     font-weight: bold;
     display: flex;
     align-items: center;
@@ -280,8 +347,8 @@ header {
 }
 
 .bio-card h3 {
-    margin-top: 1rem;
-    margin-bottom: 0.5rem;
+    margin-top: 1.2rem;
+    margin-bottom: 0.6rem;
     color: var(--primary-color);
 }
 
@@ -289,26 +356,40 @@ header {
     margin-top: 0;
 }
 
-.competencies-list {
-    list-style: none;
-    padding-left: 0;
+/* Cyborg Tactical Progress Bars */
+.hud-stat {
+    margin-bottom: 1rem;
 }
 
-.competencies-list li {
-    margin-bottom: 0.8rem;
-    position: relative;
-    padding-left: 1.2rem;
+.hud-label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.82rem;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    margin-bottom: 0.35rem;
+    color: var(--text-color);
 }
 
-.competencies-list li::before {
-    content: '▹';
-    position: absolute;
-    left: 0;
-    color: var(--primary-color);
+.progress-bar {
+    width: 100%;
+    height: 10px;
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+    box-shadow: var(--glow);
+    border-radius: 4px;
+    transition: width 1.2s cubic-bezier(0.1, 0.9, 0.2, 1);
 }
 
 /* ==========================================================================
-   7. Projects Grid & Category Filters
+   8. Projects Grid & Category Filters
    ========================================================================== */
 .filter-buttons {
     display: flex;
@@ -323,13 +404,14 @@ header {
     color: var(--text-color);
     border-radius: 6px;
     cursor: pointer;
+    font-weight: 500;
     transition: background 0.2s, color 0.2s;
 }
 
 .filter-btn.active,
 .filter-btn:hover {
     background: var(--primary-color);
-    color: #0d1117;
+    color: #080b10;
     font-weight: 600;
 }
 
@@ -338,16 +420,6 @@ header {
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 1.5rem;
     margin-top: 1.5rem;
-}
-
-.project-card {
-    background: var(--card-bg);
-    border: 1px solid var(--border-color);
-    border-radius: 12px;
-    padding: 1.5rem;
-    box-shadow: var(--shadow);
-    backdrop-filter: blur(8px);
-    transition: transform 0.2s, border-color 0.2s;
 }
 
 .project-card:hover {
@@ -363,7 +435,7 @@ header {
     display: inline-block;
     margin-top: 0.8rem;
     padding: 0.2rem 0.6rem;
-    background-color: rgba(0, 242, 254, 0.15);
+    background-color: rgba(0, 242, 254, 0.12);
     color: var(--primary-color);
     border: 1px solid var(--primary-color);
     font-size: 0.8rem;
@@ -371,17 +443,8 @@ header {
 }
 
 /* ==========================================================================
-   8. Contact Form
+   9. Contact Form Inputs
    ========================================================================== */
-.contact-form {
-    background: var(--card-bg);
-    border: 1px solid var(--border-color);
-    border-radius: 12px;
-    padding: 2rem;
-    box-shadow: var(--shadow);
-    backdrop-filter: blur(8px);
-}
-
 .form-group {
     margin-bottom: 1.2rem;
 }
@@ -390,9 +453,9 @@ header {
     display: block;
     margin-bottom: 0.4rem;
     color: var(--text-color);
+    font-weight: 500;
 }
 
-/* Contact Form Input Fields */
 .form-group input, 
 .form-group textarea {
     width: 100%;
@@ -406,13 +469,12 @@ header {
     transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
 }
 
-/* Placeholder Text Color */
 .form-group input::placeholder, 
 .form-group textarea::placeholder {
     color: var(--input-placeholder);
 }
 
-/* Active Focus State: Turns White + Black Text in BOTH Dark & Light Mode */
+/* Active Focus State: Guarantees White Background + Black Text */
 .form-group input:focus, 
 .form-group textarea:focus {
     background-color: #ffffff !important;
@@ -422,7 +484,7 @@ header {
 }
 
 .error-msg {
-    color: #ff6b6b;
+    color: #ff0055;
     font-size: 0.85rem;
     margin-top: 0.25rem;
     display: block;
@@ -430,21 +492,24 @@ header {
 
 .form-status {
     margin-top: 1rem;
-    font-weight: 500;
+    font-weight: 600;
 }
 
 /* Buttons */
 .btn {
     display: inline-block;
     padding: 0.7rem 1.4rem;
-    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
-    color: #0d1117;
     font-weight: bold;
     text-decoration: none;
     border: none;
     border-radius: 6px;
     cursor: pointer;
     transition: opacity 0.2s, transform 0.2s;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    color: #080b10;
 }
 
 .btn-outline {
@@ -459,7 +524,7 @@ header {
 }
 
 /* ==========================================================================
-   9. Scroll To Top & Footer
+   10. Scroll To Top & Footer
    ========================================================================== */
 #scrollTopBtn {
     position: fixed;
@@ -470,7 +535,7 @@ header {
     height: 45px;
     font-size: 1.2rem;
     background: var(--primary-color);
-    color: #0d1117;
+    color: #080b10;
     border: none;
     border-radius: 50%;
     cursor: pointer;
@@ -492,9 +557,7 @@ footer {
     color: var(--text-muted);
 }
 
-/* ==========================================================================
-   10. Media Queries / Responsiveness
-   ========================================================================== */
+/* Responsive Layout */
 @media (max-width: 768px) {
     .about-grid {
         grid-template-columns: 1fr;
