@@ -77,11 +77,11 @@ body {
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: #e11d48; /* Solid Crimson Cape Color - No Gradient */
+    background-color: #e11d48;
     z-index: 9999;
     pointer-events: none;
     left: -100%;
-    transition: transform 0.6s cubic-bezier(0.77, 0, 0.175, 1);
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /* Bidirectional Sweep Animations */
@@ -116,7 +116,14 @@ body {
     padding: 2rem;
     box-shadow: var(--shadow);
     backdrop-filter: blur(12px);
-    transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+                border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+                box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                background-color 0.4s ease;
+}
+
+.bat-card:hover {
+    transform: translateY(-6px) scale(1.01);
 }
 
 .bat-card::before, .bat-card::after {
@@ -437,13 +444,17 @@ header {
     margin-top: 1.5rem;
 }
 
-.project-card:hover {
-    transform: translateY(-4px);
-    border-color: var(--primary-color);
+.project-card {
+    opacity: 1;
+    transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+                transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                border-color 0.3s ease;
 }
 
 .project-card.hide {
     display: none;
+    opacity: 0;
+    transform: scale(0.95);
 }
 
 .tag {
