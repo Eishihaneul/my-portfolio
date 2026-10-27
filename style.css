@@ -1,5 +1,5 @@
 /* ==========================================================================
-   1. Design System & Theme Variables (No Gradients, High Contrast Pastels)
+   1. Design System & Theme Variables (Solid Pastels, Zero Gradients)
    ========================================================================== */
 :root {
     /* Batcave Dark Mode Background Image */
@@ -9,14 +9,13 @@
     --card-bg: rgba(14, 18, 25, 0.94);
     --text-color: #f1f5f9;
     --text-muted: #94a3b8;
-    --title-color: #38bdf8;            /* Solid Soft Cyan (Cyborg/Aquaman) */
+    --title-color: #38bdf8;            /* Solid Soft Cyan */
     --primary-color: #38bdf8;          /* Solid Light Cyan Accent */
-    --accent-color: #f43f5e;           /* Solid Pastel Red (Superman Cape) */
+    --accent-color: #f43f5e;           /* Solid Pastel Crimson */
     --border-color: rgba(56, 189, 248, 0.35);
     --shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
     --glow: 0 0 12px rgba(56, 189, 248, 0.4);
 
-    /* Form Input Colors (Dark Mode) */
     --input-bg: #111722;
     --input-text: #ffffff;
     --input-placeholder: #94a3b8;
@@ -24,20 +23,19 @@
 
 body.light-theme {
     /* Watchtower Light Mode Background Image */
-    --bg-image: url('Watchtower2.jpg');
+    --bg-image: url('Watchtower.jpg');
 
     --bg-color: #f0f4f8;
     --card-bg: rgba(255, 255, 255, 0.95);
     --text-color: #0f172a;
     --text-muted: #334155;
-    --title-color: #0284c7;            /* Solid Deep Royal Blue (Superman/Justice League) */
+    --title-color: #0284c7;            /* Solid Deep Royal Blue */
     --primary-color: #0284c7;          /* Solid Royal Blue */
     --accent-color: #d97706;           /* Solid Wonder Woman Gold */
     --border-color: rgba(2, 132, 199, 0.35);
     --shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
     --glow: 0 0 12px rgba(2, 132, 199, 0.3);
 
-    /* Form Input Colors (Light Mode) */
     --input-bg: #e2e8f0;
     --input-text: #0f172a;
     --input-placeholder: #475569;
@@ -71,7 +69,7 @@ body {
     transition: background-color 0.4s ease, color 0.4s ease;
 }
 
-/* Superman Cape Transition Overlay (Solid Pastel Red) */
+/* Superman Cape Transition Overlay (Solid Crimson) */
 .cape-sweep {
     position: fixed;
     top: 0;
@@ -84,13 +82,12 @@ body {
     transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Bidirectional Sweep Animations */
 .cape-sweep.sweep-right {
-    animation: capeRight 0.6s forwards cubic-bezier(0.77, 0, 0.175, 1);
+    animation: capeRight 0.6s forwards cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .cape-sweep.sweep-left {
-    animation: capeLeft 0.6s forwards cubic-bezier(0.77, 0, 0.175, 1);
+    animation: capeLeft 0.6s forwards cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 @keyframes capeRight {
@@ -106,7 +103,7 @@ body {
 }
 
 /* ==========================================================================
-   3. Tactical HUD Cards (Batman Corner Brackets)
+   3. Tactical HUD Cards (WayneTech Laser Scan Animation)
    ========================================================================== */
 .bat-card {
     position: relative;
@@ -116,6 +113,7 @@ body {
     padding: 2rem;
     box-shadow: var(--shadow);
     backdrop-filter: blur(12px);
+    overflow: hidden;
     transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
                 border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
                 box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1),
@@ -126,38 +124,46 @@ body {
     transform: translateY(-6px) scale(1.01);
 }
 
-.bat-card::before, .bat-card::after {
+/* Laser scan line effect on card hover */
+.bat-card::after {
     content: '';
     position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 2px;
+    background: var(--primary-color);
+    transition: none;
+}
+
+.bat-card:hover::after {
+    left: 100%;
+    transition: left 0.8s ease-in-out;
+}
+
+/* Tactical Corner Brackets */
+.bat-card::before {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: -1px;
     width: 14px;
     height: 14px;
     border: 2px solid var(--primary-color);
-    transition: border-color 0.3s;
-}
-
-.bat-card::before {
-    top: -1px;
-    left: -1px;
     border-right: none;
     border-bottom: none;
-}
-
-.bat-card::after {
-    bottom: -1px;
-    right: -1px;
-    border-left: none;
-    border-top: none;
+    transition: border-color 0.3s;
+    z-index: 2;
 }
 
 /* ==========================================================================
-   4. Typography & Section Title Color Fixes
+   4. Typography & Section Title High Contrast
    ========================================================================== */
 h1, h2, h3 {
     color: var(--text-color);
     font-weight: 700;
 }
 
-/* High Contrast Section Titles */
 h2.section-title {
     font-size: 2.2rem;
     font-weight: 800;
@@ -174,7 +180,7 @@ h2.section-title::after {
     display: block;
     width: 100%;
     height: 4px;
-    background: var(--primary-color); /* Solid Color Line - No Gradient */
+    background: var(--primary-color);
     margin-top: 6px;
     border-radius: 2px;
 }
@@ -193,7 +199,7 @@ h2.section-title::after {
 }
 
 /* ==========================================================================
-   5. Navigation Bar
+   5. Navigation Bar & Watchtower Ticker
    ========================================================================== */
 header {
     position: sticky;
@@ -205,11 +211,35 @@ header {
     z-index: 1000;
 }
 
+.watchtower-ticker {
+    background: rgba(0, 0, 0, 0.75);
+    border-bottom: 1px solid var(--border-color);
+    overflow: hidden;
+    white-space: nowrap;
+    padding: 0.3rem 0;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.72rem;
+    color: var(--primary-color);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+}
+
+.ticker-text {
+    display: inline-block;
+    padding-left: 100%;
+    animation: tickerScroll 30s linear infinite;
+}
+
+@keyframes tickerScroll {
+    0% { transform: translate3d(0, 0, 0); }
+    100% { transform: translate3d(-100%, 0, 0); }
+}
+
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 2rem;
+    padding: 0.8rem 2rem;
     max-width: 1100px;
     margin: 0 auto;
 }
@@ -220,6 +250,20 @@ header {
     color: var(--primary-color);
     text-decoration: none;
     letter-spacing: 0.5px;
+}
+
+.tactical-clock {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    background: rgba(0, 0, 0, 0.2);
+    padding: 0.3rem 0.7rem;
+    border-radius: 4px;
+    border: 1px solid var(--border-color);
+}
+
+.tactical-clock strong {
+    color: var(--primary-color);
 }
 
 .nav-links {
@@ -366,7 +410,7 @@ header {
 }
 
 /* ==========================================================================
-   7. About Section (Compact Single Card + Cyborg Stats)
+   7. About Section & Cyborg Stats
    ========================================================================== */
 .bio-card h3 {
     margin-top: 1.2rem;
@@ -379,7 +423,6 @@ header {
     margin-top: 0;
 }
 
-/* Cyborg Tactical Progress Bars (Solid Color Fill) */
 .hud-stat {
     margin-bottom: 1.1rem;
 }
@@ -405,7 +448,7 @@ header {
 
 .progress-fill {
     height: 100%;
-    background-color: var(--accent-color); /* Solid Accent Fill - No Gradient */
+    background-color: var(--accent-color);
     border-radius: 6px;
     transition: width 1.2s cubic-bezier(0.1, 0.9, 0.2, 1);
 }
@@ -451,6 +494,11 @@ header {
                 border-color 0.3s ease;
 }
 
+.project-card:hover {
+    transform: translateY(-6px) scale(1.01);
+    border-color: var(--primary-color);
+}
+
 .project-card.hide {
     display: none;
     opacity: 0;
@@ -470,7 +518,7 @@ header {
 }
 
 /* ==========================================================================
-   9. Contact Form Inputs & High-Contrast Focus States
+   9. Contact Form Inputs
    ========================================================================== */
 .form-group {
     margin-bottom: 1.2rem;
@@ -523,7 +571,6 @@ header {
     font-weight: 700;
 }
 
-/* Solid Buttons (No Gradients) */
 .btn {
     display: inline-block;
     padding: 0.7rem 1.4rem;
