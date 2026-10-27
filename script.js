@@ -22,11 +22,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (capeSweep) {
             capeSweep.classList.remove("sweep-left", "sweep-right");
-            void capeSweep.offsetWidth; // Force browser reflow for clean restart
+            void capeSweep.offsetWidth;
             capeSweep.classList.add(animationClass);
         }
 
-        // Switch theme midway through sweep animation
         setTimeout(() => {
             document.body.classList.toggle("light-theme");
             const isLightNow = document.body.classList.contains("light-theme");
@@ -34,7 +33,6 @@ document.addEventListener("DOMContentLoaded", () => {
             localStorage.setItem("watchtower-theme", isLightNow ? "light" : "dark");
         }, 300);
 
-        // Remove animation class after completion
         setTimeout(() => {
             if (capeSweep) {
                 capeSweep.classList.remove("sweep-left", "sweep-right");
@@ -50,9 +48,35 @@ document.addEventListener("DOMContentLoaded", () => {
         navLinks.classList.toggle("show");
     });
 
-    // Feature 4: Auto-Close Mobile Menu on Link Click
-    document.querySelectorAll(".nav-item").forEach(item => {
-        item.addEventListener("click", () => {
+    // Feature 4: Aquaman Water-Flow Pill Navigation Indicator (Fluid Tab Flow)
+    const navItems = document.querySelectorAll(".nav-item");
+    const pill = document.getElementById("navPill");
+
+    function updatePill(activeItem) {
+        if (!pill || !activeItem) return;
+        const itemRect = activeItem.getBoundingClientRect();
+        const parentRect = navLinks.getBoundingClientRect();
+        
+        const leftOffset = itemRect.left - parentRect.left;
+        const width = itemRect.width;
+
+        pill.style.transform = `translateX(${leftOffset}px)`;
+        pill.style.width = `${width}px`;
+        pill.style.opacity = "1";
+    }
+
+    // Initialize pill position on load
+    const activeLink = document.querySelector(".nav-item.active") || navItems[0];
+    if (activeLink) {
+        updatePill(activeLink);
+    }
+
+    navItems.forEach(item => {
+        item.addEventListener("click", (e) => {
+            navItems.forEach(i => i.classList.remove("active"));
+            item.classList.add("active");
+            updatePill(item);
+
             if (navLinks.classList.contains("show")) {
                 navLinks.classList.remove("show");
             }
@@ -107,9 +131,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     typeEffect();
 
-    // Feature 8: Active Navigation Highlight on Scroll
+    // Feature 8: Active Navigation Highlight on Scroll + Pill Tracking
     const sections = document.querySelectorAll("section");
-    const navItems = document.querySelectorAll(".nav-item");
 
     window.addEventListener("scroll", () => {
         let current = "";
@@ -122,14 +145,15 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
         navItems.forEach(item => {
-            item.classList.remove("active");
             if (item.getAttribute("href") === `#${current}`) {
+                navItems.forEach(i => i.classList.remove("active"));
                 item.classList.add("active");
+                updatePill(item);
             }
         });
     });
 
-    // Feature 9: Project Directive Category Filter
+    // Feature 9: Project Directive Category Filter with Smooth Stagger
     const filterBtns = document.querySelectorAll(".filter-btn");
     const projectCards = document.querySelectorAll(".project-card");
 
@@ -139,9 +163,19 @@ document.addEventListener("DOMContentLoaded", () => {
             btn.classList.add("active");
 
             const filterValue = btn.getAttribute("data-filter");
+            let delay = 0;
+
             projectCards.forEach(card => {
                 if (filterValue === "all" || card.getAttribute("data-category") === filterValue) {
                     card.classList.remove("hide");
+                    card.style.opacity = "0";
+                    card.style.transform = "translateY(25px) translateX(-15px)";
+                    
+                    setTimeout(() => {
+                        card.style.opacity = "1";
+                        card.style.transform = "translateY(0) translateX(0)";
+                    }, delay);
+                    delay += 80; // Stagger effect
                 } else {
                     card.classList.add("hide");
                 }
@@ -208,22 +242,21 @@ document.addEventListener("DOMContentLoaded", () => {
     setInterval(updateWatchtowerClock, 1000);
     updateWatchtowerClock();
 
-    // Smooth Scroll Reveal Animation for Cards
-    const observerOptions = { threshold: 0.15 };
+    // Feature 12: 60fps Hardware-Accelerated Staggered Scroll Reveal Observer
+    const observerOptions = { threshold: 0.12 };
     const revealObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
+        entries.forEach((entry, index) => {
             if (entry.isIntersecting) {
-                entry.target.style.opacity = "1";
-                entry.target.style.transform = "translateY(0)";
+                // Add a slight stagger index delay for smooth cascading popup
+                setTimeout(() => {
+                    entry.target.classList.add("active");
+                }, index * 60);
                 observer.unobserve(entry.target);
             }
         });
     }, observerOptions);
 
-    document.querySelectorAll(".bat-card").forEach(card => {
-        card.style.opacity = "0";
-        card.style.transform = "translateY(20px)";
-        card.style.transition = "opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)";
-        revealObserver.observe(card);
+    document.querySelectorAll(".scroll-reveal").forEach(el => {
+        revealObserver.observe(el);
     });
 });
