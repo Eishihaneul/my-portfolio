@@ -1,19 +1,20 @@
 /* ==========================================================================
-   1. Design System & Dual Theme Variables (High Contrast Optimized)
+   1. Design System & Theme Variables (No Gradients, High Contrast Pastels)
    ========================================================================== */
 :root {
-    /* Batcave Dark Mode Background Image + Dark Contrast Overlay */
-    --bg-image: linear-gradient(rgba(8, 11, 16, 0.88), rgba(8, 11, 16, 0.94)), url('Batcave.jpg');
+    /* Batcave Dark Mode Background Image */
+    --bg-image: url('Batcave.jpg');
 
     --bg-color: #080b10;
     --card-bg: rgba(14, 18, 25, 0.94);
     --text-color: #f1f5f9;
     --text-muted: #94a3b8;
-    --primary-color: #00f2fe;
-    --accent-color: #ff0055;
-    --border-color: rgba(0, 242, 254, 0.35);
+    --title-color: #38bdf8;            /* Solid Soft Cyan (Cyborg/Aquaman) */
+    --primary-color: #38bdf8;          /* Solid Light Cyan Accent */
+    --accent-color: #f43f5e;           /* Solid Pastel Red (Superman Cape) */
+    --border-color: rgba(56, 189, 248, 0.35);
     --shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
-    --glow: 0 0 15px rgba(0, 242, 254, 0.4);
+    --glow: 0 0 12px rgba(56, 189, 248, 0.4);
 
     /* Form Input Colors (Dark Mode) */
     --input-bg: #111722;
@@ -22,18 +23,19 @@
 }
 
 body.light-theme {
-    /* Watchtower Light Mode: Uses a transparent contrast gradient to bring out full artwork details */
-    --bg-image: url('Watchtower.jpg');
+    /* Watchtower Light Mode Background Image */
+    --bg-image: url('Watchtower2.jpg');
 
     --bg-color: #f0f4f8;
-    --card-bg: rgba(255, 255, 255, 0.95);  /* Keeps cards solid white for 100% readable text */
+    --card-bg: rgba(255, 255, 255, 0.95);
     --text-color: #0f172a;
     --text-muted: #334155;
-    --primary-color: #0284c7;
-    --accent-color: #d97706;
+    --title-color: #0284c7;            /* Solid Deep Royal Blue (Superman/Justice League) */
+    --primary-color: #0284c7;          /* Solid Royal Blue */
+    --accent-color: #d97706;           /* Solid Wonder Woman Gold */
     --border-color: rgba(2, 132, 199, 0.35);
-    --shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-    --glow: 0 0 15px rgba(2, 132, 199, 0.3);
+    --shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    --glow: 0 0 12px rgba(2, 132, 199, 0.3);
 
     /* Form Input Colors (Light Mode) */
     --input-bg: #e2e8f0;
@@ -69,51 +71,42 @@ body {
     transition: background-color 0.4s ease, color 0.4s ease;
 }
 
-/* Background Ambient Orbs */
-body::before, body::after {
-    content: '';
-    position: absolute;
-    border-radius: 50%;
-    filter: blur(130px);
-    z-index: -1;
-    opacity: 0.25;
-}
-
-body::before {
-    top: 5%;
-    left: -10%;
-    width: 420px;
-    height: 420px;
-    background: var(--primary-color);
-}
-
-body::after {
-    top: 45%;
-    right: -10%;
-    width: 450px;
-    height: 450px;
-    background: var(--accent-color);
-}
-
-/* Superman Cape Transition Overlay */
+/* Superman Cape Transition Overlay (Solid Pastel Red) */
 .cape-sweep {
     position: fixed;
     top: 0;
-    left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, #e11d48, #0284c7);
+    background-color: #e11d48; /* Solid Crimson Cape Color - No Gradient */
     z-index: 9999;
     pointer-events: none;
-    transition: left 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+    left: -100%;
+    transition: transform 0.6s cubic-bezier(0.77, 0, 0.175, 1);
 }
 
-.cape-sweep.active {
-    left: 100%;
+/* Bidirectional Sweep Animations */
+.cape-sweep.sweep-right {
+    animation: capeRight 0.6s forwards cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+.cape-sweep.sweep-left {
+    animation: capeLeft 0.6s forwards cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+@keyframes capeRight {
+    0% { transform: translateX(0); left: -100%; }
+    50% { transform: translateX(100%); left: 0; }
+    100% { transform: translateX(200%); left: 100%; }
+}
+
+@keyframes capeLeft {
+    0% { transform: translateX(0); left: 100%; }
+    50% { transform: translateX(-100%); left: 0; }
+    100% { transform: translateX(-200%); left: -100%; }
 }
 
 /* ==========================================================================
-   3. Tactical HUD Cards (Batman Corner Brackets + Glass Contrast)
+   3. Tactical HUD Cards (Batman Corner Brackets)
    ========================================================================== */
 .bat-card {
     position: relative;
@@ -126,7 +119,6 @@ body::after {
     transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
 }
 
-/* Tactical Corner Brackets */
 .bat-card::before, .bat-card::after {
     content: '';
     position: absolute;
@@ -151,27 +143,31 @@ body::after {
 }
 
 /* ==========================================================================
-   4. Typography & Visibility Highlighting
+   4. Typography & Section Title Color Fixes
    ========================================================================== */
 h1, h2, h3 {
     color: var(--text-color);
     font-weight: 700;
 }
 
+/* High Contrast Section Titles */
 h2.section-title {
-    font-size: 2rem;
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: var(--title-color);
     position: relative;
     display: inline-block;
     margin-bottom: 1.5rem;
-    letter-spacing: 1px;
+    letter-spacing: 1.2px;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
 h2.section-title::after {
     content: '';
     display: block;
-    width: 65%;
-    height: 3px;
-    background: linear-gradient(90deg, var(--primary-color), transparent);
+    width: 100%;
+    height: 4px;
+    background: var(--primary-color); /* Solid Color Line - No Gradient */
     margin-top: 6px;
     border-radius: 2px;
 }
@@ -182,7 +178,7 @@ h2.section-title::after {
     font-weight: bold;
     letter-spacing: 1.5px;
     color: var(--primary-color);
-    background: rgba(0, 242, 254, 0.12);
+    background: rgba(56, 189, 248, 0.12);
     border: 1px solid var(--primary-color);
     padding: 0.25rem 0.7rem;
     border-radius: 4px;
@@ -190,7 +186,7 @@ h2.section-title::after {
 }
 
 /* ==========================================================================
-   5. Sticky Navigation Bar
+   5. Navigation Bar
    ========================================================================== */
 header {
     position: sticky;
@@ -264,82 +260,50 @@ header {
 }
 
 /* ==========================================================================
-   6. Layout Containers & Hero Section
+   6. Hero & Integrated Profile Card Layout
    ========================================================================== */
 .container {
-    max-width: 1000px;
+    max-width: 1050px;
     margin: 3rem auto;
     padding: 0 1.5rem;
 }
 
 .hero-section {
-    min-height: 75vh;
+    min-height: 70vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    text-align: center;
-    padding: 2rem;
+    padding: 2rem 1.5rem;
 }
 
-.highlight {
-    color: var(--primary-color);
-    text-shadow: var(--glow);
-}
-
-.subtitle {
-    font-size: 1.15rem;
-    color: var(--text-muted);
-    font-weight: 500;
-    margin-top: 0.5rem;
-}
-
-.typing-container {
-    min-height: 2.2em;
-    margin: 1rem 0 1.5rem 0;
-}
-
-.typing-effect {
-    font-size: 1.1rem;
-    color: var(--primary-color);
-    font-family: 'Courier New', Courier, monospace;
-    font-weight: bold;
-    letter-spacing: 0.5px;
-}
-
-.hero-buttons {
+.hero-wrapper {
     display: flex;
-    gap: 1rem;
-    justify-content: center;
-}
-
-/* ==========================================================================
-   7. About Section & Pixel Superman Avatar Framing (Strict 120px Badge Fix)
-   ========================================================================== */
-.about-grid {
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    gap: 2rem;
-    margin-top: 1.5rem;
-}
-
-.profile-card {
-    text-align: center;
-    display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
+    gap: 2.5rem;
+    width: 100%;
+    max-width: 950px;
+    padding: 2.5rem;
+    text-align: left;
+}
+
+.hero-profile-card {
+    flex: 0 0 200px;
+    text-align: center;
+    border-right: 2px solid var(--border-color);
+    padding-right: 2rem;
 }
 
 .profile-avatar-img {
-    width: 120px !important;
-    height: 120px !important;
-    max-width: 120px !important;
-    max-height: 120px !important;
+    width: 110px !important;
+    height: 110px !important;
+    max-width: 110px !important;
+    max-height: 110px !important;
     border-radius: 50% !important;
     object-fit: cover !important;
     border: 3px solid var(--primary-color);
     box-shadow: var(--glow);
-    margin: 0 auto 1rem auto;
+    margin: 0 auto 0.8rem auto;
     display: block;
     transition: transform 0.3s ease;
 }
@@ -351,28 +315,66 @@ header {
 .role-tag {
     color: var(--primary-color);
     font-weight: 700;
-    margin-top: 0.3rem;
+    font-size: 0.95rem;
+    margin-top: 0.2rem;
 }
 
 .id-tag {
     color: var(--text-muted);
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     font-weight: 500;
 }
 
+.hero-text-content {
+    flex: 1;
+}
+
+.highlight {
+    color: var(--primary-color);
+    text-shadow: var(--glow);
+}
+
+.subtitle {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    font-weight: 500;
+    margin-top: 0.4rem;
+}
+
+.typing-container {
+    min-height: 2.2em;
+    margin: 0.8rem 0 1.2rem 0;
+}
+
+.typing-effect {
+    font-size: 1.05rem;
+    color: var(--primary-color);
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 1rem;
+}
+
+/* ==========================================================================
+   7. About Section (Compact Single Card + Cyborg Stats)
+   ========================================================================== */
 .bio-card h3 {
     margin-top: 1.2rem;
     margin-bottom: 0.6rem;
-    color: var(--primary-color);
+    color: var(--title-color);
+    font-size: 1.3rem;
 }
 
 .bio-card h3:first-of-type {
     margin-top: 0;
 }
 
-/* Cyborg Tactical Progress Bars */
+/* Cyborg Tactical Progress Bars (Solid Color Fill) */
 .hud-stat {
-    margin-bottom: 1rem;
+    margin-bottom: 1.1rem;
 }
 
 .hud-label {
@@ -381,24 +383,23 @@ header {
     font-size: 0.85rem;
     font-weight: 700;
     letter-spacing: 0.5px;
-    margin-bottom: 0.35rem;
+    margin-bottom: 0.4rem;
     color: var(--text-color);
 }
 
 .progress-bar {
     width: 100%;
-    height: 10px;
+    height: 12px;
     background: rgba(0, 0, 0, 0.35);
     border: 1px solid var(--border-color);
-    border-radius: 4px;
+    border-radius: 6px;
     overflow: hidden;
 }
 
 .progress-fill {
     height: 100%;
-    background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
-    box-shadow: var(--glow);
-    border-radius: 4px;
+    background-color: var(--accent-color); /* Solid Accent Fill - No Gradient */
+    border-radius: 6px;
     transition: width 1.2s cubic-bezier(0.1, 0.9, 0.2, 1);
 }
 
@@ -449,7 +450,7 @@ header {
     display: inline-block;
     margin-top: 0.8rem;
     padding: 0.2rem 0.6rem;
-    background-color: rgba(0, 242, 254, 0.15);
+    background-color: rgba(56, 189, 248, 0.15);
     color: var(--primary-color);
     border: 1px solid var(--primary-color);
     font-size: 0.8rem;
@@ -490,17 +491,16 @@ header {
     color: var(--input-placeholder);
 }
 
-/* Active Focus State: Guarantees White Background + Black Text */
 .form-group input:focus, 
 .form-group textarea:focus {
     background-color: #ffffff !important;
     color: #000000 !important;
     border-color: var(--primary-color) !important;
-    box-shadow: 0 0 12px rgba(0, 242, 254, 0.5);
+    box-shadow: 0 0 12px rgba(56, 189, 248, 0.5);
 }
 
 .error-msg {
-    color: #ff0055;
+    color: #f43f5e;
     font-size: 0.85rem;
     font-weight: 600;
     margin-top: 0.25rem;
@@ -512,7 +512,7 @@ header {
     font-weight: 700;
 }
 
-/* Buttons */
+/* Solid Buttons (No Gradients) */
 .btn {
     display: inline-block;
     padding: 0.7rem 1.4rem;
@@ -525,7 +525,7 @@ header {
 }
 
 .btn-primary {
-    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    background-color: var(--primary-color);
     color: #080b10;
 }
 
@@ -576,9 +576,22 @@ footer {
 }
 
 /* Responsive Layout */
-@media (max-width: 768px) {
-    .about-grid {
-        grid-template-columns: 1fr;
+@media (max-width: 820px) {
+    .hero-wrapper {
+        flex-direction: column;
+        text-align: center;
+        gap: 1.5rem;
+    }
+
+    .hero-profile-card {
+        border-right: none;
+        border-bottom: 2px solid var(--border-color);
+        padding-right: 0;
+        padding-bottom: 1.5rem;
+    }
+
+    .hero-buttons {
+        justify-content: center;
     }
 
     .menu-toggle {
