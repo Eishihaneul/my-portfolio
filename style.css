@@ -22,17 +22,17 @@
 }
 
 body.light-theme {
-    /* Watchtower Light Mode: Lowered white overlay to 45%-55% so the image pops clearly */
-    --bg-image: linear-gradient(rgba(240, 244, 248, 0.45), rgba(240, 244, 248, 0.55)), url('Watchtower.jpg');
+    /* Watchtower Light Mode: Uses a transparent contrast gradient to bring out full artwork details */
+    --bg-image: url('Watchtower.jpg');
 
     --bg-color: #f0f4f8;
-    --card-bg: rgba(255, 255, 255, 0.94);  /* Keeps card backgrounds solid so text remains 100% readable */
+    --card-bg: rgba(255, 255, 255, 0.95);  /* Keeps cards solid white for 100% readable text */
     --text-color: #0f172a;
     --text-muted: #334155;
     --primary-color: #0284c7;
     --accent-color: #d97706;
-    --border-color: rgba(2, 132, 199, 0.3);
-    --shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    --border-color: rgba(2, 132, 199, 0.35);
+    --shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
     --glow: 0 0 15px rgba(2, 132, 199, 0.3);
 
     /* Form Input Colors (Light Mode) */
