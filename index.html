@@ -3,38 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Emmanuel Stefhanius | Network Computing Portfolio</title>
+    <title>Emmanuel Stefhanius | Watchtower Tactical Portfolio</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- Persistent Navigation Bar -->
+    <!-- Superman Cape Sweep Energy Overlay -->
+    <div id="capeSweep" class="cape-sweep" aria-hidden="true"></div>
+
+    <!-- Watchtower Command Navigation -->
     <header>
-        <nav class="navbar" aria-label="Main Navigation">
-            <a href="#home" class="logo">Emmanuel S.</a>
-            <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation menu">☰</button>
+        <nav class="navbar" aria-label="Watchtower Terminal Navigation">
+            <a href="#home" class="logo">
+                <span class="logo-glyph">⚡</span> Emmanuel S.
+            </a>
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle tactical menu">☰</button>
             <ul class="nav-links" id="navLinks">
                 <li><a href="#home" class="nav-item active">Home</a></li>
                 <li><a href="#about" class="nav-item">About Me</a></li>
                 <li><a href="#projects" class="nav-item">Projects</a></li>
                 <li><a href="#contact" class="nav-item">Contact</a></li>
             </ul>
-            <button id="themeToggle" aria-label="Toggle light and dark mode">🌙</button>
+            <button id="themeToggle" aria-label="Toggle Watchtower and Batcave Mode">🌙 Batcave Terminal</button>
         </nav>
     </header>
 
     <main>
-        <!-- Home Section -->
+        <!-- Hero Section -->
         <section id="home" class="hero-section">
-            <div class="hero-content">
+            <div class="hero-content bat-card">
+                <div class="hud-status-badge">SYSTEM STATUS: ONLINE</div>
                 <h1>Hi, I'm <span class="highlight">Emmanuel Stefhanius</span></h1>
                 <p class="subtitle">Network Computing Student at UNIMAS (ID: 104008)</p>
                 <div class="typing-container">
                     <span id="typingText" class="typing-effect"></span>
                 </div>
                 <div class="hero-buttons">
-                    <a href="#projects" class="btn">View My Projects</a>
-                    <a href="#contact" class="btn btn-outline">Get In Touch</a>
+                    <a href="#projects" class="btn btn-primary">Inspect Projects</a>
+                    <a href="#contact" class="btn btn-outline">Send Transmission</a>
                 </div>
             </div>
         </section>
@@ -43,67 +49,92 @@
         <section id="about" class="container">
             <h2 class="section-title">About Me</h2>
             <div class="about-grid">
-                <!-- Profile Identity Card -->
-                <div class="about-card profile-card">
+                <!-- Profile Card -->
+                <div class="about-card profile-card bat-card">
                     <div class="profile-avatar">ES</div>
                     <h3>Emmanuel Stefhanius</h3>
-                    <p class="role-tag">Network Computing Student</p>
+                    <p class="role-tag">Network Computing Specialist</p>
                     <p class="id-tag">UNIMAS | ID: 104008</p>
                 </div>
 
-                <!-- Biography & Core Competencies -->
-                <div class="about-card bio-card">
+                <!-- Bio & Cyborg Diagnostic HUD Stats -->
+                <div class="about-card bio-card bat-card">
                     <h3>Who I Am</h3>
                     <p>
                         I am a dedicated Network Computing student from UNIMAS with a strong background in campus leadership, student affairs, and operational support. Throughout my academic journey, I have managed student welfare, facilitated orientation programs, and coordinated campus events while building technical and analytical skills.
                     </p>
                     
-                    <h3>Core Competencies</h3>
-                    <ul class="competencies-list">
-                        <li><strong>Leadership & Event Coordination:</strong> Block Vice President, Minggu Aluan Pelajar Facilitator, and Safety Bureau team member.</li>
-                        <li><strong>Mentorship & Communication:</strong> Class Monitor and Peer Mentor aiding academic success and student transition.</li>
-                    </ul>
+                    <h3>Cyborg Tactical Diagnostics</h3>
+                    
+                    <div class="hud-stat">
+                        <div class="hud-label">
+                            <span>NETWORK INFRASTRUCTURE & SUBNETTING</span>
+                            <span>90%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 90%;"></div>
+                        </div>
+                    </div>
+
+                    <div class="hud-stat">
+                        <div class="hud-label">
+                            <span>LEADERSHIP & EVENT COORDINATION</span>
+                            <span>95%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 95%;"></div>
+                        </div>
+                    </div>
+
+                    <div class="hud-stat">
+                        <div class="hud-label">
+                            <span>FRONT-END WEB ARCHITECTURE</span>
+                            <span>85%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 85%;"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- Projects Section (5 Detailed Items Required) -->
+        <!-- Projects Section (5 Detailed Items) -->
         <section id="projects" class="container">
             <h2 class="section-title">Projects</h2>
             
-            <!-- Category Filter Buttons -->
             <div class="filter-buttons">
-                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn active" data-filter="all">All Directives</button>
                 <button class="filter-btn" data-filter="network">Networking</button>
                 <button class="filter-btn" data-filter="web">Web Dev</button>
             </div>
 
             <div class="projects-grid">
-                <article class="project-card" data-category="network">
+                <article class="project-card bat-card" data-category="network">
                     <h3>Campus Network Architecture</h3>
                     <p>Designed a scalable VLAN and subnet architecture for university student residential blocks, prioritizing traffic isolation and secure access.</p>
                     <span class="tag">Networking</span>
                 </article>
 
-                <article class="project-card" data-category="web">
+                <article class="project-card bat-card" data-category="web">
                     <h3>Student Event Dashboard</h3>
                     <p>Front-end interactive web interface created to streamline campus event registrations, participant tracking, and schedule updates.</p>
                     <span class="tag">Web Dev</span>
                 </article>
 
-                <article class="project-card" data-category="network">
-                    <h3>Packet Tracer SecurityACL</h3>
+                <article class="project-card bat-card" data-category="network">
+                    <h3>Packet Tracer Security ACL</h3>
                     <p>Configured Cisco firewalls, Access Control Lists (ACLs), and Network Address Translation (NAT) rules for simulated enterprise networks.</p>
                     <span class="tag">Networking</span>
                 </article>
 
-                <article class="project-card" data-category="web">
-                    <h3>Personal Portfolio Resume Website</h3>
-                    <p>Responsive multi-section portfolio created using standard HTML5, custom CSS3 styles, and vanilla JS functionality.</p>
+                <article class="project-card bat-card" data-category="web">
+                    <h3>Watchtower Portfolio Interface</h3>
+                    <p>Responsive multi-section tactical portfolio created using standard HTML5, custom CSS3 variables, and vanilla JS functionality.</p>
                     <span class="tag">Web Dev</span>
                 </article>
 
-                <article class="project-card" data-category="network">
+                <article class="project-card bat-card" data-category="network">
                     <h3>Wi-Fi Coverage & Heatmap Analysis</h3>
                     <p>Assessed campus access point coverage density and signal propagation to eliminate dead zones across high-density study areas.</p>
                     <span class="tag">Networking</span>
@@ -113,38 +144,38 @@
 
         <!-- Contact Section -->
         <section id="contact" class="container">
-            <h2 class="section-title">Contact Me</h2>
-            <form id="contactForm" class="contact-form" novalidate>
+            <h2 class="section-title">Contact Command</h2>
+            <form id="contactForm" class="contact-form bat-card" novalidate>
                 <div class="form-group">
-                    <label for="name">Name</label>
-                    <input type="text" id="name" name="name" placeholder="Your full name" required>
+                    <label for="name">Operator Name</label>
+                    <input type="text" id="name" name="name" placeholder="Enter full name..." required>
                     <span class="error-msg" id="nameError"></span>
                 </div>
 
                 <div class="form-group">
-                    <label for="email">Email Address</label>
-                    <input type="email" id="email" name="email" placeholder="name@example.com" required>
+                    <label for="email">Comms Email</label>
+                    <input type="email" id="email" name="email" placeholder="name@domain.com" required>
                     <span class="error-msg" id="emailError"></span>
                 </div>
 
                 <div class="form-group">
-                    <label for="message">Message</label>
-                    <textarea id="message" name="message" rows="5" placeholder="Write your message here..." required></textarea>
+                    <label for="message">Transmission Message</label>
+                    <textarea id="message" name="message" rows="5" placeholder="State your inquiry or mission briefing..." required></textarea>
                     <span class="error-msg" id="msgError"></span>
                 </div>
 
-                <button type="submit" class="btn">Send Message</button>
+                <button type="submit" class="btn btn-primary">Transmit Signal</button>
                 <p id="formStatus" class="form-status"></p>
             </form>
         </section>
     </main>
 
     <!-- Scroll-to-Top Button -->
-    <button id="scrollTopBtn" aria-label="Scroll to top of page">↑</button>
+    <button id="scrollTopBtn" aria-label="Scroll to top of terminal">↑</button>
 
     <!-- Footer -->
     <footer>
-        <p>&copy; <span id="year"></span> Emmanuel Stefhanius (104008). All Rights Reserved.</p>
+        <p>&copy; <span id="year"></span> Emmanuel Stefhanius (104008) | Watchtower Console</p>
     </footer>
 
     <script src="script.js"></script>
