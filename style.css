@@ -23,7 +23,7 @@
 
 body.light-theme {
     /* Watchtower Light Mode Background Image */
-    --bg-image: url('Watchtower.jpg');
+    --bg-image: url('Watchtower2.jpg');
 
     --bg-color: #f0f4f8;
     --card-bg: rgba(255, 255, 255, 0.95);
