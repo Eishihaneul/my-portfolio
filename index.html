@@ -8,7 +8,7 @@
 </head>
 <body>
 
-    <!-- Superman Cape Sweep Energy Overlay -->
+    <!-- Superman Cape Sweep Energy Overlay (Bidirectional) -->
     <div id="capeSweep" class="cape-sweep" aria-hidden="true"></div>
 
     <!-- Watchtower Command Navigation -->
@@ -29,77 +29,77 @@
     </header>
 
     <main>
-        <!-- Hero Section -->
+        <!-- Hero Section with Profile Card Integrated to the Left -->
         <section id="home" class="hero-section">
-            <div class="hero-content bat-card">
-                <div class="hud-status-badge">SYSTEM STATUS: ONLINE</div>
-                <h1>Hi, I'm <span class="highlight">Emmanuel Stefhanius</span></h1>
-                <p class="subtitle">Network Computing Student at UNIMAS (ID: 104008)</p>
-                <div class="typing-container">
-                    <span id="typingText" class="typing-effect"></span>
-                </div>
-                <div class="hero-buttons">
-                    <a href="#projects" class="btn btn-primary">Inspect Projects</a>
-                    <a href="#contact" class="btn btn-outline">Send Transmission</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- About Me Section -->
-        <section id="about" class="container">
-            <h2 class="section-title">About Me</h2>
-            <div class="about-grid">
-                <!-- Profile Card with Pixel Superman Image -->
-                <div class="about-card profile-card bat-card">
+            <div class="hero-wrapper bat-card">
+                <!-- Left: Profile Badge -->
+                <div class="hero-profile-card">
                     <img src="profile.jpg" alt="Emmanuel Stefhanius Pixel Superman Profile" class="profile-avatar-img">
                     <h3>Emmanuel Stefhanius</h3>
                     <p class="role-tag">Network and Web Specialist</p>
                     <p class="id-tag">UNIMAS | ID: 104008</p>
                 </div>
 
-                <!-- Bio & Cyborg Diagnostic HUD Stats -->
-                <div class="about-card bio-card bat-card">
-                    <h3>Reporting...</h3>
-                    <p>
-                        Passionate Network Computing student committed to a continuous improvement to enhance technical and professional competencies in the computer science industry, while bringing cooperation and dedication to operational excellence. 
-                    </p>
-                    
-                    <h3>Cyborg Tactical Diagnostics</h3>
-                    
-                    <div class="hud-stat">
-                        <div class="hud-label">
-                            <span>NETWORK INFRASTRUCTURE & SUBNETTING</span>
-                            <span>67%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress-fill" style="width: 67%;"></div>
-                        </div>
+                <!-- Right: Status & Greeting -->
+                <div class="hero-text-content">
+                    <div class="hud-status-badge">SYSTEM STATUS: ONLINE</div>
+                    <h1>Hi, I'm <span class="highlight">Emmanuel Stefhanius</span></h1>
+                    <p class="subtitle">Network Computing Student at UNIMAS (ID: 104008)</p>
+                    <div class="typing-container">
+                        <span id="typingText" class="typing-effect"></span>
                     </div>
-
-                    <div class="hud-stat">
-                        <div class="hud-label">
-                            <span>LEADERSHIP & EVENT COORDINATION</span>
-                            <span>90%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress-fill" style="width: 90%;"></div>
-                        </div>
-                    </div>
-
-                    <div class="hud-stat">
-                        <div class="hud-label">
-                            <span>FRONT-END WEB ARCHITECTURE</span>
-                            <span>78%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress-fill" style="width: 78%;"></div>
-                        </div>
+                    <div class="hero-buttons">
+                        <a href="#projects" class="btn btn-primary">Inspect Projects</a>
+                        <a href="#contact" class="btn btn-outline">Send Transmission</a>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Projects Section (5 Detailed Items) -->
+        <!-- Compact About Me Section -->
+        <section id="about" class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-card bio-card bat-card">
+                <h3>Reporting...</h3>
+                <p>
+                    Passionate Network Computing student committed to continuous improvement to enhance technical and professional competencies in the computer science industry, while bringing cooperation and dedication to operational excellence. 
+                </p>
+                
+                <h3>Cyborg Tactical Diagnostics</h3>
+                
+                <div class="hud-stat">
+                    <div class="hud-label">
+                        <span>NETWORK INFRASTRUCTURE & SUBNETTING</span>
+                        <span>67%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 67%;"></div>
+                    </div>
+                </div>
+
+                <div class="hud-stat">
+                    <div class="hud-label">
+                        <span>LEADERSHIP & EVENT COORDINATION</span>
+                        <span>90%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 90%;"></div>
+                    </div>
+                </div>
+
+                <div class="hud-stat">
+                    <div class="hud-label">
+                        <span>FRONT-END WEB ARCHITECTURE</span>
+                        <span>78%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 78%;"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
         <section id="projects" class="container">
             <h2 class="section-title">Projects</h2>
             
@@ -137,6 +137,12 @@
                 <article class="project-card bat-card" data-category="web">
                     <h3>DirectFarm Samarahan System</h3>
                     <p>Developed a Python based console application to streamline localized agricultural supply chain management.</p>
+                    <span class="tag">Python</span>
+                </article>
+
+                <article class="project-card bat-card" data-category="web">
+                    <h3>Robin Rule Simulator</h3>
+                    <p>Developed a Python based simulation framework to analyze, visualize and model CPU scheduling algorithms. </p>
                     <span class="tag">Python</span>
                 </article>
             </div>
