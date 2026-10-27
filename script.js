@@ -1,25 +1,36 @@
 document.addEventListener("DOMContentLoaded", () => {
     
-    // Feature 1: Dynamic Copyright Year in Footer
+    // Feature 1: Dynamic Copyright Year
     const yearElement = document.getElementById("year");
     if (yearElement) {
         yearElement.textContent = new Date().getFullYear();
     }
 
-    // Feature 2: Dark / Light Mode Theme Toggle with localStorage
+    // Feature 2: Watchtower (Light) vs Batcave (Dark) Theme Toggle + Superman Cape Sweep Effect
     const themeToggle = document.getElementById("themeToggle");
-    const currentTheme = localStorage.getItem("portfolio-theme");
+    const capeSweep = document.getElementById("capeSweep");
+    const currentTheme = localStorage.getItem("watchtower-theme");
 
     if (currentTheme === "light") {
         document.body.classList.add("light-theme");
-        themeToggle.textContent = "☀️";
+        themeToggle.textContent = "☀️ Watchtower Command";
     }
 
     themeToggle.addEventListener("click", () => {
-        document.body.classList.toggle("light-theme");
-        const isLight = document.body.classList.contains("light-theme");
-        themeToggle.textContent = isLight ? "☀️" : "🌙";
-        localStorage.setItem("portfolio-theme", isLight ? "light" : "dark");
+        // Trigger Superman Cape Sweep Animation
+        if (capeSweep) {
+            capeSweep.classList.add("active");
+            setTimeout(() => {
+                capeSweep.classList.remove("active");
+            }, 600);
+        }
+
+        setTimeout(() => {
+            document.body.classList.toggle("light-theme");
+            const isLight = document.body.classList.contains("light-theme");
+            themeToggle.textContent = isLight ? "☀️ Watchtower Command" : "🌙 Batcave Terminal";
+            localStorage.setItem("watchtower-theme", isLight ? "light" : "dark");
+        }, 250);
     });
 
     // Feature 3: Mobile Navigation Menu Toggle
@@ -30,7 +41,7 @@ document.addEventListener("DOMContentLoaded", () => {
         navLinks.classList.toggle("show");
     });
 
-    // Feature 4: Auto-Close Mobile Menu when a link is clicked
+    // Feature 4: Auto-Close Mobile Menu on Link Click
     document.querySelectorAll(".nav-item").forEach(item => {
         item.addEventListener("click", () => {
             if (navLinks.classList.contains("show")) {
@@ -54,13 +65,13 @@ document.addEventListener("DOMContentLoaded", () => {
         window.scrollTo({ top: 0, behavior: "smooth" });
     });
 
-    // Feature 7: Typing Effect on Hero Subtitle
+    // Feature 7: Watchtower Hero Typing Effect
     const typingElement = document.getElementById("typingText");
     const phrases = [
-        "Network Computing Student @ UNIMAS",
-        "Block Vice President & Student Leader",
+        "Network Computing Specialist @ UNIMAS",
+        "Tactical Student Leader & Vice President",
         "Minggu Aluan Pelajar Facilitator",
-        "Aspiring Network Engineer"
+        "Watchtower Systems Administrator"
     ];
     let phraseIndex = 0;
     let charIndex = 0;
@@ -69,7 +80,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (charIndex < phrases[phraseIndex].length) {
             typingElement.textContent += phrases[phraseIndex].charAt(charIndex);
             charIndex++;
-            setTimeout(typeEffect, 70);
+            setTimeout(typeEffect, 65);
         } else {
             setTimeout(eraseEffect, 1800);
         }
@@ -79,7 +90,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (charIndex > 0) {
             typingElement.textContent = phrases[phraseIndex].substring(0, charIndex - 1);
             charIndex--;
-            setTimeout(eraseEffect, 40);
+            setTimeout(eraseEffect, 35);
         } else {
             phraseIndex = (phraseIndex + 1) % phrases.length;
             setTimeout(typeEffect, 400);
@@ -109,7 +120,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // Feature 9: Interactive Project Category Filter
+    // Feature 9: Project Directive Category Filter
     const filterBtns = document.querySelectorAll(".filter-btn");
     const projectCards = document.querySelectorAll(".project-card");
 
@@ -129,7 +140,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // Feature 10: Client-Side Contact Form Validation
+    // Feature 10: Client-Side Contact Transmission Validation
     const contactForm = document.getElementById("contactForm");
     
     contactForm.addEventListener("submit", (e) => {
@@ -145,30 +156,29 @@ document.addEventListener("DOMContentLoaded", () => {
         const msgError = document.getElementById("msgError");
         const formStatus = document.getElementById("formStatus");
 
-        // Reset errors
         nameError.textContent = "";
         emailError.textContent = "";
         msgError.textContent = "";
         formStatus.textContent = "";
 
         if (nameInput.value.trim() === "") {
-            nameError.textContent = "Please enter your name.";
+            nameError.textContent = "Operator name required.";
             isValid = false;
         }
 
         if (emailInput.value.trim() === "" || !emailInput.value.includes("@")) {
-            emailError.textContent = "Please enter a valid email address.";
+            emailError.textContent = "Valid comms email required.";
             isValid = false;
         }
 
         if (messageInput.value.trim() === "") {
-            msgError.textContent = "Please enter a message.";
+            msgError.textContent = "Transmission message cannot be empty.";
             isValid = false;
         }
 
         if (isValid) {
-            formStatus.textContent = "Thank you! Your message has been validated and sent.";
-            formStatus.style.color = "#00f2fe";
+            formStatus.textContent = "Transmission verified and logged into Watchtower coms.";
+            formStatus.style.color = "var(--primary-color)";
             contactForm.reset();
         }
     });
