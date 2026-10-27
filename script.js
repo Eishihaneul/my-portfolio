@@ -192,7 +192,23 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // Feature 11: Smooth Scroll Reveal Animation for Cards
+    // Feature 11: Live Watchtower Tactical Clock & Ping Simulation
+    function updateWatchtowerClock() {
+        const now = new Date();
+        const timeString = now.toTimeString().split(' ')[0];
+        const clockEl = document.getElementById("liveClock");
+        if (clockEl) clockEl.textContent = timeString;
+
+        const pingEl = document.getElementById("livePing");
+        if (pingEl && Math.random() > 0.7) {
+            const randomPing = Math.floor(Math.random() * 8) + 10;
+            pingEl.textContent = randomPing + "ms";
+        }
+    }
+    setInterval(updateWatchtowerClock, 1000);
+    updateWatchtowerClock();
+
+    // Smooth Scroll Reveal Animation for Cards
     const observerOptions = { threshold: 0.15 };
     const revealObserver = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
@@ -204,23 +220,6 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }, observerOptions);
 
-    // Feature 12: Live Watchtower Tactical Clock & Ping Simulation
-    function updateWatchtowerClock() {
-        const now = new Date();
-        const timeString = now.toTimeString().split(' ')[0];
-        const clockEl = document.getElementById("liveClock");
-        if (clockEl) clockEl.textContent = timeString;
-
-        // Randomize ping slightly for realism
-        const pingEl = document.getElementById("livePing");
-        if (pingEl && Math.random() > 0.7) {
-            const randomPing = Math.floor(Math.random() * 8) + 10;
-            pingEl.textContent = randomPing + "ms";
-        }
-    }
-    setInterval(updateWatchtowerClock, 1000);
-    updateWatchtowerClock();
-    
     document.querySelectorAll(".bat-card").forEach(card => {
         card.style.opacity = "0";
         card.style.transform = "translateY(20px)";
