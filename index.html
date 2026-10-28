@@ -37,9 +37,9 @@
 
             <!-- Sun / Moon Sync Button -->
             <button id="themeToggle" class="theme-btn" aria-label="Toggle Theme">
-                <span class="sun">☀️</span>
-                <span class="moon">🌙</span>
+                ☀️ Watchtower Command
             </button>
+            <button class="menu-toggle" id="menuToggle">☰</button>
         </nav>
     </header>
 
@@ -55,6 +55,9 @@
                 <div class="hero-text-content">
                     <h1>Welcome to the <span class="highlight">Watchtower</span></h1>
                     <p class="subtitle">Bringing operational excellence to the computer science industry.</p>
+                    <div class="typing-container">
+                        <span id="typingText" class="typing-effect"></span>
+                    </div>
                 </div>
             </div>
         </section>
@@ -74,14 +77,14 @@
 
             <div class="projects-grid">
                 <!-- Project 1 -->
-                <div class="flip-card">
-                    <div class="flip-card-inner glass-effect">
-                        <div class="flip-card-front">
+                <div class="flip-card project-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front glass-effect">
                             <h3>Medi Track-Hospital Patient Management System</h3>
                             <span class="tag">#Web</span>
                             <p>Developed a C++ based internal hospital system while simulating a real-world operational workflow with continuous loop functionality.</p>
                         </div>
-                        <div class="flip-card-back">
+                        <div class="flip-card-back glass-effect">
                             <h3>Project Decrypted</h3>
                             <p>Web Development: Focused on scalable and interactive web architectures.</p>
                         </div>
@@ -89,14 +92,14 @@
                 </div>
 
                 <!-- Project 2 -->
-                <div class="flip-card">
-                    <div class="flip-card-inner glass-effect">
-                        <div class="flip-card-front">
+                <div class="flip-card project-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front glass-effect">
                             <h3>Fit life Wellness App Database System</h3>
                             <span class="tag">#Web</span>
                             <p>Developed a PHP and Python based console application with active database to maintain, collect and manage input data for a fitness app.</p>
                         </div>
-                        <div class="flip-card-back">
+                        <div class="flip-card-back glass-effect">
                             <h3>Project Decrypted</h3>
                             <p>Web Development: Focused on scalable and interactive web architectures.</p>
                         </div>
@@ -104,14 +107,14 @@
                 </div>
 
                 <!-- Project 3 -->
-                <div class="flip-card">
-                    <div class="flip-card-inner glass-effect">
-                        <div class="flip-card-front">
+                <div class="flip-card project-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front glass-effect">
                             <h3>Robin Rule Simulator</h3>
                             <span class="tag">#Simulation</span>
                             <p>Developed a Python based simulation framework to analyse, visualize and model CPU scheduling algorithms.</p>
                         </div>
-                        <div class="flip-card-back">
+                        <div class="flip-card-back glass-effect">
                             <h3>Project Decrypted</h3>
                             <p>Simulation: Complex algorithm modeling and system analysis.</p>
                         </div>
@@ -119,14 +122,14 @@
                 </div>
 
                 <!-- Project 4 -->
-                <div class="flip-card">
-                    <div class="flip-card-inner glass-effect">
-                        <div class="flip-card-front">
+                <div class="flip-card project-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front glass-effect">
                             <h3>DirectFarm Samarahan System</h3>
                             <span class="tag">#Web</span>
                             <p>Developed a Python based console application to streamline localized agricultural supply chain.</p>
                         </div>
-                        <div class="flip-card-back">
+                        <div class="flip-card-back glass-effect">
                             <h3>Project Decrypted</h3>
                             <p>Web Development: Focused on scalable and interactive web architectures.</p>
                         </div>
@@ -134,14 +137,14 @@
                 </div>
 
                 <!-- Project 5 -->
-                <div class="flip-card">
-                    <div class="flip-card-inner glass-effect">
-                        <div class="flip-card-front">
+                <div class="flip-card project-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front glass-effect">
                             <h3>MindMyMind Desktop App</h3>
                             <span class="tag">#Web</span>
                             <p>Developed a front-end Java-based application promoting mental health awareness.</p>
                         </div>
-                        <div class="flip-card-back">
+                        <div class="flip-card-back glass-effect">
                             <h3>Project Decrypted</h3>
                             <p>Web Development: Focused on scalable and interactive web architectures.</p>
                         </div>
@@ -149,14 +152,14 @@
                 </div>
 
                 <!-- Project 6 -->
-                <div class="flip-card">
-                    <div class="flip-card-inner glass-effect">
-                        <div class="flip-card-front">
+                <div class="flip-card project-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front glass-effect">
                             <h3>Network Architecture Recommendation</h3>
                             <span class="tag">#Network</span>
                             <p>Applied Network architecture on 2-level office to ensure stability on all workstations.</p>
                         </div>
-                        <div class="flip-card-back">
+                        <div class="flip-card-back glass-effect">
                             <h3>Project Decrypted</h3>
                             <p>Networking: Ensuring robust, secure, and stable connections.</p>
                         </div>
@@ -166,29 +169,31 @@
         </section>
 
         <!-- Contact Section -->
-    <section id="contact" class="container">
-    <h2 class="section-title scroll-reveal">Contact Command</h2>
-    <!-- The 'bat-card' class adds the glassmorphism and animated border -->
-    <form id="contactForm" class="contact-form bat-card scroll-reveal" novalidate>
-        <div class="form-group">
-            <label for="name">Operator Name</label>
-            <input type="text" id="name" name="name" placeholder="Enter full name..." required>
-            <span class="error-msg" id="nameError"></span>
-        </div>
-        <div class="form-group">
-            <label for="email">Comms Email</label>
-            <input type="email" id="email" name="email" placeholder="name@domain.com" required>
-            <span class="error-msg" id="emailError"></span>
-        </div>
-        <div class="form-group">
-            <label for="message">Mission Description</label>
-            <textarea id="message" name="message" rows="5" placeholder="State your objective or detailed inquiry..." required></textarea>
-            <span class="error-msg" id="msgError"></span>
-        </div>
-        <button type="submit" class="btn btn-primary">Transmit Signal</button>
-        <p id="formStatus" class="form-status"></p>
-    </form>
-</section>
+        <section id="contact" class="container scroll-reveal">
+            <h2 class="section-title">Contact Command</h2>
+            <form id="contactForm" class="contact-form glass-effect" novalidate>
+                <div class="form-group">
+                    <label for="name">Operator Name</label>
+                    <input type="text" id="name" name="name" placeholder="Enter full name..." required>
+                    <span class="error-msg" id="nameError"></span>
+                </div>
+                <div class="form-group">
+                    <label for="email">Comms Email</label>
+                    <input type="email" id="email" name="email" placeholder="name@domain.com" required>
+                    <span class="error-msg" id="emailError"></span>
+                </div>
+                <div class="form-group">
+                    <label for="message">Mission Description</label>
+                    <textarea id="message" name="message" rows="5" placeholder="State your objective or detailed inquiry..." required></textarea>
+                    <span class="error-msg" id="msgError"></span>
+                </div>
+                <button type="submit" class="btn btn-primary">Transmit Signal</button>
+                <p id="formStatus" class="form-status"></p>
+            </form>
+        </section>
+    </main>
+
+    <button id="scrollTopBtn" aria-label="Scroll to top of terminal">↑</button>
 
     <footer>
         <p>&copy; <span id="year"></span> Emmanuel Stefhanius (104008) | DCU Terminal | Martian Manhunter Approved.</p>
