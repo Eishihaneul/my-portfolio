@@ -84,7 +84,7 @@ body.light-theme .bat-card {
 }
 
 .bat-card:hover {
-    transform: translateY(-6px) scale(1.01);
+    transform: translateY(-8px) scale(1.02);
     box-shadow: 0 16px 45px rgba(0, 0, 0, 0.5), var(--glow);
     border-color: var(--primary-color);
 }
@@ -272,6 +272,49 @@ body.light-theme .nav-links a.active {
 #themeToggle:hover {
     transform: scale(1.04);
     box-shadow: var(--glow);
+}
+
+/* ==========================================
+   SUPERMAN GRADIENT MORPH TRANSITION
+   ========================================== */
+.cape-sweep {
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background: transparent;
+    z-index: 9999;
+    pointer-events: none;
+    left: -100vw;
+    display: flex;
+    align-items: center;
+    transform: translateZ(0);
+}
+
+.cape-sweep.sweep-dark {
+    background: linear-gradient(90deg, rgba(225, 29, 72, 0) 0%, rgba(225, 29, 72, 0.9) 40%, rgba(56, 189, 248, 0.95) 70%, rgba(14, 18, 25, 1) 100%);
+    animation: capeFlyRight 1.5s forwards cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.cape-sweep.sweep-light {
+    background: linear-gradient(90deg, rgba(225, 29, 72, 0) 0%, rgba(225, 29, 72, 0.9) 40%, rgba(234, 179, 8, 0.95) 70%, rgba(240, 244, 248, 1) 100%);
+    animation: capeFlyRight 1.5s forwards cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.superman-fly-img {
+    position: absolute;
+    width: 280px;
+    top: 50%;
+    transform: translateY(-50%) translateZ(0);
+    right: -160px;
+    opacity: 0.85;
+    filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.6));
+}
+
+@keyframes capeFlyRight {
+    0% { transform: translateX(0) translateZ(0); left: -100vw; }
+    50% { transform: translateX(100vw) translateZ(0); left: -100vw; }
+    100% { transform: translateX(200vw) translateZ(0); left: -100vw; }
 }
 
 /* ==========================================
