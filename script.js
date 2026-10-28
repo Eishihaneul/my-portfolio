@@ -1,69 +1,62 @@
 document.addEventListener("DOMContentLoaded", () => {
-    
+    // Footer Year
     const yearElement = document.getElementById("year");
     if (yearElement) yearElement.textContent = new Date().getFullYear();
 
-const themeToggle = document.getElementById("themeToggle");
+    // Theme Toggle (Default to Light Mode)
+    const themeToggle = document.getElementById("themeToggle");
     const capeSweep = document.getElementById("capeSweep");
-    const currentTheme = localStorage.getItem("watchtower-theme");
+    const currentTheme = localStorage.getItem("watchtower-theme") || "light";
 
-    // Force Light Mode by default unless "dark" was explicitly saved
     if (currentTheme === "dark") {
         document.body.classList.remove("light-theme");
-        themeToggle.textContent = "🌙 Batcave Terminal";
+        if (themeToggle) themeToggle.textContent = "🌙 Batcave Terminal";
     } else {
         document.body.classList.add("light-theme");
-        themeToggle.textContent = "☀️ Watchtower Terminal";
+        if (themeToggle) themeToggle.textContent = "☀️ Watchtower Terminal";
     }
 
-themeToggle.addEventListener("click", () => {
+    themeToggle.addEventListener("click", () => {
         const isCurrentlyLight = document.body.classList.contains("light-theme");
-        // If it's currently light, switch to dark (use red-to-blue). 
-        // If it's currently dark, switch to light (use red-to-yellow).
         const targetAnimationClass = isCurrentlyLight ? "sweep-dark" : "sweep-light";
 
         if (capeSweep) {
             capeSweep.classList.remove("sweep-dark", "sweep-light");
-            void capeSweep.offsetWidth; // Force reflow
+            void capeSweep.offsetWidth;
             capeSweep.classList.add(targetAnimationClass);
         }
 
-        // Midpoint theme switch at 750ms when Superman passes the center
         setTimeout(() => {
             document.body.classList.toggle("light-theme");
             const isLightNow = document.body.classList.contains("light-theme");
-            themeToggle.textContent = isLightNow ? "☀️ Watchtower Command" : "🌙 Batcave Terminal";
+            themeToggle.textContent = isLightNow ? "☀️ Watchtower Terminal" : "🌙 Batcave Terminal";
             localStorage.setItem("watchtower-theme", isLightNow ? "light" : "dark");
         }, 750);
 
-        // Clean up animation classes after completion
         setTimeout(() => {
             if (capeSweep) capeSweep.classList.remove("sweep-dark", "sweep-light");
         }, 1600);
     });
 
+    // Mobile Menu Toggle
     const menuToggle = document.getElementById("menuToggle");
     const navLinks = document.getElementById("navLinks");
+    if (menuToggle && navLinks) {
+        menuToggle.addEventListener("click", () => {
+            navLinks.classList.toggle("show");
+        });
+    }
 
-    menuToggle.addEventListener("click", () => {
-        navLinks.classList.toggle("show");
-    });
-
+    // Navigation Pill Logic
     const navItems = document.querySelectorAll(".nav-item");
     const pill = document.getElementById("navPill");
-    let currentActiveSection = ""; 
-    let isNavigating = false; 
 
     function updatePill(activeItem) {
         if (!pill || !activeItem) return;
         const itemRect = activeItem.getBoundingClientRect();
         const parentRect = navLinks.getBoundingClientRect();
-        
-        const leftOffset = Math.round(itemRect.left - parentRect.left);
-        const width = Math.round(itemRect.width);
-
-        pill.style.transform = `translateX(${leftOffset}px) translateZ(0)`;
-        pill.style.width = `${width}px`;
+        pill.style.transform = `translateX(${Math.round(itemRect.left - parentRect.left)}px) translateZ(0)`;
+        pill.style.width = `${Math.round(itemRect.width)}px`;
         pill.style.opacity = "1";
     }
 
@@ -72,75 +65,33 @@ themeToggle.addEventListener("click", () => {
         if (activeLink) updatePill(activeLink);
     });
 
-    window.addEventListener("resize", () => {
-        const activeLink = document.querySelector(".nav-item.active");
-        if (activeLink) updatePill(activeLink);
-    });
-
     navItems.forEach(item => {
         item.addEventListener("click", () => {
-            isNavigating = true; 
-
             navItems.forEach(i => i.classList.remove("active"));
             item.classList.add("active");
             updatePill(item);
-
-            if (navLinks.classList.contains("show")) {
-                navLinks.classList.remove("show");
-            }
-
-            setTimeout(() => {
-                isNavigating = false;
-            }, 800);
+            if (navLinks) navLinks.classList.remove("show");
         });
     });
 
-    const sections = document.querySelectorAll("section");
-
-    window.addEventListener("scroll", () => {
-        if (isNavigating) return; 
-
-        let current = "";
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop;
-            const sectionHeight = section.clientHeight;
-            if (window.scrollY >= (sectionTop - sectionHeight / 3)) {
-                current = section.getAttribute("id");
-            }
-        });
-
-        if (current !== currentActiveSection) {
-            currentActiveSection = current;
-            navItems.forEach(item => {
-                if (item.getAttribute("href") === `#${current}`) {
-                    navItems.forEach(i => i.classList.remove("active"));
-                    item.classList.add("active");
-                    updatePill(item);
-                }
-            });
-        }
-    });
-
+    // Scroll-to-Top Button
     const scrollTopBtn = document.getElementById("scrollTopBtn");
-    window.addEventListener("scroll", () => {
-        scrollTopBtn.style.display = window.scrollY > 300 ? "block" : "none";
-    });
+    if (scrollTopBtn) {
+        window.addEventListener("scroll", () => {
+            scrollTopBtn.style.display = window.scrollY > 300 ? "block" : "none";
+        });
+        scrollTopBtn.addEventListener("click", () => {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+    }
 
-    scrollTopBtn.addEventListener("click", () => {
-        window.scrollTo({ top: 0, behavior: "smooth" });
-    });
-
+    // Typing Effect
     const typingElement = document.getElementById("typingText");
-    const phrases = [
-        "Network Computing Engineer🛜",
-        "Tactical Vice President🕵️‍♂️",
-        "Official Right Wing Safety Bureau🪽",
-        "Watchtower Systems Administrator👁️"
-    ];
-    let phraseIndex = 0;
-    let charIndex = 0;
+    const phrases = ["Network Computing Specialist @ UNIMAS", "Tactical Student Leader", "Watchtower Administrator"];
+    let phraseIndex = 0, charIndex = 0;
 
     function typeEffect() {
+        if (!typingElement) return;
         if (charIndex < phrases[phraseIndex].length) {
             typingElement.textContent += phrases[phraseIndex].charAt(charIndex);
             charIndex++;
@@ -151,6 +102,7 @@ themeToggle.addEventListener("click", () => {
     }
 
     function eraseEffect() {
+        if (!typingElement) return;
         if (charIndex > 0) {
             typingElement.textContent = phrases[phraseIndex].substring(0, charIndex - 1);
             charIndex--;
@@ -160,30 +112,21 @@ themeToggle.addEventListener("click", () => {
             setTimeout(typeEffect, 400);
         }
     }
-    typeEffect();
+    if (typingElement) typeEffect();
 
-const filterBtns = document.querySelectorAll(".filter-btn");
+    // Project Filters
+    const filterBtns = document.querySelectorAll(".filter-btn");
     const projectCards = document.querySelectorAll(".project-card");
 
     filterBtns.forEach(btn => {
         btn.addEventListener("click", () => {
             filterBtns.forEach(b => b.classList.remove("active"));
             btn.classList.add("active");
-
             const filterValue = btn.getAttribute("data-filter");
-            let delay = 0;
 
             projectCards.forEach(card => {
                 if (filterValue === "all" || card.getAttribute("data-category") === filterValue) {
                     card.classList.remove("hide");
-                    card.style.opacity = "0";
-                    card.style.transform = "translateY(25px) translateX(-15px) translateZ(0)";
-                    
-                    setTimeout(() => {
-                        card.style.opacity = "1";
-                        card.style.transform = "translateY(0) translateX(0) translateZ(0)";
-                    }, delay);
-                    delay += 80; 
                 } else {
                     card.classList.add("hide");
                 }
@@ -191,72 +134,21 @@ const filterBtns = document.querySelectorAll(".filter-btn");
         });
     });
 
-    const contactForm = document.getElementById("contactForm");
-    
-    contactForm.addEventListener("submit", (e) => {
-        e.preventDefault();
-        let isValid = true;
-
-        const nameInput = document.getElementById("name");
-        const emailInput = document.getElementById("email");
-        const messageInput = document.getElementById("message");
-
-        const nameError = document.getElementById("nameError");
-        const emailError = document.getElementById("emailError");
-        const msgError = document.getElementById("msgError");
-        const formStatus = document.getElementById("formStatus");
-
-        nameError.textContent = "";
-        emailError.textContent = "";
-        msgError.textContent = "";
-        formStatus.textContent = "";
-
-        if (nameInput.value.trim() === "") {
-            nameError.textContent = "Operator name required.";
-            isValid = false;
-        }
-
-        if (emailInput.value.trim() === "" || !emailInput.value.includes("@")) {
-            emailError.textContent = "Valid comms email required.";
-            isValid = false;
-        }
-
-        if (messageInput.value.trim() === "") {
-            msgError.textContent = "Transmission message cannot be empty.";
-            isValid = false;
-        }
-
-        if (isValid) {
-            formStatus.textContent = "Transmission verified and logged into Watchtower comms.";
-            formStatus.style.color = "var(--primary-color)";
-            contactForm.reset();
-        }
-    });
-
-    function updateWatchtowerClock() {
-        const now = new Date();
+    // Live Clock
+    setInterval(() => {
         const clockEl = document.getElementById("liveClock");
-        if (clockEl) clockEl.textContent = now.toTimeString().split(' ')[0];
+        if (clockEl) clockEl.textContent = new Date().toTimeString().split(' ')[0];
+    }, 1000);
 
-        const pingEl = document.getElementById("livePing");
-        if (pingEl && Math.random() > 0.7) {
-            pingEl.textContent = (Math.floor(Math.random() * 8) + 10) + "ms";
-        }
-    }
-    setInterval(updateWatchtowerClock, 1000);
-    updateWatchtowerClock();
-
-    const observerOptions = { threshold: 0.12 };
+    // Scroll Reveal Observer
     const revealObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach((entry, index) => {
+        entries.forEach(entry => {
             if (entry.isIntersecting) {
-                setTimeout(() => {
-                    entry.target.classList.add("active");
-                }, index * 60);
+                entry.target.classList.add("active");
                 observer.unobserve(entry.target);
             }
         });
-    }, observerOptions);
+    }, { threshold: 0.1 });
 
     document.querySelectorAll(".scroll-reveal").forEach(el => revealObserver.observe(el));
 });
