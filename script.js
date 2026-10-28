@@ -7,12 +7,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const capeSweep = document.getElementById("capeSweep");
     const currentTheme = localStorage.getItem("watchtower-theme");
 
-    // Default to Light Mode UNLESS user explicitly saved "dark"
-    if (currentTheme === "dark") {
-        document.body.classList.add("dark-theme");
-        themeToggle.textContent = "🌙 Batcave Terminal";
-    } else {
-        document.body.classList.remove("dark-theme");
+    if (currentTheme === "light") {
+        document.body.classList.add("light-theme");
         themeToggle.textContent = "☀️ Watchtower Command";
     }
 
@@ -24,10 +20,10 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         setTimeout(() => {
-            document.body.classList.toggle("dark-theme");
-            const isDarkNow = document.body.classList.contains("dark-theme");
-            themeToggle.textContent = isDarkNow ? "🌙 Batcave Terminal" : "☀️ Watchtower Command";
-            localStorage.setItem("watchtower-theme", isDarkNow ? "dark" : "light");
+            document.body.classList.toggle("light-theme");
+            const isLightNow = document.body.classList.contains("light-theme");
+            themeToggle.textContent = isLightNow ? "☀️ Watchtower Command" : "🌙 Batcave Terminal";
+            localStorage.setItem("watchtower-theme", isLightNow ? "light" : "dark");
         }, 750);
 
         setTimeout(() => {
@@ -125,10 +121,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const typingElement = document.getElementById("typingText");
     const phrases = [
-        "Network Computing Specialist @ UNIMAS💻",
-        "Tactical Vice President🕵️‍♂️",
-        "Right dock Safey Bureau🪽",
-        "Watchtower Systems Administrator👁️"
+        "Network Computing Specialist @ UNIMAS",
+        "Tactical Student Leader & Vice President",
+        "Minggu Aluan Pelajar Facilitator",
+        "Watchtower Systems Administrator"
     ];
     let phraseIndex = 0;
     let charIndex = 0;
@@ -220,7 +216,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         if (isValid) {
-            formStatus.textContent = "Transmission verified and logged into Watchtower comms.";
+            formStatus.textContent = "Transmission verified and logged into Watchtower coms.";
             formStatus.style.color = "var(--primary-color)";
             contactForm.reset();
         }
