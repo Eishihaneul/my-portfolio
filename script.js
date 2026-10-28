@@ -26,7 +26,7 @@ const themeToggle = document.getElementById("themeToggle");
 setTimeout(() => {
             document.body.classList.toggle("light-theme");
             const isLightNow = document.body.classList.contains("light-theme");
-            themeToggle.textContent = isLightNow ? "☀️ Watchtower Command" : "🌙 Batcave Terminal";
+            themeToggle.textContent = isLightNow ? "☀️ Watchtower Terminal" : "🌙 Batcave Terminal";
             // Save user's explicit preference
             localStorage.setItem("watchtower-theme", isLightNow ? "light" : "dark");
         }, 750);
@@ -221,7 +221,7 @@ setTimeout(() => {
         }
 
         if (isValid) {
-            formStatus.textContent = "Transmission verified and logged into Watchtower coms.";
+            formStatus.textContent = "Transmission verified and logged into Watchtower comms.";
             formStatus.style.color = "var(--primary-color)";
             contactForm.reset();
         }
