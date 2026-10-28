@@ -53,9 +53,9 @@ body {
     background-color: #f0f4f8;
     background-image: var(--bg-image);
     background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
+    background-size: cover;          /* Fills the entire screen width and height */
+    background-position: center center; /* Centers the artwork so it's always in frame */
+    background-attachment: fixed;    /* LOCKS the background completely so it never scrolls */
     color: var(--text-color);
     line-height: 1.6;
     overflow-x: hidden;
@@ -648,51 +648,56 @@ footer {
    RESTORED ANIMATIONS & PULSATING EFFECTS
    ========================================== */
 
+/* ==========================================
+   EXACT ANIMATION: slide-top / slide-left (0.5s easeOutQuad)
+   ========================================== */
+
+@keyframes slideTop {
+    0% {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideLeft {
+    0% {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
 /* Scroll-Reveal Pop-up Animation */
 .scroll-reveal {
     opacity: 0;
-    transform: translate(40px, -40px) scale(0.95); /* Pops in from top-right */
-    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), 
-                transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    animation: none; /* Controlled by IntersectionObserver active state */
     will-change: opacity, transform;
 }
 
 .scroll-reveal.active {
-    opacity: 1;
-    transform: translate(0, 0) scale(1);
+    animation: slideTop 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both; /* easeOutQuad equivalent with 0.5s duration */
 }
 
-/* Pulsating Avatar Effect */
-@keyframes profilePulse {
-    0% {
-        transform: scale(1);
-        box-shadow: 0 0 10px rgba(56, 189, 248, 0.4);
-    }
-    50% {
-        transform: scale(1.04);
-        box-shadow: 0 0 25px rgba(56, 189, 248, 0.8);
-    }
-    100% {
-        transform: scale(1);
-        box-shadow: 0 0 10px rgba(56, 189, 248, 0.4);
-    }
-}
-
-.profile-avatar-img {
-    animation: profilePulse 1.5s ease-in-out infinite both;
-}
-
-/* Smooth Project Card Filter Transitions */
+/* Applied to project cards when switching categories (Web vs Network filters) */
 .project-card {
-    transition: opacity 0.4s ease, transform 0.4s ease;
+    transition: none; /* Handled instantly by the animation */
+}
+
+.project-card:not(.hide) {
+    animation: slideLeft 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 }
 
 .project-card.hide {
     display: none !important;
     opacity: 0;
-    transform: scale(0.95);
 }
-
 /* ==========================================
    TABLET & PHONE RESPONSIVE OPTIMIZATIONS
    ========================================== */
