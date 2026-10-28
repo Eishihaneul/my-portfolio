@@ -3,11 +3,15 @@ document.addEventListener("DOMContentLoaded", () => {
     const yearElement = document.getElementById("year");
     if (yearElement) yearElement.textContent = new Date().getFullYear();
 
-    const themeToggle = document.getElementById("themeToggle");
+const themeToggle = document.getElementById("themeToggle");
     const capeSweep = document.getElementById("capeSweep");
     const currentTheme = localStorage.getItem("watchtower-theme");
 
-    if (currentTheme === "light") {
+    // Default to Light Mode UNLESS user explicitly saved "dark"
+    if (currentTheme === "dark") {
+        document.body.classList.remove("light-theme");
+        themeToggle.textContent = "🌙 Batcave Terminal";
+    } else {
         document.body.classList.add("light-theme");
         themeToggle.textContent = "☀️ Watchtower Command";
     }
@@ -19,10 +23,11 @@ document.addEventListener("DOMContentLoaded", () => {
             capeSweep.classList.add("sweep-active");
         }
 
-        setTimeout(() => {
+setTimeout(() => {
             document.body.classList.toggle("light-theme");
             const isLightNow = document.body.classList.contains("light-theme");
             themeToggle.textContent = isLightNow ? "☀️ Watchtower Command" : "🌙 Batcave Terminal";
+            // Save user's explicit preference
             localStorage.setItem("watchtower-theme", isLightNow ? "light" : "dark");
         }, 750);
 
