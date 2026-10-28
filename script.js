@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const yearElement = document.getElementById("year");
     if (yearElement) yearElement.textContent = new Date().getFullYear();
 
-    // Theme Toggle & Morph Transition
+    // Theme Toggle & Morph Transition (Slowed down to 1.5s total)
     const themeToggle = document.getElementById("themeToggle");
     const capeSweep = document.getElementById("capeSweep");
     const currentTheme = localStorage.getItem("watchtower-theme");
@@ -14,23 +14,25 @@ document.addEventListener("DOMContentLoaded", () => {
         themeToggle.textContent = "☀️ Watchtower Command";
     }
 
-themeToggle.addEventListener("click", () => {
+    themeToggle.addEventListener("click", () => {
         if (capeSweep) {
             capeSweep.classList.remove("sweep-active");
-            void capeSweep.offsetWidth; // Force browser reflow
+            void capeSweep.offsetWidth; // Force reflow
             capeSweep.classList.add("sweep-active");
         }
 
+        // Midpoint theme switch at 750ms
         setTimeout(() => {
             document.body.classList.toggle("light-theme");
             const isLightNow = document.body.classList.contains("light-theme");
-            themeToggle.textContent = isLightNow ? "☀️ Watchtower Command" : "🌙 Batcave Terminal";
+            themeToggle.textContent = isLightNow ? "☀️ Watchtower Terminal" : "🌙 Batcave Terminal";
             localStorage.setItem("watchtower-theme", isLightNow ? "light" : "dark");
-        }, 350);
+        }, 750);
 
+        // Remove animation class after full completion
         setTimeout(() => {
             if (capeSweep) capeSweep.classList.remove("sweep-active");
-        }, 750);
+        }, 1600);
     });
 
     // Mobile Menu
@@ -45,6 +47,7 @@ themeToggle.addEventListener("click", () => {
     const navItems = document.querySelectorAll(".nav-item");
     const pill = document.getElementById("navPill");
     let currentActiveSection = ""; 
+    let isNavigating = false; // Scroll-lock flag to prevent pill jiggling mid-scroll
 
     function updatePill(activeItem) {
         if (!pill || !activeItem) return;
@@ -71,6 +74,8 @@ themeToggle.addEventListener("click", () => {
 
     navItems.forEach(item => {
         item.addEventListener("click", () => {
+            isNavigating = true; // Lock scroll listener
+
             navItems.forEach(i => i.classList.remove("active"));
             item.classList.add("active");
             updatePill(item);
@@ -78,12 +83,19 @@ themeToggle.addEventListener("click", () => {
             if (navLinks.classList.contains("show")) {
                 navLinks.classList.remove("show");
             }
+
+            // Unlock scroll listener after smooth scroll completes
+            setTimeout(() => {
+                isNavigating = false;
+            }, 800);
         });
     });
 
     const sections = document.querySelectorAll("section");
 
     window.addEventListener("scroll", () => {
+        if (isNavigating) return; // Prevent jiggle when clicking a nav link
+
         let current = "";
         sections.forEach(section => {
             const sectionTop = section.offsetTop;
@@ -120,7 +132,7 @@ themeToggle.addEventListener("click", () => {
     const phrases = [
         "Network Computing Specialist @ UNIMAS",
         "Tactical Student Leader & Vice President",
-        "Minggu Aluan Pelajar Facilitator",
+        "Right wing safety Bureau",
         "Watchtower Systems Administrator"
     ];
     let phraseIndex = 0;
