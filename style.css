@@ -1,22 +1,7 @@
-/* Theme Variables */
+/* ==========================================================================
+   Theme Variables (Default: Light Mode / Watchtower)
+   ========================================================================== */
 :root {
-    --bg-image: url('Batcave.jpg');
-    --bg-color: #080b10;
-    --text-color: #f1f5f9;
-    --text-muted: #94a3b8;
-    --title-color: #ffffff;
-    --primary-color: #38bdf8;
-    --accent-color: #f43f5e;
-    --border-color: rgba(56, 189, 248, 0.35);
-    --shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
-    --glow: 0 0 12px rgba(56, 189, 248, 0.4);
-    
-    --input-bg: #111722;
-    --input-text: #ffffff;
-    --input-placeholder: #94a3b8;
-}
-
-body.light-theme {
     --bg-image: url('Watchtower2.jpg');
     --bg-color: #f0f4f8;
     --text-color: #0f172a;
@@ -31,6 +16,23 @@ body.light-theme {
     --input-bg: #e2e8f0;
     --input-text: #0f172a;
     --input-placeholder: #475569;
+}
+
+body.dark-theme {
+    --bg-image: url('Batcave.jpg');
+    --bg-color: #080b10;
+    --text-color: #f1f5f9;
+    --text-muted: #94a3b8;
+    --title-color: #ffffff;
+    --primary-color: #38bdf8;
+    --accent-color: #f43f5e;
+    --border-color: rgba(56, 189, 248, 0.35);
+    --shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+    --glow: 0 0 12px rgba(56, 189, 248, 0.4);
+    
+    --input-bg: #111722;
+    --input-text: #ffffff;
+    --input-placeholder: #94a3b8;
 }
 
 /* Core Styles */
