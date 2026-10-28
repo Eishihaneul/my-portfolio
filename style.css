@@ -16,11 +16,11 @@
 }
 
 body.light-theme {
-    --bg-image: url('Watchtower.jpg');
+    --bg-image: url('Watchtower2.jpg');
     --bg-color: #f0f4f8;
     --text-color: #0f172a;
     --text-muted: #334155;
-    --title-color: #080b10;
+    --title-color: #ffffff;
     --primary-color: #0284c7;
     --accent-color: #d97706;
     --border-color: rgba(2, 132, 199, 0.35);
