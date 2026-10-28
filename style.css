@@ -1,42 +1,42 @@
 /* ==========================================
-   THEME VARIABLES & COLOR PALETTES
+   THEME VARIABLES & COLOR PALETTES (NO IMAGES)
    ========================================== */
 :root {
-    --bg-image: url('Batcave.jpg');
-    --bg-color: #080b10;
+    --bg-color: #07090e;
+    --bg-gradient: linear-gradient(135deg, #07090e 0%, #111827 50%, #030712 100%);
     --text-color: #f8fafc;
-    --text-muted: #e2e8f0;
+    --text-muted: #cbd5e1;
     --title-color: #ffffff;
     --primary-color: #facc15;
     --accent-color: #f43f5e;
-    --border-color: rgba(250, 204, 21, 0.5);
-    --glow: 0 0 18px rgba(250, 204, 21, 0.6);
-    --shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    --border-color: rgba(250, 204, 21, 0.4);
+    --glow: 0 0 18px rgba(250, 204, 21, 0.5);
+    --shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
     
     --input-bg: #111722;
     --input-text: #ffffff;
-    --input-placeholder: #cbd5e1;
+    --input-placeholder: #94a3b8;
 }
 
 body.light-theme {
-    --bg-image: url('Watchtower2.jpg') !important;
-    --bg-color: #f0f4f8;
+    --bg-color: #e2e8f0;
+    --bg-gradient: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 50%, #cbd5e1 100%);
     --text-color: #0f172a;
     --text-muted: #334155;
     --title-color: #0f172a;
-    --primary-color: #0369a1;
+    --primary-color: #0284c7;
     --accent-color: #b91c1c;
-    --border-color: rgba(3, 105, 161, 0.45);
-    --glow: 0 0 15px rgba(3, 105, 161, 0.3);
-    --shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+    --border-color: rgba(2, 132, 199, 0.4);
+    --glow: 0 0 15px rgba(2, 132, 199, 0.3);
+    --shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
     
-    --input-bg: #e2e8f0;
+    --input-bg: #ffffff;
     --input-text: #0f172a;
-    --input-placeholder: #475569;
+    --input-placeholder: #64748b;
 }
 
 /* ==========================================
-   CORE RESET & LAYOUT
+   CORE LAYOUT & GRADIENT BACKGROUND
    ========================================== */
 * {
     box-sizing: border-box;
@@ -51,46 +51,42 @@ html {
 }
 
 body {
-    background-color: #080b10;
-    background-image: var(--bg-image);
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-position: center center;
+    background-color: var(--bg-color);
+    background-image: var(--bg-gradient);
     background-attachment: fixed;
     color: var(--text-color);
     line-height: 1.6;
     overflow-x: hidden;
-    transition: background-color 0.4s ease, color 0.4s ease;
+    transition: background 0.4s ease, color 0.4s ease;
     -webkit-font-smoothing: antialiased;
-    transform: translateZ(0);
 }
 
 /* ==========================================
-   CUSTOM GLASSMORPHISM & TACTICAL CARDS
+   TACTICAL GLASS CARDS & AVATAR FALLBACK
    ========================================== */
 .bat-card {
     position: relative;
-    background: rgba(255, 255, 255, 0.35);
+    background: rgba(14, 18, 25, 0.85);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
-    border-radius: 30px;
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 25px;
+    border: 1px solid var(--border-color);
     box-shadow: var(--shadow);
     padding: 2.2rem;
     overflow: hidden;
-    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
-                box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-    will-change: transform;
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), 
+                box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1), 
+                border-color 0.35s ease;
 }
 
-body:not(.light-theme) .bat-card {
-    background: rgba(14, 18, 25, 0.55);
-    border: 1px solid var(--border-color);
+body.light-theme .bat-card {
+    background: rgba(255, 255, 255, 0.88);
 }
 
 .bat-card:hover {
     transform: translateY(-6px) scale(1.01);
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 16px 45px rgba(0, 0, 0, 0.5), var(--glow);
+    border-color: var(--primary-color);
 }
 
 .bat-card::after {
@@ -109,58 +105,38 @@ body:not(.light-theme) .bat-card {
     transition: left 0.8s ease-in-out;
 }
 
-/* ==========================================
-   SUPERMAN GRADIENT MORPH TRANSITION
-   ========================================== */
-.cape-sweep {
-    position: fixed;
-    top: 0;
-    width: 100vw;
-    height: 100vh;
-    background: transparent;
-    z-index: 9999;
-    pointer-events: none;
-    left: -100vw;
+/* Avatar Fallback Badge */
+.profile-avatar-fallback {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    color: #080b10;
+    font-size: 2.2rem;
+    font-weight: 900;
     display: flex;
     align-items: center;
-    transform: translateZ(0);
+    justify-content: center;
+    margin: 0 auto 1rem auto;
+    border: 3px solid var(--primary-color);
+    box-shadow: var(--glow);
+    animation: profilePulse 1.5s ease-in-out infinite both;
 }
 
-.cape-sweep.sweep-dark {
-    background: linear-gradient(90deg, rgba(225, 29, 72, 0) 0%, rgba(225, 29, 72, 0.9) 40%, rgba(56, 189, 248, 0.95) 70%, rgba(14, 18, 25, 1) 100%);
-    animation: capeFlyRight 1.5s forwards cubic-bezier(0.25, 1, 0.5, 1);
-}
-
-.cape-sweep.sweep-light {
-    background: linear-gradient(90deg, rgba(225, 29, 72, 0) 0%, rgba(225, 29, 72, 0.9) 40%, rgba(234, 179, 8, 0.95) 70%, rgba(240, 244, 248, 1) 100%);
-    animation: capeFlyRight 1.5s forwards cubic-bezier(0.25, 1, 0.5, 1);
-}
-
-.superman-fly-img {
-    position: absolute;
-    width: 280px;
-    top: 50%;
-    transform: translateY(-50%) translateZ(0);
-    right: -160px;
-    opacity: 0.85;
-    filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.6));
-}
-
-@keyframes capeFlyRight {
-    0% { transform: translateX(0) translateZ(0); left: -100vw; }
-    50% { transform: translateX(100vw) translateZ(0); left: -100vw; }
-    100% { transform: translateX(200vw) translateZ(0); left: -100vw; }
+@keyframes profilePulse {
+    0% { transform: scale(1); box-shadow: 0 0 10px var(--primary-color); }
+    50% { transform: scale(1.04); box-shadow: 0 0 25px var(--primary-color); }
+    100% { transform: scale(1); box-shadow: 0 0 10px var(--primary-color); }
 }
 
 /* ==========================================
-   HEADER & TICKER & NAVIGATION
+   HEADER & NAVIGATION
    ========================================== */
 header {
     position: sticky;
     top: 0;
     background-color: rgba(14, 18, 25, 0.92);
     backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
     border-bottom: 1px solid var(--border-color);
     z-index: 1000;
 }
@@ -207,7 +183,6 @@ body.light-theme header {
     font-weight: bold;
     color: var(--primary-color);
     text-decoration: none;
-    letter-spacing: 0.5px;
 }
 
 .tactical-clock {
@@ -224,7 +199,6 @@ body.light-theme header {
     color: var(--primary-color);
 }
 
-/* Fluid Navigation Pill */
 .nav-links {
     display: flex;
     list-style: none;
@@ -248,12 +222,10 @@ body.light-theme .nav-links {
     width: 0;
     background: var(--primary-color);
     border-radius: 20px;
-    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
-                width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     z-index: 1;
     opacity: 0.85;
     box-shadow: var(--glow);
-    transform: translateZ(0);
 }
 
 .nav-links a {
@@ -303,7 +275,7 @@ body.light-theme .nav-links a.active {
 }
 
 /* ==========================================
-   SECTIONS & TYPOGRAPHY
+   SECTIONS, HERO & TYPOGRAPHY
    ========================================== */
 .container {
     max-width: 1100px;
@@ -333,24 +305,6 @@ body.light-theme .nav-links a.active {
     text-align: center;
     border-right: 2px solid var(--border-color);
     padding-right: 2.5rem;
-}
-
-.profile-avatar-img {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 3px solid var(--primary-color);
-    box-shadow: var(--glow);
-    margin: 0 auto 1rem auto;
-    display: block;
-    animation: profilePulse 1.5s ease-in-out infinite both;
-}
-
-@keyframes profilePulse {
-    0% { transform: scale(1); box-shadow: 0 0 10px rgba(250, 204, 21, 0.4); }
-    50% { transform: scale(1.04); box-shadow: 0 0 25px rgba(250, 204, 21, 0.8); }
-    100% { transform: scale(1); box-shadow: 0 0 10px rgba(250, 204, 21, 0.4); }
 }
 
 .role-tag {
@@ -440,7 +394,7 @@ h2.section-title::after {
 }
 
 /* ==========================================
-   ABOUT ME & CYBORG PROGRESS BARS
+   ABOUT ME & PROGRESS BARS
    ========================================== */
 .about-card h3 {
     margin-bottom: 1rem;
@@ -485,7 +439,7 @@ h2.section-title::after {
 }
 
 /* ==========================================
-   PROJECTS & FILTER BUTTONS
+   PROJECTS & FILTERS
    ========================================== */
 .filter-buttons {
     display: flex;
@@ -547,7 +501,7 @@ h2.section-title::after {
 }
 
 /* ==========================================
-   CONTACT FORM & INPUTS
+   CONTACT FORM & BUTTONS
    ========================================== */
 .contact-form {
     max-width: 750px;
@@ -597,9 +551,6 @@ h2.section-title::after {
     font-family: 'Courier New', Courier, monospace;
 }
 
-/* ==========================================
-   BUTTONS & SCROLL TOP
-   ========================================== */
 .btn {
     display: inline-block;
     padding: 0.75rem 1.6rem;
@@ -617,9 +568,9 @@ h2.section-title::after {
     box-shadow: var(--glow);
 }
 
-.btn:hover {
-    transform: translateY(-2px);
-    opacity: 0.95;
+.btn:hover, .filter-btn:hover {
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: var(--glow);
 }
 
 #scrollTopBtn {
@@ -655,7 +606,7 @@ footer {
 }
 
 /* ==========================================
-   ANIMATIONS & SCROLL REVEALS
+   ANIMATIONS & PERFORMANCE
    ========================================== */
 @keyframes slideTop {
     0% { opacity: 0; transform: translateY(-30px); }
@@ -682,41 +633,7 @@ footer {
 }
 
 /* ==========================================
-   HOVER INTERACTIVITY (POP-UP LIFT)
-   ========================================== */
-.bat-card, .project-card, .about-card, .contact-form {
-    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), 
-                box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1), 
-                border-color 0.35s ease !important;
-}
-
-.bat-card:hover, .project-card:hover, .about-card:hover, .contact-form:hover {
-    transform: translateY(-8px) scale(1.02) !important;
-    box-shadow: 0 16px 45px rgba(0, 0, 0, 0.5), var(--glow) !important;
-    border-color: var(--primary-color) !important;
-}
-
-.btn:hover, .filter-btn:hover {
-    transform: translateY(-3px) scale(1.03);
-    box-shadow: var(--glow);
-}
-
-/* ==========================================
-   LIGHTNING-FAST PERFORMANCE (GPU & LAZY)
-   ========================================== */
-body, header, .bat-card, .project-card, .cape-sweep {
-    will-change: transform, opacity;
-    transform: translateZ(0);
-    backface-visibility: hidden;
-}
-
-section {
-    content-visibility: auto;
-    contain-intrinsic-size: 1000px;
-}
-
-/* ==========================================
-   TABLET & PHONE RESPONSIVE OPTIMIZATIONS
+   RESPONSIVE OVERRIDES
    ========================================== */
 @media (max-width: 1024px) and (min-width: 901px) {
     .container { max-width: 90%; padding: 0 1rem; }
@@ -726,7 +643,6 @@ section {
 }
 
 @media (max-width: 900px) {
-    body { background-attachment: scroll !important; }
     .container { margin: 2rem auto; padding: 0 1rem; }
     .hero-section { min-height: auto; padding: 1.5rem 1rem; }
     .hero-wrapper { flex-direction: column !important; text-align: center !important; gap: 1.5rem !important; padding: 1.8rem 1.2rem !important; }
@@ -747,7 +663,6 @@ section {
         left: 0;
         background-color: var(--bg-color);
         backdrop-filter: blur(16px);
-        -webkit-backdrop-filter: blur(16px);
         padding: 1.5rem;
         box-shadow: 0 15px 30px rgba(0,0,0,0.5);
         border-bottom: 1px solid var(--border-color);
