@@ -1,10 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
     
-    // Dynamic Year
     const yearElement = document.getElementById("year");
     if (yearElement) yearElement.textContent = new Date().getFullYear();
 
-    // Theme Toggle & Morph Transition (Slowed down to 1.5s total)
     const themeToggle = document.getElementById("themeToggle");
     const capeSweep = document.getElementById("capeSweep");
     const currentTheme = localStorage.getItem("watchtower-theme");
@@ -17,11 +15,10 @@ document.addEventListener("DOMContentLoaded", () => {
     themeToggle.addEventListener("click", () => {
         if (capeSweep) {
             capeSweep.classList.remove("sweep-active");
-            void capeSweep.offsetWidth; // Force reflow
+            void capeSweep.offsetWidth;
             capeSweep.classList.add("sweep-active");
         }
 
-        // Midpoint theme switch at 750ms
         setTimeout(() => {
             document.body.classList.toggle("light-theme");
             const isLightNow = document.body.classList.contains("light-theme");
@@ -29,13 +26,11 @@ document.addEventListener("DOMContentLoaded", () => {
             localStorage.setItem("watchtower-theme", isLightNow ? "light" : "dark");
         }, 750);
 
-        // Remove animation class after full completion
         setTimeout(() => {
             if (capeSweep) capeSweep.classList.remove("sweep-active");
         }, 1600);
     });
 
-    // Mobile Menu
     const menuToggle = document.getElementById("menuToggle");
     const navLinks = document.getElementById("navLinks");
 
@@ -43,11 +38,10 @@ document.addEventListener("DOMContentLoaded", () => {
         navLinks.classList.toggle("show");
     });
 
-    // Jiggle-Free Pill Navigation tracking
     const navItems = document.querySelectorAll(".nav-item");
     const pill = document.getElementById("navPill");
     let currentActiveSection = ""; 
-    let isNavigating = false; // Scroll-lock flag to prevent pill jiggling mid-scroll
+    let isNavigating = false; 
 
     function updatePill(activeItem) {
         if (!pill || !activeItem) return;
@@ -57,7 +51,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const leftOffset = Math.round(itemRect.left - parentRect.left);
         const width = Math.round(itemRect.width);
 
-        pill.style.transform = `translateX(${leftOffset}px)`;
+        pill.style.transform = `translateX(${leftOffset}px) translateZ(0)`;
         pill.style.width = `${width}px`;
         pill.style.opacity = "1";
     }
@@ -74,7 +68,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     navItems.forEach(item => {
         item.addEventListener("click", () => {
-            isNavigating = true; // Lock scroll listener
+            isNavigating = true; 
 
             navItems.forEach(i => i.classList.remove("active"));
             item.classList.add("active");
@@ -84,7 +78,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 navLinks.classList.remove("show");
             }
 
-            // Unlock scroll listener after smooth scroll completes
             setTimeout(() => {
                 isNavigating = false;
             }, 800);
@@ -94,7 +87,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const sections = document.querySelectorAll("section");
 
     window.addEventListener("scroll", () => {
-        if (isNavigating) return; // Prevent jiggle when clicking a nav link
+        if (isNavigating) return; 
 
         let current = "";
         sections.forEach(section => {
@@ -117,7 +110,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // Scroll to Top
     const scrollTopBtn = document.getElementById("scrollTopBtn");
     window.addEventListener("scroll", () => {
         scrollTopBtn.style.display = window.scrollY > 300 ? "block" : "none";
@@ -127,12 +119,11 @@ document.addEventListener("DOMContentLoaded", () => {
         window.scrollTo({ top: 0, behavior: "smooth" });
     });
 
-    // Typing Effect
     const typingElement = document.getElementById("typingText");
     const phrases = [
         "Network Computing Specialist @ UNIMAS",
-        "Tactical Student Leader & Vice President",
-        "Right wing safety Bureau",
+        "Tactical Vice President",
+        "Right dock Safey Bureau",
         "Watchtower Systems Administrator"
     ];
     let phraseIndex = 0;
@@ -160,7 +151,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     typeEffect();
 
-    // Category Filter Stagger
     const filterBtns = document.querySelectorAll(".filter-btn");
     const projectCards = document.querySelectorAll(".project-card");
 
@@ -176,11 +166,11 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (filterValue === "all" || card.getAttribute("data-category") === filterValue) {
                     card.classList.remove("hide");
                     card.style.opacity = "0";
-                    card.style.transform = "translateY(25px) translateX(-15px)";
+                    card.style.transform = "translateY(25px) translateX(-15px) translateZ(0)";
                     
                     setTimeout(() => {
                         card.style.opacity = "1";
-                        card.style.transform = "translateY(0) translateX(0)";
+                        card.style.transform = "translateY(0) translateX(0) translateZ(0)";
                     }, delay);
                     delay += 80; 
                 } else {
@@ -190,7 +180,6 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // Form Validation
     const contactForm = document.getElementById("contactForm");
     
     contactForm.addEventListener("submit", (e) => {
@@ -227,13 +216,12 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         if (isValid) {
-            formStatus.textContent = "Transmission verified and logged into Watchtower coms.";
+            formStatus.textContent = "Transmission verified and logged into Watchtower comms.";
             formStatus.style.color = "var(--primary-color)";
             contactForm.reset();
         }
     });
 
-    // Live Telemetry
     function updateWatchtowerClock() {
         const now = new Date();
         const clockEl = document.getElementById("liveClock");
@@ -247,7 +235,6 @@ document.addEventListener("DOMContentLoaded", () => {
     setInterval(updateWatchtowerClock, 1000);
     updateWatchtowerClock();
 
-    // Scroll Reveal & Typography Observer
     const observerOptions = { threshold: 0.12 };
     const revealObserver = new IntersectionObserver((entries, observer) => {
         entries.forEach((entry, index) => {
