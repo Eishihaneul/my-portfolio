@@ -3,11 +3,15 @@ document.addEventListener("DOMContentLoaded", () => {
     const yearElement = document.getElementById("year");
     if (yearElement) yearElement.textContent = new Date().getFullYear();
 
-    const themeToggle = document.getElementById("themeToggle");
+const themeToggle = document.getElementById("themeToggle");
     const capeSweep = document.getElementById("capeSweep");
     const currentTheme = localStorage.getItem("watchtower-theme");
 
-    if (currentTheme === "light") {
+    // Default to Light Mode UNLESS user explicitly saved "dark"
+    if (currentTheme === "dark") {
+        document.body.classList.remove("light-theme");
+        themeToggle.textContent = "🌙 Batcave Terminal";
+    } else {
         document.body.classList.add("light-theme");
         themeToggle.textContent = "☀️ Watchtower Command";
     }
@@ -19,10 +23,10 @@ document.addEventListener("DOMContentLoaded", () => {
             capeSweep.classList.add("sweep-active");
         }
 
-        setTimeout(() => {
+setTimeout(() => {
             document.body.classList.toggle("light-theme");
             const isLightNow = document.body.classList.contains("light-theme");
-            themeToggle.textContent = isLightNow ? "☀️ Watchtower Terminal" : "🌙 Batcave Terminal";
+            themeToggle.textContent = isLightNow ? "☀️ Watchtower Terminal " : "🌙 Batcave Terminal";
             localStorage.setItem("watchtower-theme", isLightNow ? "light" : "dark");
         }, 750);
 
@@ -121,10 +125,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const typingElement = document.getElementById("typingText");
     const phrases = [
-        "Network Computing Specialist @ UNIMAS",
-        "Tactical Vice President",
-        "Right dock Safey Bureau",
-        "Watchtower Systems Administrator"
+        "Network Computing Specialist @ UNIMAS💻",
+        "Tactical Vice President🕵️‍♂️",
+        "Right dock Safey Bureau🪽",
+        "Watchtower Systems Administrator👁️"
     ];
     let phraseIndex = 0;
     let charIndex = 0;
