@@ -767,4 +767,25 @@ footer {
         border-radius: 8px;
         text-align: center;
     }
+
+    .navbar {
+        flex-wrap: wrap !important;
+        padding: 0.6rem 1rem !important;
+        gap: 0.5rem !important;
+    }
+
+    .logo {
+        flex: 1 1 auto;
+        font-size: 1.1rem !important;
+    }
+
+    #themeToggle {
+        font-size: 0.75rem !important;
+        padding: 0.35rem 0.7rem !important;
+    }
+
+    .menu-toggle {
+        display: block !important;
+        order: 3;
+    }
 }
