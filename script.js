@@ -7,7 +7,7 @@ const themeToggle = document.getElementById("themeToggle");
     const capeSweep = document.getElementById("capeSweep");
     const currentTheme = localStorage.getItem("watchtower-theme");
 
-    // Default to Light Mode UNLESS user explicitly saved "dark"
+    // Force Light Mode by default unless "dark" was explicitly saved
     if (currentTheme === "dark") {
         document.body.classList.remove("light-theme");
         themeToggle.textContent = "🌙 Batcave Terminal";
