@@ -1,24 +1,5 @@
-/* ==========================================================================
-   Theme Variables (Default: Light Mode / Watchtower)
-   ========================================================================== */
+/* Theme Variables */
 :root {
-    --bg-image: url('Watchtower2.jpg');
-    --bg-color: #f0f4f8;
-    --text-color: #0f172a;
-    --text-muted: #334155;
-    --title-color: #080b10;
-    --primary-color: #0284c7;
-    --accent-color: #d97706;
-    --border-color: rgba(2, 132, 199, 0.35);
-    --shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
-    --glow: 0 0 12px rgba(2, 132, 199, 0.3);
-    
-    --input-bg: #e2e8f0;
-    --input-text: #0f172a;
-    --input-placeholder: #475569;
-}
-
-body.dark-theme {
     --bg-image: url('Batcave.jpg');
     --bg-color: #080b10;
     --text-color: #f1f5f9;
@@ -27,12 +8,27 @@ body.dark-theme {
     --primary-color: #38bdf8;
     --accent-color: #f43f5e;
     --border-color: rgba(56, 189, 248, 0.35);
-    --shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
     --glow: 0 0 12px rgba(56, 189, 248, 0.4);
     
     --input-bg: #111722;
     --input-text: #ffffff;
     --input-placeholder: #94a3b8;
+}
+
+body.light-theme {
+    --bg-image: url('Watchtower.jpg');
+    --bg-color: #f0f4f8;
+    --text-color: #0f172a;
+    --text-muted: #334155;
+    --title-color: #080b10;
+    --primary-color: #0284c7;
+    --accent-color: #d97706;
+    --border-color: rgba(2, 132, 199, 0.35);
+    --glow: 0 0 12px rgba(2, 132, 199, 0.3);
+    
+    --input-bg: #e2e8f0;
+    --input-text: #0f172a;
+    --input-placeholder: #475569;
 }
 
 /* Core Styles */
@@ -656,42 +652,27 @@ footer {
     font-weight: 500;
 }
 
-/* Mobile & Tablet Responsive Overrides (Max-width: 900px) */
-@media (max-width: 900px) {
-    body {
-        background-attachment: scroll !important;
-    }
-
+/* Responsive */
+@media (max-width: 820px) {
     .hero-wrapper {
-        flex-direction: column !important;
-        text-align: center !important;
-        gap: 1.5rem !important;
-        padding: 1.5rem !important;
+        flex-direction: column;
+        text-align: center;
+        gap: 1.5rem;
     }
 
     .hero-profile-card {
-        flex: unset !important;
-        width: 100% !important;
-        border-right: none !important;
-        border-bottom: 2px solid var(--border-color) !important;
-        padding-right: 0 !important;
-        padding-bottom: 1.5rem !important;
+        border-right: none;
+        border-bottom: 2px solid rgba(255,255,255,0.1);
+        padding-right: 0;
+        padding-bottom: 1.5rem;
     }
 
     .hero-buttons {
-        justify-content: center !important;
-    }
-
-    .projects-grid {
-        grid-template-columns: 1fr !important;
+        justify-content: center;
     }
 
     .menu-toggle {
-        display: block !important;
-    }
-
-    .tactical-clock {
-        display: none !important;
+        display: block;
     }
 
     .nav-links {
@@ -702,25 +683,11 @@ footer {
         top: 100%;
         left: 0;
         background-color: var(--bg-color);
-        backdrop-filter: blur(15px);
         padding: 1.5rem;
         box-shadow: var(--shadow);
-        border-bottom: 1px solid var(--border-color);
-        gap: 1rem !important;
     }
 
     .nav-links.show {
-        display: flex !important;
-    }
-
-    .nav-pill-indicator {
-        display: none !important;
-    }
-
-    .nav-links a.active {
-        background: var(--primary-color);
-        color: #ffffff !important;
-        border-radius: 8px;
-        text-align: center;
+        display: flex;
     }
 }
