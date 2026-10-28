@@ -106,7 +106,7 @@ body {
     transition: left 0.8s ease-in-out;
 }
 
-/* Superman Morph Transition */
+/* Superman Morph Transition (Unidirectional) */
 .cape-sweep {
     position: fixed;
     top: 0;
@@ -136,30 +136,14 @@ body.light-theme .cape-sweep {
     right: -160px; 
 }
 
-.cape-sweep.sweep-left .superman-fly-img {
-    right: auto;
-    left: -160px;
-    transform: translateY(-50%) scaleX(-1);
+.cape-sweep.sweep-active {
+    animation: capeFlyRight 0.7s forwards cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-.cape-sweep.sweep-right {
-    animation: capeRight 0.7s forwards cubic-bezier(0.25, 1, 0.5, 1);
-}
-
-.cape-sweep.sweep-left {
-    animation: capeLeft 0.7s forwards cubic-bezier(0.25, 1, 0.5, 1);
-}
-
-@keyframes capeRight {
+@keyframes capeFlyRight {
     0% { transform: translateX(0); left: -100vw; }
     50% { transform: translateX(100vw); left: -100vw; } 
     100% { transform: translateX(200vw); left: -100vw; }
-}
-
-@keyframes capeLeft {
-    0% { transform: translateX(0); left: 100vw; }
-    50% { transform: translateX(-100vw); left: 100vw; }
-    100% { transform: translateX(-200vw); left: 100vw; }
 }
 
 /* Typography & Animations */
