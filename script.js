@@ -14,14 +14,11 @@ document.addEventListener("DOMContentLoaded", () => {
         themeToggle.textContent = "☀️ Watchtower Command";
     }
 
-    themeToggle.addEventListener("click", () => {
-        const isCurrentlyLight = document.body.classList.contains("light-theme");
-        const animationClass = isCurrentlyLight ? "sweep-left" : "sweep-right";
-
+themeToggle.addEventListener("click", () => {
         if (capeSweep) {
-            capeSweep.classList.remove("sweep-left", "sweep-right");
-            void capeSweep.offsetWidth;
-            capeSweep.classList.add(animationClass);
+            capeSweep.classList.remove("sweep-active");
+            void capeSweep.offsetWidth; // Force browser reflow
+            capeSweep.classList.add("sweep-active");
         }
 
         setTimeout(() => {
@@ -32,7 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }, 350);
 
         setTimeout(() => {
-            if (capeSweep) capeSweep.classList.remove("sweep-left", "sweep-right");
+            if (capeSweep) capeSweep.classList.remove("sweep-active");
         }, 750);
     });
 
