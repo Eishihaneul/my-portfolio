@@ -284,5 +284,90 @@ body:not(.light-theme) .glass-effect {
     transform: translateY(0) translateZ(0);
 }
 
+/* ==========================================
+   CONTACT FORM & INPUT STYLING
+   ========================================== */
+.contact-form {
+    width: 100%;
+    max-width: 100%;
+}
+
+.form-group {
+    margin-bottom: 1.4rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    color: var(--text-color);
+}
+
+/* Base Input & Textarea State (Muted Gray Background) */
+.form-group input, 
+.form-group textarea {
+    width: 100%;
+    padding: 0.85rem 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background-color: var(--input-bg); /* Dark slate gray by default */
+    color: var(--input-text);
+    font-size: 1rem;
+    font-family: inherit;
+    outline: none;
+    transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* Allow manual enlargement of the Description box */
+.form-group textarea {
+    resize: vertical; /* Shows the draggable resize handle at bottom-right */
+    min-height: 120px;
+}
+
+/* Placeholder Text Color */
+.form-group input::placeholder, 
+.form-group textarea::placeholder {
+    color: var(--input-placeholder);
+    opacity: 0.8;
+}
+
+/* Active / Focused State: Turns Crisp White Background + Bold Black Text */
+.form-group input:focus, 
+.form-group textarea:focus {
+    background-color: #ffffff !important;
+    color: #000000 !important;
+    border-color: var(--primary-color) !important;
+    box-shadow: 0 0 15px var(--glow), 0 0 5px rgba(255, 255, 255, 0.8) !important;
+}
+
+.error-msg {
+    color: var(--accent-color);
+    font-size: 0.82rem;
+    font-weight: 700;
+    margin-top: 0.35rem;
+    display: block;
+}
+
+.form-status {
+    margin-top: 1rem;
+    font-weight: 700;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+/* Mobile & Tablet Optimizations for Contact Form */
+@media (max-width: 768px) {
+    .contact-form {
+        padding: 0;
+    }
+
+    .form-group input, 
+    .form-group textarea {
+        padding: 0.75rem 0.85rem;
+        font-size: 0.95rem; /* Prevents auto-zoom on mobile safari */
+    }
+}
+
 footer { text-align: center; padding: 2rem; margin-top: 2rem; font-family: monospace; }
 }
