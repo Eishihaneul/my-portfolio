@@ -16,23 +16,29 @@ const themeToggle = document.getElementById("themeToggle");
         themeToggle.textContent = "☀️ Watchtower Terminal";
     }
 
-    themeToggle.addEventListener("click", () => {
+themeToggle.addEventListener("click", () => {
+        const isCurrentlyLight = document.body.classList.contains("light-theme");
+        // If it's currently light, switch to dark (use red-to-blue). 
+        // If it's currently dark, switch to light (use red-to-yellow).
+        const targetAnimationClass = isCurrentlyLight ? "sweep-dark" : "sweep-light";
+
         if (capeSweep) {
-            capeSweep.classList.remove("sweep-active");
-            void capeSweep.offsetWidth;
-            capeSweep.classList.add("sweep-active");
+            capeSweep.classList.remove("sweep-dark", "sweep-light");
+            void capeSweep.offsetWidth; // Force reflow
+            capeSweep.classList.add(targetAnimationClass);
         }
 
-setTimeout(() => {
+        // Midpoint theme switch at 750ms when Superman passes the center
+        setTimeout(() => {
             document.body.classList.toggle("light-theme");
             const isLightNow = document.body.classList.contains("light-theme");
-            themeToggle.textContent = isLightNow ? "☀️ Watchtower Terminal" : "🌙 Batcave Terminal";
-            // Save user's explicit preference
+            themeToggle.textContent = isLightNow ? "☀️ Watchtower Command" : "🌙 Batcave Terminal";
             localStorage.setItem("watchtower-theme", isLightNow ? "light" : "dark");
         }, 750);
 
+        // Clean up animation classes after completion
         setTimeout(() => {
-            if (capeSweep) capeSweep.classList.remove("sweep-active");
+            if (capeSweep) capeSweep.classList.remove("sweep-dark", "sweep-light");
         }, 1600);
     });
 
