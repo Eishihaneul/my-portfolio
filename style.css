@@ -70,15 +70,15 @@ body {
     transform: translateY(0) translateX(0);
 }
 
-/* Custom Glassmorphism UI Cards */
+/* Custom Glassmorphism UI Cards (Updated for Higher Visibility) */
 .bat-card {
     position: relative;
-    background: rgba(255, 255, 255, 0.08);
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
-    border-radius: 16px;
-    border: none;
-    box-shadow: 0 0 13px 8px rgba(0, 0, 0, 0.59);
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border-radius: 40px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 40px 10px rgba(0, 0, 0, 0.2);
     padding: 2rem;
     overflow: hidden; 
     transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
@@ -106,7 +106,7 @@ body {
     transition: left 0.8s ease-in-out;
 }
 
-/* Superman Morph Transition (Unidirectional) */
+/* Superman Morph Transition (Slowed down to 1.5s) */
 .cape-sweep {
     position: fixed;
     top: 0;
@@ -137,7 +137,7 @@ body.light-theme .cape-sweep {
 }
 
 .cape-sweep.sweep-active {
-    animation: capeFlyRight 0.7s forwards cubic-bezier(0.25, 1, 0.5, 1);
+    animation: capeFlyRight 1.5s forwards cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 @keyframes capeFlyRight {
