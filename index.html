@@ -166,38 +166,28 @@
         </section>
 
         <!-- Contact Section -->
-       <!-- Contact Section -->
-<section id="contact" class="container scroll-reveal">
-    <h2 class="section-title">Contact Command</h2>
-    <div class="contact-card bat-card">
-        <p style="margin-bottom: 1.5rem; color: var(--text-muted);">Ready to establish a secure link? Send a message to log your transmission.</p>
-
-        <form id="contactForm" class="contact-form" novalidate>
-            <!-- Field 1: NAME -->
-            <div class="form-group">
-                <label for="name">OPERATOR NAME</label>
-                <input type="text" id="name" name="name" placeholder="Enter your full name..." required>
-                <span class="error-msg" id="nameError"></span>
-            </div>
-
-            <!-- Field 2: EMAIL -->
-            <div class="form-group">
-                <label for="email">COMMS EMAIL</label>
-                <input type="email" id="email" name="email" placeholder="name@domain.com" required>
-                <span class="error-msg" id="emailError"></span>
-            </div>
-
-            <!-- Field 3: DESCRIPTION (Expandable Textarea) -->
-            <div class="form-group">
-                <label for="message">MISSION DESCRIPTION</label>
-                <textarea id="message" name="message" rows="5" placeholder="State your objective or detailed inquiry..." required></textarea>
-                <span class="error-msg" id="msgError"></span>
-            </div>
-
-            <button type="submit" class="btn btn-primary">Transmit Signal</button>
-            <p id="formStatus" class="form-status"></p>
-        </form>
-    </div>
+    <section id="contact" class="container">
+    <h2 class="section-title scroll-reveal">Contact Command</h2>
+    <!-- The 'bat-card' class adds the glassmorphism and animated border -->
+    <form id="contactForm" class="contact-form bat-card scroll-reveal" novalidate>
+        <div class="form-group">
+            <label for="name">Operator Name</label>
+            <input type="text" id="name" name="name" placeholder="Enter full name..." required>
+            <span class="error-msg" id="nameError"></span>
+        </div>
+        <div class="form-group">
+            <label for="email">Comms Email</label>
+            <input type="email" id="email" name="email" placeholder="name@domain.com" required>
+            <span class="error-msg" id="emailError"></span>
+        </div>
+        <div class="form-group">
+            <label for="message">Mission Description</label>
+            <textarea id="message" name="message" rows="5" placeholder="State your objective or detailed inquiry..." required></textarea>
+            <span class="error-msg" id="msgError"></span>
+        </div>
+        <button type="submit" class="btn btn-primary">Transmit Signal</button>
+        <p id="formStatus" class="form-status"></p>
+    </form>
 </section>
 
     <footer>
