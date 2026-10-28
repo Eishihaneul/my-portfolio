@@ -49,7 +49,7 @@ body {
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    background-attachment: fixed;
+    background-attachment: scroll;
     color: var(--text-color);
     line-height: 1.6;
     overflow-x: hidden;
@@ -689,5 +689,82 @@ footer {
 
     .nav-links.show {
         display: flex;
+    }
+}
+
+/* ==========================================================================
+   Mobile & Tablet Responsive Overrides (Max-width: 900px)
+   ========================================================================== */
+@media (max-width: 900px) {
+    /* Stack Hero Section Vertically */
+    .hero-wrapper {
+        flex-direction: column !important;
+        text-align: center !important;
+        gap: 1.5rem !important;
+        padding: 1.5rem !important;
+    }
+
+    .hero-profile-card {
+        flex: unset !important;
+        width: 100% !important;
+        border-right: none !important;
+        border-bottom: 2px solid var(--border-color) !important;
+        padding-right: 0 !important;
+        padding-bottom: 1.5rem !important;
+    }
+
+    .hero-buttons {
+        justify-content: center !important;
+    }
+
+    /* Force Projects Grid into 1 Column */
+    .projects-grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    /* Navbar Mobile Hamburger Toggle display */
+    .menu-toggle {
+        display: block !important;
+    }
+
+    body {
+        background-attachment: scroll !important;
+    }
+    
+    /* Hide tactical clock on tight mobile screens to save header space */
+    .tactical-clock {
+        display: none !important;
+    }
+
+    /* Mobile Dropdown Menu Styling */
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background-color: var(--card-bg);
+        backdrop-filter: blur(15px);
+        padding: 1.5rem;
+        box-shadow: var(--shadow);
+        border-bottom: 1px solid var(--border-color);
+        gap: 1rem !important;
+    }
+
+    .nav-links.show {
+        display: flex !important;
+    }
+
+    /* Hide the desktop pill indicator on mobile dropdown for clean layout */
+    .nav-pill-indicator {
+        display: none !important;
+    }
+
+    .nav-links a.active {
+        background: var(--primary-color);
+        color: #080b10 !important;
+        border-radius: 8px;
+        text-align: center;
     }
 }
