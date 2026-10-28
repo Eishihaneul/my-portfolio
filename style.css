@@ -16,7 +16,7 @@
 }
 
 body.light-theme {
-    --bg-image: url('Watchtower2.jpg');
+    --bg-image: url('Watchtower.jpg');
     --bg-color: #f0f4f8;
     --text-color: #0f172a;
     --text-muted: #334155;
@@ -56,10 +56,10 @@ body {
     transition: background-color 0.4s ease, color 0.4s ease;
 }
 
-/* Scroll Reveal Animations */
+/* 60fps Hardware-Accelerated Scroll Reveal */
 .scroll-reveal {
     opacity: 0;
-    transform: translateY(35px) translateX(-25px);
+    transform: translateY(35px) translateX(-25px) translateZ(0);
     transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), 
                 transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
     will-change: opacity, transform;
@@ -67,10 +67,10 @@ body {
 
 .scroll-reveal.active {
     opacity: 1;
-    transform: translateY(0) translateX(0);
+    transform: translateY(0) translateX(0) translateZ(0);
 }
 
-/* Custom Glassmorphism UI Cards (Updated for Higher Visibility) */
+/* Custom Glassmorphism UI Cards */
 .bat-card {
     position: relative;
     background: rgba(255, 255, 255, 0.4);
@@ -88,7 +88,7 @@ body {
 }
 
 .bat-card:hover {
-    transform: translateY(-6px) scale(1.01);
+    transform: translateY(-6px) scale(1.01) translateZ(0);
 }
 
 .bat-card::after {
@@ -106,7 +106,7 @@ body {
     transition: left 0.8s ease-in-out;
 }
 
-/* Superman Morph Transition (Slowed down to 1.5s) */
+/* Superman Morph Transition (Optimized for 60fps) */
 .cape-sweep {
     position: fixed;
     top: 0;
@@ -122,6 +122,7 @@ body {
     align-items: center;
     transition: none;
     will-change: transform;
+    transform: translateZ(0);
 }
 
 body.light-theme .cape-sweep {
@@ -132,7 +133,7 @@ body.light-theme .cape-sweep {
     position: absolute;
     width: 320px;
     top: 50%;
-    transform: translateY(-50%);
+    transform: translateY(-50%) translateZ(0);
     right: -160px; 
 }
 
@@ -141,9 +142,9 @@ body.light-theme .cape-sweep {
 }
 
 @keyframes capeFlyRight {
-    0% { transform: translateX(0); left: -100vw; }
-    50% { transform: translateX(100vw); left: -100vw; } 
-    100% { transform: translateX(200vw); left: -100vw; }
+    0% { transform: translateX(0) translateZ(0); left: -100vw; }
+    50% { transform: translateX(100vw) translateZ(0); left: -100vw; } 
+    100% { transform: translateX(200vw) translateZ(0); left: -100vw; }
 }
 
 /* Typography & Animations */
@@ -292,6 +293,7 @@ body.light-theme header {
     opacity: 0.8; 
     box-shadow: var(--glow);
     will-change: transform, width;
+    transform: translateZ(0);
 }
 
 .nav-links a {
