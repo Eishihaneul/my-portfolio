@@ -3,53 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Emmanuel Stefhanius - Network Computing Student at UNIMAS">
     <title>Emmanuel Stefhanius | Watchtower Tactical Portfolio</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- Superman Cape Sweep Energy Overlay (Bidirectional) -->
-    <div id="capeSweep" class="cape-sweep" aria-hidden="true"></div>
+    <!-- Superman Flying Morph Transition Overlay -->
+    <div id="capeSweep" class="cape-sweep" aria-hidden="true">
+        <img src="SupermanFlying.png" alt="" class="superman-fly-img">
+    </div>
 
     <!-- Watchtower Command Navigation -->
     <header>
         <div class="watchtower-ticker" aria-hidden="true">
-            <span class="ticker-text">SECURE TRANSMISSION ENCRYPTED // JUSTICE LEAGUE NETWORK NODE: UNIMAS-104008 // STATUS: NOMINAL // ALL SYSTEMS SECURE</span>
+            <span class="ticker-text">SECURE TRANSMISSION ENCRYPTED // JUSTICE LEAGUE NETWORK NODE: UNIMAS-104008 // STATUS: NOMINAL // ALL SYSTEMS SECURED</span>
         </div>
-        <nav class="navbar" aria-label="Watchtower Terminal Navigation">
+        <nav class="navbar" aria-label="Main Navigation">
             <a href="#home" class="logo">
                 <span class="logo-glyph">⚡</span> Emmanuel S.
             </a>
-            <div class="tactical-clock" aria-label="Watchtower System Telemetry">
+            <div class="tactical-clock" aria-label="System Telemetry">
                 <span>TIME: <strong id="liveClock">00:00:00</strong></span> | 
                 <span>PING: <strong id="livePing">12ms</strong></span>
             </div>
-            <button class="menu-toggle" id="menuToggle" aria-label="Toggle tactical menu">☰</button>
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle Menu">☰</button>
             <ul class="nav-links" id="navLinks">
-                <!-- Fluid Aquaman Water Pill Background -->
+                <!-- Fluid Aquaman Navigation Pill -->
                 <div class="nav-pill-indicator" id="navPill"></div>
                 <li><a href="#home" class="nav-item active">Home</a></li>
                 <li><a href="#about" class="nav-item">About Me</a></li>
                 <li><a href="#projects" class="nav-item">Projects</a></li>
                 <li><a href="#contact" class="nav-item">Contact</a></li>
             </ul>
-            <button id="themeToggle" aria-label="Toggle Watchtower and Batcave Mode">🌙 Batcave Terminal</button>
+            <button id="themeToggle" aria-label="Toggle Theme">🌙 Batcave Terminal</button>
         </nav>
     </header>
 
     <main>
-        <!-- Hero Section with Profile Card Integrated to the Left -->
+        <!-- Hero Section -->
         <section id="home" class="hero-section">
             <div class="hero-wrapper bat-card scroll-reveal">
-                <!-- Left: Profile Badge -->
                 <div class="hero-profile-card">
-                    <img src="profile.jpg" alt="Emmanuel Stefhanius Pixel Superman Profile" class="profile-avatar-img">
+                    <img src="profile.jpg" alt="Emmanuel Stefhanius" class="profile-avatar-img">
                     <h3>Emmanuel Stefhanius</h3>
                     <p class="role-tag">Network and Web Specialist</p>
                     <p class="id-tag">UNIMAS | ID: 104008</p>
                 </div>
 
-                <!-- Right: Status & Greeting -->
                 <div class="hero-text-content">
                     <div class="hud-status-badge">SYSTEM STATUS: ONLINE</div>
                     <h1>Hi, I'm <span class="highlight">Emmanuel Stefhanius</span></h1>
@@ -65,7 +66,7 @@
             </div>
         </section>
 
-        <!-- Compact About Me Section -->
+        <!-- About Me Section -->
         <section id="about" class="container">
             <h2 class="section-title scroll-reveal">About Me</h2>
             <div class="about-card bio-card bat-card scroll-reveal">
@@ -108,7 +109,7 @@
             </div>
         </section>
 
-        <!-- Projects Section (6 Items) -->
+        <!-- Projects Section -->
         <section id="projects" class="container">
             <h2 class="section-title scroll-reveal">Projects</h2>
             
@@ -185,10 +186,9 @@
         </section>
     </main>
 
-    <!-- Scroll-to-Top Button -->
-    <button id="scrollTopBtn" aria-label="Scroll to top of terminal">↑</button>
+    <!-- UI Controls -->
+    <button id="scrollTopBtn" aria-label="Scroll to Top">↑</button>
 
-    <!-- Footer -->
     <footer>
         <p>&copy; <span id="year"></span> Emmanuel Stefhanius (104008) | Watchtower Console - Martian Manhunter Approved.</p>
     </footer>
