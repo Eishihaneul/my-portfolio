@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emmanuel Stefhanius | DCU Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Superman Gradient Morph Transition Overlay -->
+    <div id="capeSweep" class="cape-sweep" aria-hidden="true">
+        <img src="SupermanFlying.png" alt="Superman Flying" class="superman-fly-img">
+    </div>
+
+    <!-- Live Telemetry Broadcast -->
+    <div class="watchtower-ticker">
+        <span class="ticker-text">EMERGENCY BROADCAST // WATCHTOWER SYSTEM TELEMETRY ACTIVE // NODE UNIMAS-104008 // ALL SYSTEMS NOMINAL</span>
+    </div>
+
+    <header>
+        <nav class="navbar">
+            <div class="logo">🦸🏻‍♂️ Emmanuel S.</div>
+            
+            <ul class="nav-links" id="navLinks">
+                <div class="nav-pill-indicator" id="navPill"></div>
+                <li><a href="#home" class="nav-item active">Home</a></li>
+                <li><a href="#about" class="nav-item">About</a></li>
+                <li><a href="#projects" class="nav-item">Projects</a></li>
+                <li><a href="#contact" class="nav-item">Contact</a></li>
+            </ul>
+            
+            <!-- Live Clock & Ping -->
+            <div class="tactical-clock">
+                T: <strong id="liveClock">00:00:00</strong> | PING: <strong id="livePing">12ms</strong>
+            </div>
+
+            <!-- Sun / Moon Sync Button -->
+            <button id="themeToggle" class="theme-btn" aria-label="Toggle Theme">
+                <span class="sun">☀️</span>
+                <span class="moon">🌙</span>
+            </button>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="hero-section container">
+            <div class="hero-wrapper glass-effect scroll-reveal">
+                <div class="hero-profile-card">
+                    <img src="profile.jpg" alt="Emmanuel Stefhanius Profile" class="profile-avatar-img">
+                    <h3>Emmanuel Stefhanius</h3>
+                    <p class="role-tag">Network Computing</p>
+                </div>
+                <div class="hero-text-content">
+                    <h1>Welcome to the <span class="highlight">Watchtower</span></h1>
+                    <p class="subtitle">Bringing operational excellence to the computer science industry.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="container scroll-reveal">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-card glass-effect">
+                <p>I am a dedicated Network Computing student from UNIMAS, with a strong background in campus leadership, student affairs, and operational support. Throughout my academic journey, I have managed student welfare, facilitated orientation programs, and coordinated campus events while building technical and analytical skills.</p>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="container scroll-reveal">
+            <h2 class="section-title">Projects Directory</h2>
+            <p style="margin-bottom: 1.5rem; text-align: center; color: var(--text-muted);">(Click a card to flip and decrypt project details)</p>
+
+            <div class="projects-grid">
+                <!-- Project 1 -->
+                <div class="flip-card">
+                    <div class="flip-card-inner glass-effect">
+                        <div class="flip-card-front">
+                            <h3>Medi Track-Hospital Patient Management System</h3>
+                            <span class="tag">#Web</span>
+                            <p>Developed a C++ based internal hospital system while simulating a real-world operational workflow with continuous loop functionality.</p>
+                        </div>
+                        <div class="flip-card-back">
+                            <h3>Project Decrypted</h3>
+                            <p>Web Development: Focused on scalable and interactive web architectures.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="flip-card">
+                    <div class="flip-card-inner glass-effect">
+                        <div class="flip-card-front">
+                            <h3>Fit life Wellness App Database System</h3>
+                            <span class="tag">#Web</span>
+                            <p>Developed a PHP and Python based console application with active database to maintain, collect and manage input data for a fitness app.</p>
+                        </div>
+                        <div class="flip-card-back">
+                            <h3>Project Decrypted</h3>
+                            <p>Web Development: Focused on scalable and interactive web architectures.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="flip-card">
+                    <div class="flip-card-inner glass-effect">
+                        <div class="flip-card-front">
+                            <h3>Robin Rule Simulator</h3>
+                            <span class="tag">#Simulation</span>
+                            <p>Developed a Python based simulation framework to analyse, visualize and model CPU scheduling algorithms.</p>
+                        </div>
+                        <div class="flip-card-back">
+                            <h3>Project Decrypted</h3>
+                            <p>Simulation: Complex algorithm modeling and system analysis.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 4 -->
+                <div class="flip-card">
+                    <div class="flip-card-inner glass-effect">
+                        <div class="flip-card-front">
+                            <h3>DirectFarm Samarahan System</h3>
+                            <span class="tag">#Web</span>
+                            <p>Developed a Python based console application to streamline localized agricultural supply chain.</p>
+                        </div>
+                        <div class="flip-card-back">
+                            <h3>Project Decrypted</h3>
+                            <p>Web Development: Focused on scalable and interactive web architectures.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 5 -->
+                <div class="flip-card">
+                    <div class="flip-card-inner glass-effect">
+                        <div class="flip-card-front">
+                            <h3>MindMyMind Desktop App</h3>
+                            <span class="tag">#Web</span>
+                            <p>Developed a front-end Java-based application promoting mental health awareness.</p>
+                        </div>
+                        <div class="flip-card-back">
+                            <h3>Project Decrypted</h3>
+                            <p>Web Development: Focused on scalable and interactive web architectures.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 6 -->
+                <div class="flip-card">
+                    <div class="flip-card-inner glass-effect">
+                        <div class="flip-card-front">
+                            <h3>Network Architecture Recommendation</h3>
+                            <span class="tag">#Network</span>
+                            <p>Applied Network architecture on 2-level office to ensure stability on all workstations.</p>
+                        </div>
+                        <div class="flip-card-back">
+                            <h3>Project Decrypted</h3>
+                            <p>Networking: Ensuring robust, secure, and stable connections.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="container scroll-reveal">
+            <h2 class="section-title">Contact</h2>
+            <div class="contact-form glass-effect">
+                <p>Ready to establish a secure link? Reach out to coordinate our next objective.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; <span id="year"></span> Emmanuel Stefhanius (104008) | DCU Terminal | Martian Manhunter Approved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
