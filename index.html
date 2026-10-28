@@ -166,13 +166,39 @@
         </section>
 
         <!-- Contact Section -->
-        <section id="contact" class="container scroll-reveal">
-            <h2 class="section-title">Contact</h2>
-            <div class="contact-form glass-effect">
-                <p>Ready to establish a secure link? Reach out to coordinate our next objective.</p>
+       <!-- Contact Section -->
+<section id="contact" class="container scroll-reveal">
+    <h2 class="section-title">Contact Command</h2>
+    <div class="contact-card bat-card">
+        <p style="margin-bottom: 1.5rem; color: var(--text-muted);">Ready to establish a secure link? Send a message to log your transmission.</p>
+
+        <form id="contactForm" class="contact-form" novalidate>
+            <!-- Field 1: NAME -->
+            <div class="form-group">
+                <label for="name">OPERATOR NAME</label>
+                <input type="text" id="name" name="name" placeholder="Enter your full name..." required>
+                <span class="error-msg" id="nameError"></span>
             </div>
-        </section>
-    </main>
+
+            <!-- Field 2: EMAIL -->
+            <div class="form-group">
+                <label for="email">COMMS EMAIL</label>
+                <input type="email" id="email" name="email" placeholder="name@domain.com" required>
+                <span class="error-msg" id="emailError"></span>
+            </div>
+
+            <!-- Field 3: DESCRIPTION (Expandable Textarea) -->
+            <div class="form-group">
+                <label for="message">MISSION DESCRIPTION</label>
+                <textarea id="message" name="message" rows="5" placeholder="State your objective or detailed inquiry..." required></textarea>
+                <span class="error-msg" id="msgError"></span>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Transmit Signal</button>
+            <p id="formStatus" class="form-status"></p>
+        </form>
+    </div>
+</section>
 
     <footer>
         <p>&copy; <span id="year"></span> Emmanuel Stefhanius (104008) | DCU Terminal | Martian Manhunter Approved.</p>
