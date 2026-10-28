@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const yearElement = document.getElementById("year");
     if (yearElement) yearElement.textContent = new Date().getFullYear();
 
-    // Theme Toggle (Default to Light Mode)
+   // Theme Toggle with Superman Cape Sweep Animation
     const themeToggle = document.getElementById("themeToggle");
     const capeSweep = document.getElementById("capeSweep");
     const currentTheme = localStorage.getItem("watchtower-theme") || "light";
@@ -13,31 +13,32 @@ document.addEventListener("DOMContentLoaded", () => {
         if (themeToggle) themeToggle.textContent = "🌙 Batcave Terminal";
     } else {
         document.body.classList.add("light-theme");
-        if (themeToggle) themeToggle.textContent = "☀️ Watchtower Terminal";
+        if (themeToggle) themeToggle.textContent = "☀️ Watchtower Command";
     }
 
-    themeToggle.addEventListener("click", () => {
-        const isCurrentlyLight = document.body.classList.contains("light-theme");
-        const targetAnimationClass = isCurrentlyLight ? "sweep-dark" : "sweep-light";
+    if (themeToggle) {
+        themeToggle.addEventListener("click", () => {
+            const isCurrentlyLight = document.body.classList.contains("light-theme");
+            const targetAnimationClass = isCurrentlyLight ? "sweep-dark" : "sweep-light";
 
-        if (capeSweep) {
-            capeSweep.classList.remove("sweep-dark", "sweep-light");
-            void capeSweep.offsetWidth;
-            capeSweep.classList.add(targetAnimationClass);
-        }
+            if (capeSweep) {
+                capeSweep.classList.remove("sweep-dark", "sweep-light");
+                void capeSweep.offsetWidth; // Trigger reflow to restart animation
+                capeSweep.classList.add(targetAnimationClass);
+            }
 
-        setTimeout(() => {
-            document.body.classList.toggle("light-theme");
-            const isLightNow = document.body.classList.contains("light-theme");
-            themeToggle.textContent = isLightNow ? "☀️ Watchtower Terminal" : "🌙 Batcave Terminal";
-            localStorage.setItem("watchtower-theme", isLightNow ? "light" : "dark");
-        }, 750);
+            setTimeout(() => {
+                document.body.classList.toggle("light-theme");
+                const isLightNow = document.body.classList.contains("light-theme");
+                themeToggle.textContent = isLightNow ? "☀️ Watchtower Command" : "🌙 Batcave Terminal";
+                localStorage.setItem("watchtower-theme", isLightNow ? "light" : "dark");
+            }, 750);
 
-        setTimeout(() => {
-            if (capeSweep) capeSweep.classList.remove("sweep-dark", "sweep-light");
-        }, 1600);
-    });
-
+            setTimeout(() => {
+                if (capeSweep) capeSweep.classList.remove("sweep-dark", "sweep-light");
+            }, 1600);
+        });
+    }
     // Mobile Menu Toggle
     const menuToggle = document.getElementById("menuToggle");
     const navLinks = document.getElementById("navLinks");
@@ -52,7 +53,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const pill = document.getElementById("navPill");
 
     function updatePill(activeItem) {
-        if (!pill || !activeItem) return;
+        if (!pill || !activeItem || !navLinks) return;
         const itemRect = activeItem.getBoundingClientRect();
         const parentRect = navLinks.getBoundingClientRect();
         pill.style.transform = `translateX(${Math.round(itemRect.left - parentRect.left)}px) translateZ(0)`;
@@ -139,16 +140,4 @@ document.addEventListener("DOMContentLoaded", () => {
         const clockEl = document.getElementById("liveClock");
         if (clockEl) clockEl.textContent = new Date().toTimeString().split(' ')[0];
     }, 1000);
-
-    // Scroll Reveal Observer
-    const revealObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add("active");
-                observer.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.1 });
-
-    document.querySelectorAll(".scroll-reveal").forEach(el => revealObserver.observe(el));
 });
