@@ -1,12 +1,13 @@
-/* THEME VARIABLES & COLOR PALETTES */
-/*THEME VARIABLES & COLOR PALETTES*/
+/* ==========================================
+   THEME VARIABLES & COLOR PALETTES
+   ========================================== */
 :root {
     --bg-image: url('Batcave.jpg');
     --bg-color: #080b10;
-    --text-color: #f8fafc;        /* Pure high-contrast white-slate */
-    --text-muted: #e2e8f0;        /* Brightened muted text for extreme readability */
+    --text-color: #f8fafc;
+    --text-muted: #e2e8f0;
     --title-color: #ffffff;
-    --primary-color: #facc15;     /* High-visibility Tactical Amber/Gold for Dark Mode */
+    --primary-color: #facc15;
     --accent-color: #f43f5e;
     --border-color: rgba(250, 204, 21, 0.5);
     --glow: 0 0 18px rgba(250, 204, 21, 0.6);
@@ -18,12 +19,12 @@
 }
 
 body.light-theme {
-    --bg-image: url('Watchtower2.jpg');
+    --bg-image: url('Watchtower2.jpg') !important;
     --bg-color: #f0f4f8;
-    --text-color: #0f172a;        /* Deep crisp dark slate for light mode */
-    --text-muted: #334155;        /* Dark solid secondary text */
+    --text-color: #0f172a;
+    --text-muted: #334155;
     --title-color: #0f172a;
-    --primary-color: #0369a1;     /* High-visibility Deep Ocean Blue for Light Mode */
+    --primary-color: #0369a1;
     --accent-color: #b91c1c;
     --border-color: rgba(3, 105, 161, 0.45);
     --glow: 0 0 15px rgba(3, 105, 161, 0.3);
@@ -50,16 +51,18 @@ html {
 }
 
 body {
-    background-color: #f0f4f8;
+    background-color: #080b10;
     background-image: var(--bg-image);
     background-repeat: no-repeat;
-    background-size: cover;          /* Fills the entire screen width and height */
-    background-position: center center; /* Centers the artwork so it's always in frame */
-    background-attachment: fixed;    /* LOCKS the background completely so it never scrolls */
+    background-size: contain;
+    background-position: center center;
+    background-attachment: fixed;
     color: var(--text-color);
     line-height: 1.6;
     overflow-x: hidden;
     transition: background-color 0.4s ease, color 0.4s ease;
+    -webkit-font-smoothing: antialiased;
+    transform: translateZ(0);
 }
 
 /* ==========================================
@@ -341,6 +344,13 @@ body.light-theme .nav-links a.active {
     box-shadow: var(--glow);
     margin: 0 auto 1rem auto;
     display: block;
+    animation: profilePulse 1.5s ease-in-out infinite both;
+}
+
+@keyframes profilePulse {
+    0% { transform: scale(1); box-shadow: 0 0 10px rgba(250, 204, 21, 0.4); }
+    50% { transform: scale(1.04); box-shadow: 0 0 25px rgba(250, 204, 21, 0.8); }
+    100% { transform: scale(1); box-shadow: 0 0 10px rgba(250, 204, 21, 0.4); }
 }
 
 .role-tag {
@@ -422,7 +432,7 @@ h2.section-title::after {
     font-weight: bold;
     letter-spacing: 1px;
     color: var(--primary-color);
-    background: rgba(56, 189, 248, 0.15);
+    background: rgba(250, 204, 21, 0.15);
     border: 1px solid var(--primary-color);
     padding: 0.3rem 0.8rem;
     border-radius: 6px;
@@ -520,14 +530,14 @@ h2.section-title::after {
 }
 
 .project-card.hide {
-    display: none;
+    display: none !important;
     opacity: 0;
 }
 
 .tag {
     display: inline-block;
     padding: 0.25rem 0.7rem;
-    background-color: rgba(56, 189, 248, 0.15);
+    background-color: rgba(250, 204, 21, 0.15);
     color: var(--primary-color);
     border: 1px solid var(--primary-color);
     font-size: 0.78rem;
@@ -645,152 +655,89 @@ footer {
 }
 
 /* ==========================================
-   RESTORED ANIMATIONS & PULSATING EFFECTS
+   ANIMATIONS & SCROLL REVEALS
    ========================================== */
-
-/* ==========================================
-   EXACT ANIMATION: slide-top / slide-left (0.5s easeOutQuad)
-   ========================================== */
-
 @keyframes slideTop {
-    0% {
-        opacity: 0;
-        transform: translateY(-30px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    0% { opacity: 0; transform: translateY(-30px); }
+    100% { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes slideLeft {
-    0% {
-        opacity: 0;
-        transform: translateX(30px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateX(0);
-    }
+    0% { opacity: 0; transform: translateX(30px); }
+    100% { opacity: 1; transform: translateX(0); }
 }
 
-/* Scroll-Reveal Pop-up Animation */
 .scroll-reveal {
     opacity: 0;
-    animation: none; /* Controlled by IntersectionObserver active state */
+    animation: none;
     will-change: opacity, transform;
 }
 
 .scroll-reveal.active {
-    animation: slideTop 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both; /* easeOutQuad equivalent with 0.5s duration */
-}
-
-/* Applied to project cards when switching categories (Web vs Network filters) */
-.project-card {
-    transition: none; /* Handled instantly by the animation */
+    animation: slideTop 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 }
 
 .project-card:not(.hide) {
     animation: slideLeft 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 }
 
-.project-card.hide {
-    display: none !important;
-    opacity: 0;
+/* ==========================================
+   HOVER INTERACTIVITY (POP-UP LIFT)
+   ========================================== */
+.bat-card, .project-card, .about-card, .contact-form {
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), 
+                box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1), 
+                border-color 0.35s ease !important;
 }
+
+.bat-card:hover, .project-card:hover, .about-card:hover, .contact-form:hover {
+    transform: translateY(-8px) scale(1.02) !important;
+    box-shadow: 0 16px 45px rgba(0, 0, 0, 0.5), var(--glow) !important;
+    border-color: var(--primary-color) !important;
+}
+
+.btn:hover, .filter-btn:hover {
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: var(--glow);
+}
+
+/* ==========================================
+   LIGHTNING-FAST PERFORMANCE (GPU & LAZY)
+   ========================================== */
+body, header, .bat-card, .project-card, .cape-sweep {
+    will-change: transform, opacity;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+}
+
+section {
+    content-visibility: auto;
+    contain-intrinsic-size: 1000px;
+}
+
 /* ==========================================
    TABLET & PHONE RESPONSIVE OPTIMIZATIONS
    ========================================== */
-
-/* Tablet Optimization (Screens between 768px and 1024px) */
 @media (max-width: 1024px) and (min-width: 901px) {
-    .container {
-        max-width: 90%;
-        padding: 0 1rem;
-    }
-
-    .hero-wrapper {
-        gap: 2rem;
-        padding: 2rem;
-    }
-
-    .hero-profile-card {
-        flex: 0 0 180px;
-        padding-right: 1.5rem;
-    }
-
-    .projects-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
+    .container { max-width: 90%; padding: 0 1rem; }
+    .hero-wrapper { gap: 2rem; padding: 2rem; }
+    .hero-profile-card { flex: 0 0 180px; padding-right: 1.5rem; }
+    .projects-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
-/* Mobile & Small Device Optimization (Up to 900px) */
 @media (max-width: 900px) {
-    body {
-        background-attachment: scroll !important;
-    }
-
-    .container {
-        margin: 2rem auto;
-        padding: 0 1rem;
-    }
-
-    .hero-section {
-        min-height: auto;
-        padding: 1.5rem 1rem;
-    }
-
-    .hero-wrapper {
-        flex-direction: column !important;
-        text-align: center !important;
-        gap: 1.5rem !important;
-        padding: 1.8rem 1.2rem !important;
-    }
-
-    .hero-profile-card {
-        flex: unset !important;
-        width: 100% !important;
-        border-right: none !important;
-        border-bottom: 2px solid var(--border-color) !important;
-        padding-right: 0 !important;
-        padding-bottom: 1.2rem !important;
-    }
-
-    .hero-buttons {
-        justify-content: center !important;
-        flex-wrap: wrap;
-    }
-
-    .projects-grid {
-        grid-template-columns: 1fr !important;
-        gap: 1.2rem;
-    }
-
-    .tactical-clock {
-        display: none !important;
-    }
-
-    .navbar {
-        flex-wrap: wrap !important;
-        padding: 0.6rem 1rem !important;
-        gap: 0.5rem !important;
-    }
-
-    .logo {
-        flex: 1 1 auto;
-        font-size: 1.05rem !important;
-    }
-
-    #themeToggle {
-        font-size: 0.72rem !important;
-        padding: 0.35rem 0.6rem !important;
-    }
-
-    .menu-toggle {
-        display: block !important;
-        order: 3;
-    }
-
+    body { background-attachment: scroll !important; }
+    .container { margin: 2rem auto; padding: 0 1rem; }
+    .hero-section { min-height: auto; padding: 1.5rem 1rem; }
+    .hero-wrapper { flex-direction: column !important; text-align: center !important; gap: 1.5rem !important; padding: 1.8rem 1.2rem !important; }
+    .hero-profile-card { flex: unset !important; width: 100% !important; border-right: none !important; border-bottom: 2px solid var(--border-color) !important; padding-right: 0 !important; padding-bottom: 1.2rem !important; }
+    .hero-buttons { justify-content: center !important; flex-wrap: wrap; }
+    .projects-grid { grid-template-columns: 1fr !important; gap: 1.2rem; }
+    .tactical-clock { display: none !important; }
+    .navbar { flex-wrap: wrap !important; padding: 0.6rem 1rem !important; gap: 0.5rem !important; }
+    .logo { flex: 1 1 auto; font-size: 1.05rem !important; }
+    #themeToggle { font-size: 0.72rem !important; padding: 0.35rem 0.6rem !important; }
+    .menu-toggle { display: block !important; order: 3; }
     .nav-links {
         display: none;
         flex-direction: column;
@@ -806,23 +753,8 @@ footer {
         border-bottom: 1px solid var(--border-color);
         gap: 0.8rem !important;
     }
-
-    .nav-links.show {
-        display: flex !important;
-    }
-
-    .nav-pill-indicator {
-        display: none !important;
-    }
-
-    .nav-links a.active {
-        background: var(--primary-color);
-        color: #080b10 !important;
-        border-radius: 8px;
-        text-align: center;
-    }
-
-    .filter-btn, .btn, .nav-links a {
-        padding: 0.6rem 1rem;
-    }
+    .nav-links.show { display: flex !important; }
+    .nav-pill-indicator { display: none !important; }
+    .nav-links a.active { background: var(--primary-color); color: #080b10 !important; border-radius: 8px; text-align: center; }
+    .filter-btn, .btn, .nav-links a { padding: 0.6rem 1rem; }
 }
