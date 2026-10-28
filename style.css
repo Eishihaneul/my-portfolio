@@ -489,6 +489,7 @@ body.light-theme .nav-links a.active {
 }
 
 /* Projects & Filters */
+/* Projects & Filters (Original) */
 .filter-buttons {
     display: flex;
     gap: 0.5rem;
@@ -521,13 +522,15 @@ body.light-theme .nav-links a.active {
 }
 
 .project-card {
-    transition: opacity 0.4s ease, transform 0.4s ease;
     opacity: 1;
+    transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), 
+                transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .project-card.hide {
-    opacity: 0 !important;
-    pointer-events: none;
+    display: none;
+    opacity: 0;
+    transform: scale(0.95) translateX(-20px);
 }
 
 .tag {
