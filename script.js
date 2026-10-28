@@ -13,7 +13,7 @@ const themeToggle = document.getElementById("themeToggle");
         themeToggle.textContent = "🌙 Batcave Terminal";
     } else {
         document.body.classList.add("light-theme");
-        themeToggle.textContent = "☀️ Watchtower Command";
+        themeToggle.textContent = "☀️ Watchtower Terminal";
     }
 
     themeToggle.addEventListener("click", () => {
@@ -126,10 +126,10 @@ setTimeout(() => {
 
     const typingElement = document.getElementById("typingText");
     const phrases = [
-        "Network Computing Specialist @ UNIMAS",
-        "Tactical Student Leader & Vice President",
-        "Minggu Aluan Pelajar Facilitator",
-        "Watchtower Systems Administrator"
+        "Network Computing Engineer🛜",
+        "Tactical Vice President🕵️‍♂️",
+        "Official Right Wing Safety Bureau🪽",
+        "Watchtower Systems Administrator👁️"
     ];
     let phraseIndex = 0;
     let charIndex = 0;
