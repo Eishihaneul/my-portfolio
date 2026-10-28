@@ -162,10 +162,7 @@ themeToggle.addEventListener("click", () => {
     }
     typeEffect();
 
-    const filterBtns = document.querySelectorAll(".filter-btn");
-    const projectCards = document.querySelectorAll(".project-card");
-
-    const filterBtns = document.querySelectorAll(".filter-btn");
+const filterBtns = document.querySelectorAll(".filter-btn");
     const projectCards = document.querySelectorAll(".project-card");
 
     filterBtns.forEach(btn => {
@@ -174,26 +171,21 @@ themeToggle.addEventListener("click", () => {
             btn.classList.add("active");
 
             const filterValue = btn.getAttribute("data-filter");
+            let delay = 0;
 
             projectCards.forEach(card => {
-                const category = card.getAttribute("data-category");
-                
-                if (filterValue === "all" || category === filterValue) {
-                    card.style.display = "block"; // Ensure it takes up layout space first
+                if (filterValue === "all" || card.getAttribute("data-category") === filterValue) {
+                    card.classList.remove("hide");
+                    card.style.opacity = "0";
+                    card.style.transform = "translateY(25px) translateX(-15px) translateZ(0)";
+                    
                     setTimeout(() => {
                         card.style.opacity = "1";
-                        card.style.transform = "translateY(0) scale(1)";
-                        card.classList.remove("hide");
-                    }, 50);
+                        card.style.transform = "translateY(0) translateX(0) translateZ(0)";
+                    }, delay);
+                    delay += 80; 
                 } else {
-                    card.style.opacity = "0";
-                    card.style.transform = "translateY(15px) scale(0.95)";
                     card.classList.add("hide");
-                    setTimeout(() => {
-                        if (card.classList.contains("hide")) {
-                            card.style.display = "none"; // Hide completely after fade out
-                        }
-                    }, 300);
                 }
             });
         });
