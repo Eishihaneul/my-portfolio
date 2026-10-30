@@ -1,29 +1,27 @@
 :root {
-    --bg-color: #07090e;
+    --bg-color: #0f172a; /* Solid Batcave Dark */
     --text-color: #f8fafc;
-    --text-muted: #cbd5e1;
-    --primary-color: #facc15;
-    --border-color: rgba(250, 204, 21, 0.4);
-    --glow: 0 0 18px rgba(250, 204, 21, 0.45);
-    --card-bg: rgba(14, 18, 25, 0.6);
-    --input-bg: #111722;
+    --text-muted: #94a3b8;
+    --primary-color: #facc15; /* Batman Yellow */
+    --border-color: #facc15; /* Solid border */
+    --card-bg: #1e293b; /* Solid flat dark */
+    --input-bg: #0f172a;
     --input-text: #ffffff;
 }
 
 body.light-theme {
-    --bg-color: #e2e8f0;
+    --bg-color: #f8fafc; /* Solid Watchtower Light */
     --text-color: #0f172a;
-    --text-muted: #334155;
-    --primary-color: #0369a1;
-    --border-color: rgba(3, 105, 161, 0.4);
-    --glow: 0 0 14px rgba(3, 105, 161, 0.3);
-    --card-bg: rgba(255, 255, 255, 0.4);
-    --input-bg: #f8fafc;
+    --text-muted: #475569;
+    --primary-color: #0284c7; /* Superman Blue */
+    --border-color: #0284c7;
+    --card-bg: #ffffff; /* Solid flat white */
+    --input-bg: #f1f5f9;
     --input-text: #0f172a;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; overflow-x: hidden; }
+html { scroll-behavior: smooth; } /* Removed overflow-x: hidden to fix sticky header */
 
 body {
     background-color: var(--bg-color);
@@ -31,20 +29,18 @@ body {
     line-height: 1.6;
     font-family: system-ui, sans-serif;
     transition: background-color 0.4s ease, color 0.4s ease;
-    overflow-x: hidden;
+    overflow-x: clip; /* Use clip instead of hidden to allow sticky header */
 }
-
 /* Header & Ticker */
 header {
     position: sticky;
     top: 0;
     z-index: 1000;
-    background: rgba(14, 18, 25, 0.92);
-    backdrop-filter: blur(14px);
-    border-bottom: 1px solid var(--border-color);
+    background: var(--bg-color); /* Solid background, no blur */
+    border-bottom: 3px solid var(--border-color); /* Thicker flat border */
+    transition: background-color 0.4s ease;
 }
-body.light-theme header { background: rgba(255, 255, 255, 0.92); }
-
+/* Removed light-theme header override as var(--bg-color) handles it automatically */
 .watchtower-ticker {
     background: rgba(0, 0, 0, 0.8);
     border-bottom: 1px solid var(--border-color);
@@ -79,13 +75,20 @@ body.light-theme .nav-links a.active { color: #fff !important; }
 .superman-fly-img { position: absolute; width: 280px; top: 50%; transform: translateY(-50%) translateZ(0); right: -160px; opacity: 0.85; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.6)); }
 @keyframes capeFly { 0% { transform: translateX(0); left: -100vw; } 50% { transform: translateX(100vw); left: -100vw; } 100% { transform: translateX(200vw); left: -100vw; } }
 
-/* Layout & Glass Effect Cards */
-.container { max-width: 1100px; margin: 3rem auto; padding: 0 1.5rem; }
-.hero-wrapper { display: flex; align-items: center; gap: 3rem; padding: 3rem; }
-.hero-profile-card { text-align: center; }
-.profile-avatar-img { width: 150px; height: 150px; border-radius: 50%; object-fit: cover; border: 3px solid var(--primary-color); animation: heartbeat 2s infinite; }
-@keyframes heartbeat { 0%, 45%, 100% { transform: scale(1); } 10% { transform: scale(0.91); } 17% { transform: scale(0.98); } 33% { transform: scale(0.87); } }
-
+.glass-effect {
+    background: var(--card-bg);
+    border-radius: 0; /* Sharp corners for comic book flat design */
+    border: 3px solid var(--border-color);
+    box-shadow: 8px 8px 0px var(--border-color); /* Hard flat shadow */
+    padding: 2rem; 
+    position: relative; 
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.glass-effect:hover {
+    transform: translate(-4px, -4px);
+    box-shadow: 12px 12px 0px var(--border-color);
+}
 .glass-effect {
     background: var(--card-bg); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
     border-radius: 20px; border: 1px solid var(--border-color); box-shadow: 0 0 20px rgba(0,0,0,0.15);
@@ -109,6 +112,32 @@ h2 { margin-bottom: 1.5rem; text-align: center; font-size: 2rem; }
 .flip-card-back h3 { color: #000; }
 .tag { font-family: monospace; color: var(--primary-color); font-weight: bold; margin: 0.5rem 0; display: inline-block; }
 .flip-card-back .tag { color: #000; }
+
+/* Justice League Card Fronts */
+.flip-card-front.glass-effect { padding: 0; } /* Remove padding so image goes edge-to-edge */
+.card-hero-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+    filter: grayscale(30%) contrast(120%);
+    transition: filter 0.4s ease;
+}
+.flip-card:hover .card-hero-img { filter: grayscale(0%) contrast(100%); }
+.card-content-overlay {
+    position: relative;
+    z-index: 1;
+    background: rgba(0, 0, 0, 0.8); /* Dark overlay for text readability */
+    padding: 1.5rem;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: #fff; /* Force white text on dark overlay */
+}
 
 /* Contact Form */
 .contact-form { display: flex; flex-direction: column; gap: 1.2rem; }
